@@ -8,6 +8,7 @@ const Home = () => {
   const { mainPosts } = useSelector(state => state.post)
   useEffect(() => {
     console.log(mainPosts)
+    console.log(123)
   }, [mainPosts])
 
   return (
