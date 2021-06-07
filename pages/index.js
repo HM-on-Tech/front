@@ -9,7 +9,7 @@ const Home = () => {
   useEffect(() => {
     console.log(mainPosts)
     console.log(123)
-    console.log('login added')
+    console.log('login added') 
   }, [mainPosts])
 
   return (
