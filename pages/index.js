@@ -10,7 +10,7 @@ const Home = () => {
     console.log(mainPosts)
     console.log(123)
     console.log('login added') 
-    console.log('logout clear!!!!!!!!!!!!!')
+    console.log('feature/a')
   }, [mainPosts])
 
   return (
