@@ -12,6 +12,7 @@ const Home = () => {
     console.log('login added')
     console.log('awefwefkg')
     console.log('feature/a')
+    console.log('feature/bleh')
   }, [mainPosts])
 
   return (
