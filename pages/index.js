@@ -11,7 +11,8 @@ const Home = () => {
     console.log(123)
     console.log('login added')
     console.log('awefwefkg')
-    console.log('feature/a') 
+    console.log('feature/a')
+    console.log('feature/bleh')
   }, [mainPosts])
 
   return (
