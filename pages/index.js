@@ -13,7 +13,7 @@ const Home = () => {
 
   return (
     <AppLayout>
-    {
+    { 
       mainPosts?.map( (post)=> <div>{post.title}</div> )
     }
     </AppLayout>
