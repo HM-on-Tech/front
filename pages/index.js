@@ -8,11 +8,7 @@ const Home = () => {
   const { mainPosts } = useSelector(state => state.post)
   useEffect(() => {
     console.log(mainPosts)
-    console.log(123)
-    console.log('login added')
-    console.log('awefwefkg')
-    console.log('feature/a')
-    console.log('feature/bleh')
+    console.log('table function')
   }, [mainPosts])
 
   return (
