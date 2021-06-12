@@ -21,8 +21,8 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
     media: {
-      width: 600,
-      maxWidth: 600,
+      width: '100%',
+      maxWidth: '100$',
 
       paddingTop: '56.25%', // 16:9
 
@@ -42,11 +42,10 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const CardComponent = (props) => {
+const CardComponent = ({item}) => {
 
-    const classes = useStyles();
+  const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -64,17 +63,17 @@ const CardComponent = (props) => {
             <MoreVertIcon />
           </IconButton>
         }
-        title={props.article.title}
+        title={item.name.slice(0,20)}
         subheader="September 14, 2016"
       />
       <CardMedia
         className={classes.media}
-        image="https://images.unsplash.com/photo-1607093788509-e65039a7cd6f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+        image={item.image_link}
         title="Paella dish"
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {props.article.content}
+        nothing
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -97,7 +96,7 @@ const CardComponent = (props) => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          hello 123
+        {item.description}
         </CardContent>
       </Collapse>
     </Card>

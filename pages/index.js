@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
+import CardComponent from '../components/CardComponent';
 import AppLayout from '../components/AppLayout';
 import { LOAD_POSTS_REQUEST } from '../reducers/post';
 
@@ -37,16 +38,9 @@ const Home = () => {
         <Grid container spacing={3}>
         {mainPosts.map( (item) => (
           <Grid item xs={6} sm={3}>
-            <Paper className={classes.paper}>{item.name}</Paper>
+            <CardComponent item={item}></CardComponent>
           </Grid>
         ))}
-          
-          <Grid item xs={6} sm={3}>
-            <Paper className={classes.paper}>xs=6 sm=3</Paper>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <Paper className={classes.paper}>xs=6 sm=3</Paper>
-          </Grid>
         </Grid>
       </div>
     {/* { 
