@@ -9,6 +9,7 @@ const Home = () => {
   useEffect(() => {
     console.log(mainPosts)
     console.log('table function')
+    console.log('grid added');
     console.log('feature/grid')
   }, [mainPosts])
 
