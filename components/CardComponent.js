@@ -15,7 +15,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-
+import { Button } from '@material-ui/core';
+import Link from 'next/link';
 const useStyles = makeStyles((theme) => ({
     root: {
       width: '100%',
@@ -52,20 +53,24 @@ const CardComponent = ({item}) => {
 
   return (
     <Card className={classes.root}>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            R
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title={item.name.slice(0,20)}
-        subheader={item.updated_at.slice(0,10)}
-      />
+      <Link href={`/post/${item.id}`}>
+        <Button>
+          <CardHeader
+            avatar={
+              <Avatar aria-label="recipe" className={classes.avatar}>
+                R
+              </Avatar>
+            }
+            action={
+              <IconButton aria-label="settings">
+                <MoreVertIcon />
+              </IconButton>
+            }
+            title={item.name.slice(0,20)}
+            subheader={item.updated_at.slice(0,10)}
+            />
+        </Button>
+      </Link>
       <CardMedia
         className={classes.media}
         image={item.image_link}
