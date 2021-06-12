@@ -64,7 +64,7 @@ const CardComponent = ({item}) => {
           </IconButton>
         }
         title={item.name.slice(0,20)}
-        subheader="September 14, 2016"
+        subheader={item.updated_at.slice(0,10)}
       />
       <CardMedia
         className={classes.media}
