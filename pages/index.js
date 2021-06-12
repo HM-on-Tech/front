@@ -5,6 +5,8 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
 import AppLayout from '../components/AppLayout';
+import { LOAD_POSTS_REQUEST } from '../reducers/post';
+
 const Home = () => {
 
   const useStyles = makeStyles((theme) => ({
@@ -24,20 +26,21 @@ const Home = () => {
   const dispatch = useDispatch()
   const { mainPosts } = useSelector(state => state.post)
   useEffect(() => {
-
-    
-  }, [mainPosts])
+    dispatch({
+      type: LOAD_POSTS_REQUEST,
+    })
+  }, [])
 
   return (
     <AppLayout>
       <div className={classes.root}>
         <Grid container spacing={3}>
+        {mainPosts.map( (item) => (
           <Grid item xs={6} sm={3}>
-            <Paper className={classes.paper}>xs=6 sm=3</Paper>
+            <Paper className={classes.paper}>{item.name}</Paper>
           </Grid>
-          <Grid item xs={6} sm={3}>
-            <Paper className={classes.paper}>xs=6 sm=3</Paper>
-          </Grid>
+        ))}
+          
           <Grid item xs={6} sm={3}>
             <Paper className={classes.paper}>xs=6 sm=3</Paper>
           </Grid>

@@ -10,13 +10,14 @@ import {
   ADD_POST_SUCCESS,
 } from '../reducers/post';
 
-function loadPostsAPI(data) {
-  return axios.get('http://localhost:3065/api/post/list', data);
+function loadPostsAPI() {
+  // return axios.get('http://localhost:3065/api/post/list', data);
+  return axios.get('http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline');
 }
 
 function* loadPosts(action) {
   try {
-    const result = yield call(loadPostsAPI, action.data);
+    const result = yield call(loadPostsAPI);
     yield put({
       type: LOAD_POSTS_SUCCESS,
       data: result.data
