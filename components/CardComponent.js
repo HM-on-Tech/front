@@ -53,7 +53,7 @@ const CardComponent = ({item}) => {
 
   return (
     <Card className={classes.root}>
-      <Link href={`/post/${item.id}`}>
+      <Link href={item.url}>
         <Button>
           <CardHeader
             avatar={
@@ -66,14 +66,14 @@ const CardComponent = ({item}) => {
                 <MoreVertIcon />
               </IconButton>
             }
-            title={item.name.slice(0,20)}
-            subheader={item.updated_at.slice(0,10)}
+            title={item.title.slice(0, 20)}
+            subheader={item.updated_date.slice(0, 10)}
             />
         </Button>
       </Link>
       <CardMedia
         className={classes.media}
-        image={item.image_link}
+        image={item.thumbnail_standard}
         title="Paella dish"
       />
       <CardContent>
