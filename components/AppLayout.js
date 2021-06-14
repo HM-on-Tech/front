@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { Col, Input, Menu, Row } from 'antd';
-import PostForm from './PostForm';
 
 
 
@@ -31,7 +30,6 @@ const AppLayout = ({ children }) => {
           he
         </Col>
         <Col xs={24} md={18}>
-          <PostForm />
           {children}
         </Col>
 
