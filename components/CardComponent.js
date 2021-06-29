@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const CardComponent = ({item}) => {
+const CardComponent = ({item, index}) => {
 
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -83,7 +83,9 @@ const CardComponent = ({item}) => {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
+        <Link href={`/${index}`}> 
           <FavoriteIcon />
+        </Link>
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />
