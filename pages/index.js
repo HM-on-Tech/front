@@ -38,13 +38,18 @@ const Home = () => {
 
 
       <div className={classes.root}>
+      {mainPosts.map((item, index) => (
         <Grid container spacing={3}>
-          {mainPosts.map((item, index) => (
-            <Grid item xs={6} sm={3}>
-              <CardComponent item={item} index={index}></CardComponent>
-            </Grid>
-          ))}
+          
+              <div 
+                key= {item.title + index} 
+                dangerouslySetInnerHTML={{ __html: item.content }}
+              />
+            {/* // <Grid item xs={6} sm={3}>
+            //   <CardComponent item={item} index={index}></CardComponent>
+            // </Grid> */}
         </Grid>
+      ))}
       </div>
       {/* { 
       mainPosts?.map( (post)=> <div>{post.title}</div> )

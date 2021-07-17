@@ -34,7 +34,9 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       break;
     case LOAD_POSTS_SUCCESS:
       draft.loadPostsDone = true;
-      draft.mainPosts = [...action.data.results];
+      // console.log('data',action.data )
+      draft.mainPosts = [...action.data];
+      // draft.mainPosts = [...action.data.results];
       break;
     case LOAD_POSTS_FAILURE:
       draft.loadPostsError = action.error;

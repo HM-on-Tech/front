@@ -11,14 +11,13 @@ import {
 } from '../reducers/post';
 
 function loadPostsAPI() {
-  // return axios.get('http://localhost:3065/api/post/list', data);
-  return axios.get('https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=kzMmOlHAw7K5LxjTAHqQ9KJ4tS44W4zr');
+  return axios.post('http://localhost:3065/api/post/list');
+  // return axios.get('https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=kzMmOlHAw7K5LxjTAHqQ9KJ4tS44W4zr');
 }
 
 function* loadPosts(action) {
   try {
     const result = yield call(loadPostsAPI);
-    console.log(result)
     yield put({
       type: LOAD_POSTS_SUCCESS,
       data: result.data
