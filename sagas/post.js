@@ -33,6 +33,7 @@ function* loadPosts(action) {
 }
 
 function addPostAPI(data) {
+  console.log(data)
   return axios.post('http://localhost:3065/api/post/add', data);
 }
 
