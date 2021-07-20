@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import CardComponent from '../components/CardComponent';
 import AppLayout from '../components/AppLayout';
-import { LOAD_POSTS_REQUEST } from '../reducers/post';
+import { LOAD_POSTS_REQUEST } from '../reducers/posts';
 
 const Home = () => {
 
@@ -24,7 +24,7 @@ const Home = () => {
   const classes = useStyles();
 
   const dispatch = useDispatch()
-  const { mainPosts } = useSelector(state => state.post)
+  const { mainPosts } = useSelector(state => state.posts)
   useEffect(() => {
     dispatch({
       type: LOAD_POSTS_REQUEST,
@@ -38,22 +38,11 @@ const Home = () => {
 
 
       <div className={classes.root}>
-      {mainPosts.map((item, index) => (
-        <Grid container spacing={3}>
-          
-              <div 
-                key= {item.title + index} 
-                dangerouslySetInnerHTML={{ __html: item.content }}
-              />
-            {/* // <Grid item xs={6} sm={3}>
-            //   <CardComponent item={item} index={index}></CardComponent>
-            // </Grid> */}
-        </Grid>
+        {console.log(mainPosts)}
+      {mainPosts.map((post, index) => (
+        <CardComponent item={post} index={index} />
       ))}
       </div>
-      {/* { 
-      mainPosts?.map( (post)=> <div>{post.title}</div> )
-    } */}
     </AppLayout>
 
   );

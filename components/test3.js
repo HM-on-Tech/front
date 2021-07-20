@@ -35,7 +35,6 @@ function TextRich3() {
         />
     <ReactQuill theme="snow" value={value} onChange={setValue}/>
     <Button onClick={quillSubmit}>Submit</Button>
-    <div dangerouslySetInnerHTML={{ __html: value }} />
     </>
   );
 }

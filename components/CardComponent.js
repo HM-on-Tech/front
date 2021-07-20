@@ -53,7 +53,7 @@ const CardComponent = ({item, index}) => {
 
   return (
     <Card className={classes.root}>
-      <Link href={item.url}>
+      <Link href={`/article/${item.id}`}>
         <Button>
           <CardHeader
             avatar={
@@ -61,51 +61,16 @@ const CardComponent = ({item, index}) => {
                 R
               </Avatar>
             }
-            action={
-              <IconButton aria-label="settings">
-                <MoreVertIcon />
-              </IconButton>
-            }
-            title={item.title.slice(0, 20)}
-            subheader={item.updated_date.slice(0, 10)}
+            title={item.title}
+            // subheader={item.updated_date.slice(0, 10)}
             />
         </Button>
       </Link>
-      <CardMedia
-        className={classes.media}
-        image={item.thumbnail_standard}
-        title="Paella dish"
-      />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
         nothing
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-        <Link href={`/${index}`}> 
-          <FavoriteIcon />
-        </Link>
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-        {item.description}
-        </CardContent>
-      </Collapse>
     </Card>
   );
 

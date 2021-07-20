@@ -42,8 +42,7 @@ const AppLayout = ({ children }) => {
   return (
     <div style={{ margin: '0 10px' }}>
       <Menu mode="horizontal">
-        {console.log(isLoggedIn)}
-        <Menu.Item key="home"><Link href="/"><a>tab1</a></Link></Menu.Item>
+        <Menu.Item key="home"><Link href="/"><a>Home</a></Link></Menu.Item>
         <Menu.Item key="profile"><Link href="/"><a>tab2</a></Link></Menu.Item>
         <Menu.Item key="mail">
           <Input.Search enterButton style={{ verticalAlign: 'middle' }} />
@@ -63,14 +62,14 @@ const AppLayout = ({ children }) => {
         </Menu.Item>
       </Menu>
       <Row>
-        <Col xs={24} md={3}>
+        <Col xs={24} md={3} style={{backgroundColor:'grey'}}>
           he
         </Col>
         <Col xs={24} md={18}>
           {children}
         </Col>
 
-        <Col xs={24} md={3}>
+        <Col xs={24} md={3} style={{backgroundColor:'grey'}}>
           hello
         </Col>
       </Row>
