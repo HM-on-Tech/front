@@ -3,7 +3,7 @@ import ReactQuill from 'react-quill';
 import { Button, TextField} from '@material-ui/core';
 import 'react-quill/dist/quill.snow.css';
 import { useDispatch } from 'react-redux';
-import { ADD_POST_REQUEST } from '../reducers/post';
+import { ADD_POST_REQUEST} from '../reducers/post'
 
 
 function TextRich3() {

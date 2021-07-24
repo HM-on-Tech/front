@@ -3,13 +3,11 @@ import { all, call, delay, fork, put, takeLatest, throttle } from 'redux-saga/ef
 import { LOAD_POST_REQUEST, LOAD_POST_SUCCESS } from '../reducers/post';
 
 import {
-  LOAD_POSTS_FAILURE,
-  LOAD_POSTS_REQUEST,
-  LOAD_POSTS_SUCCESS,
   ADD_POST_FAILURE,
   ADD_POST_REQUEST,
   ADD_POST_SUCCESS,
-} from '../reducers/posts';
+} from '../reducers/post';
+import { LOAD_POSTS_REQUEST } from '../reducers/posts';
 
 function loadPostAPI(blogId) {
   return axios.post('http://localhost:3065/api/post/',{blogId:blogId});
