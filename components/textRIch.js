@@ -4,9 +4,10 @@ import { Button, TextField} from '@material-ui/core';
 import 'react-quill/dist/quill.snow.css';
 import { useDispatch } from 'react-redux';
 import { ADD_POST_REQUEST} from '../reducers/post'
+import AppLayout2 from "./AppLayout2";
 
 
-function TextRich3() {
+const TextRich = () => {
   const [value, setValue] = useState('');
   const [title, setTitle] = useState('');
 
@@ -25,18 +26,22 @@ function TextRich3() {
   }
   return (
     <>
-    <TextField
-          label="Title"
-          id="blog_title"
-          helperText="Enter title"
-          margin="normal"
-          variant="outlined"
-          onChange={titleHandler}
-        />
-    <ReactQuill theme="snow" value={value} onChange={setValue}/>
-    <Button onClick={quillSubmit}>Submit</Button>
+    <AppLayout2>
+      <div style={{backgroundColor:'gery', marginTop:20, marginLeft:20, marginRight:20}}>
+        <TextField
+              label="Title"
+              id="blog_title"
+              margin="normal"
+              variant="outlined"
+              onChange={titleHandler}
+              style={{width:'100%'}}
+            />
+        <ReactQuill theme="snow" value={value} onChange={setValue} style={{height:450}}/>
+        <Button onClick={quillSubmit}>Submit</Button>
+      </div>
+    </AppLayout2>
     </>
   );
 }
 
-export default TextRich3;
+export default TextRich;
