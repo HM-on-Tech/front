@@ -4,6 +4,7 @@ import { Button, TextField} from '@material-ui/core';
 import 'react-quill/dist/quill.snow.css';
 import { useDispatch } from 'react-redux';
 import { ADD_POST_REQUEST} from '../reducers/post'
+import AppLayout2 from "./AppLayout2";
 
 
 function TextRich3() {
@@ -25,16 +26,18 @@ function TextRich3() {
   }
   return (
     <>
-    <TextField
-          label="Title"
-          id="blog_title"
-          helperText="Enter title"
-          margin="normal"
-          variant="outlined"
-          onChange={titleHandler}
-        />
-    <ReactQuill theme="snow" value={value} onChange={setValue}/>
-    <Button onClick={quillSubmit}>Submit</Button>
+    <AppLayout2>
+      <TextField
+            label="Title"
+            id="blog_title"
+            helperText="Enter title"
+            margin="normal"
+            variant="outlined"
+            onChange={titleHandler}
+          />
+      <ReactQuill theme="snow" value={value} onChange={setValue}/>
+      <Button onClick={quillSubmit}>Submit</Button>
+    </AppLayout2>
     </>
   );
 }
