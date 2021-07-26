@@ -10,6 +10,14 @@ import AppLayout2 from "./AppLayout2";
 const TextRich = () => {
   const [value, setValue] = useState('');
   const [title, setTitle] = useState('');
+
+  const imageHandler = () => {
+    // const range = this.quill.getSelection();
+    const value = prompt('Insert image URL');
+    if (value){
+        this.quill.insertEmbed(range.index, 'image', value, Quill.sources.USER);
+    }
+  }
   const QuillModules = {
     toolbar: {
       container: [
@@ -20,8 +28,8 @@ const TextRich = () => {
           { list: "bullet" },
           { align: [] }
         ],
-        ['link', 'image', 'video'],
-        ['clean'],
+        ["link", "image"],
+        ["clean"]
         ['code-block'],
       ],
       handlers: {
@@ -33,13 +41,7 @@ const TextRich = () => {
     }
   }
 
-  const imageHandler = () => {
-    const range = this.quill.getSelection();
-    const value = prompt('Insert image URL');
-    if (value){
-        this.quill.insertEmbed(range.index, 'image', value, Quill.sources.USER);
-    }
-  }
+  
   const QuillFormats = [
     'header',
     'font',
