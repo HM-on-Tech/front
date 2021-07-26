@@ -7,38 +7,55 @@ import { ADD_POST_REQUEST} from '../reducers/post'
 import AppLayout2 from "./AppLayout2";
 
 
-const QuillModules = {
-  toolbar: [
-      [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }, { font: [] }],
-      [{ size: [] }],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-      [{ list: 'ordered' }, { list: 'bullet' }],
-      ['link', 'image', 'video'],
-      ['clean'],
-      ['code-block']
-  ]
-};
-
-const QuillFormats = [
-  'header',
-  'font',
-  'size',
-  'bold',
-  'italic',
-  'underline',
-  'strike',
-  'blockquote',
-  'list',
-  'bullet',
-  'link',
-  'image',
-  'video',
-  'code-block'
-];
-
 const TextRich = () => {
   const [value, setValue] = useState('');
   const [title, setTitle] = useState('');
+  const QuillModules = {
+    toolbar: {
+      container: [
+        [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }, { font: [] }],
+        ["bold", "italic", "underline", "strike", { color: ['red','blue'] }, { background: [] }],
+        [
+          { list: "ordered" },
+          { list: "bullet" },
+          { align: [] }
+        ],
+        ['link', 'image', 'video'],
+        ['clean'],
+        ['code-block'],
+      ],
+      handlers: {
+        image: imageHandler
+    },
+  },
+    clipboard: {
+      matchVisual: false,
+    }
+  }
+
+  const imageHandler = () => {
+    const range = this.quill.getSelection();
+    const value = prompt('Insert image URL');
+    if (value){
+        this.quill.insertEmbed(range.index, 'image', value, Quill.sources.USER);
+    }
+  }
+  const QuillFormats = [
+    'header',
+    'font',
+    'size',
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'blockquote',
+    'list',
+    'bullet',
+    'link',
+    'image',
+    'video',
+    'code-block'
+  ];
 
   const dispatch = useDispatch();
   const quillSubmit = (e) => {
