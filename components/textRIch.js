@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import ReactQuill from 'react-quill';
 import { Button, TextField} from '@material-ui/core';
 import 'react-quill/dist/quill.snow.css';
@@ -8,14 +8,16 @@ import AppLayout2 from "./AppLayout2";
 
 
 const TextRich = () => {
+  const inputEl = useRef(null);
+
   const [value, setValue] = useState('');
   const [title, setTitle] = useState('');
 
   const imageHandler = () => {
-    // const range = this.quill.getSelection();
+    const range = inputEl.current.getEditor().getSelection();
     const value = prompt('Insert image URL');
     if (value){
-        this.quill.insertEmbed(range.index, 'image', value, Quill.sources.USER);
+      inputEl.current.getEditor().insertEmbed(range.index, 'image', value); //, Quill.sources.USER
     }
   }
   const QuillModules = {
@@ -85,6 +87,7 @@ const TextRich = () => {
               style={{width:'100%'}}
             />
         <ReactQuill 
+          ref={inputEl} 
           theme="snow" 
           value={value} 
           onChange={setValue} 
