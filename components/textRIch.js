@@ -1,10 +1,14 @@
 import React, { useRef, useState } from "react";
-import ReactQuill from 'react-quill';
+import ReactQuill, {Quill} from 'react-quill';
 import { Button, TextField} from '@material-ui/core';
 import 'react-quill/dist/quill.snow.css';
 import { useDispatch } from 'react-redux';
 import { ADD_POST_REQUEST} from '../reducers/post'
-import AppLayout2 from "./AppLayout2";
+import AppLayout from "./AppLayout";
+import AdminLayout from "./AdminLayout";
+// import { ImageResize } from 'quill-image-resize-module';
+
+// Quill.register('modules/imageResize', ImageResize);
 
 
 const TextRich = () => {
@@ -16,11 +20,14 @@ const TextRich = () => {
   const imageHandler = () => {
     const range = inputEl.current.getEditor().getSelection();
     const value = prompt('Insert image URL');
-    if (value){
+    if (value){ 
       inputEl.current.getEditor().insertEmbed(range.index, 'image', value); //, Quill.sources.USER
     }
   }
   const QuillModules = {
+    // ImageResize: {
+    //   modules: [ Resize ],
+    // },
     toolbar: {
       container: [
         [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }, { font: [] }],
@@ -76,7 +83,8 @@ const TextRich = () => {
   }
   return (
     <>
-    <AppLayout2>
+    <AppLayout>
+      <AdminLayout>
       <div style={{backgroundColor:'gery', marginTop:20, marginLeft:20, marginRight:20}}>
         <TextField
               label="Title"
@@ -97,7 +105,9 @@ const TextRich = () => {
         />
         <Button onClick={quillSubmit}>Submit</Button>
       </div>
-    </AppLayout2>
+      </AdminLayout>
+      
+    </AppLayout>
     </>
   );
 }

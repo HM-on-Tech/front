@@ -7,7 +7,7 @@ import CardComponent from '../components/CardComponent';
 import AppLayout from '../components/AppLayout';
 import { LOAD_POSTS_REQUEST } from '../reducers/posts';
 
-const Home = () => {
+const Home = ({children}) => {
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,14 +35,9 @@ const Home = () => {
 
   return (
     <AppLayout>
-
-
-      <div className={classes.root}>
-        {console.log(mainPosts)}
       {mainPosts.map((post, index) => (
-        <CardComponent item={post} index={index} />
+        <CardComponent item={post} index={index} key={index} />
       ))}
-      </div>
     </AppLayout>
 
   );
