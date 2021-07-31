@@ -20,11 +20,12 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import GoogleLogin from 'react-google-login'
+
 import { LOG_IN_USER_SUCCESS } from '../reducers/user';
 import { LOG_IN_USER_FAILURE } from '../reducers/user';
 import AdminCrudArticle from './AdminCrudArticle';
 import { Button } from '@material-ui/core';
+import MyGoogleLogin from './MyGoogleLogin';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -121,33 +122,6 @@ export default function AppLayout( {children}) {
 
 
   const { isLoggedIn, userName } = useSelector(state => state.user)
-
-  const responseGoogle = (response) => {
-    if (response?.error) {
-      dispatch({
-        type: LOG_IN_USER_FAILURE,
-        data: response,
-      })
-    }
-    if (response?.accessToken) {
-      dispatch({
-        type: LOG_IN_USER_SUCCESS,
-        data: response
-      })
-    }
-    console.log(response);
-  }
-  // {isLoggedIn ?
-  //   `Hello, ${userName}`
-  //   :
-  //   <GoogleLogin
-  //     clientId="185607410093-fph2nms7s0bacisqfnc784ub3bea85vt.apps.googleusercontent.com"
-  //     buttonText="Login"
-  //     onSuccess={responseGoogle}
-  //     onFailure={responseGoogle}
-  //     cookiePolicy={'single_host_origin'}
-  //   />}
-
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -246,6 +220,7 @@ export default function AppLayout( {children}) {
             Admin
             </Button>
           </Link>
+          <MyGoogleLogin />
 
             <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="secondary">

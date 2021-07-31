@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import CardComponent from '../components/CardComponent';
 import AppLayout from '../components/AppLayout';
 import { LOAD_POSTS_REQUEST } from '../reducers/posts';
+import PostsLayout from '../components/PostsLayout';
 
 const Home = ({children}) => {
 
@@ -35,9 +36,11 @@ const Home = ({children}) => {
 
   return (
     <AppLayout>
-      {mainPosts.map((post, index) => (
-        <CardComponent item={post} index={index} key={index} />
-      ))}
+      <PostsLayout posts={mainPosts}>
+        {/* {mainPosts.map((post, index) => (
+          <CardComponent item={post} index={index} key={index} />
+        ))} */}
+      </PostsLayout>
     </AppLayout>
 
   );
