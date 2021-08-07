@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import AdminCrudArticle from "./AdminCrudArticle"
 import { makeStyles } from '@material-ui/core/styles';
 import CardComponent from './CardComponent';
+import { ToastContainer, toast } from 'react-toastify';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -16,7 +17,6 @@ const PostsLayout = ({children, posts}) => {
 
   return (
     <>
-    
       <Grid container spacing={3}>
         <Grid item xs={12} sm={3}>
           {/* <Paper className={classes.paper}>

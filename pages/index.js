@@ -21,9 +21,7 @@ const Home = ({children}) => {
     },
   }));
 
-
   const classes = useStyles();
-
   const dispatch = useDispatch()
   const { mainPosts } = useSelector(state => state.posts)
   useEffect(() => {

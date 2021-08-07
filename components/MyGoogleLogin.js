@@ -1,7 +1,10 @@
 import { GoogleLogin } from 'react-google-login';
+import { useSelector, useDispatch } from 'react-redux';
+import { LOG_IN_USER_FAILURE, LOG_IN_USER_REQUEST, LOG_IN_USER_SUCCESS } from '../reducers/user';
 
 
 const MyGoogleLogin = () => {
+  const dispatch = useDispatch()
 
   const responseGoogle = (response) => {
     if (response?.error) {
@@ -12,8 +15,11 @@ const MyGoogleLogin = () => {
     }
     if (response?.accessToken) {
       dispatch({
-        type: LOG_IN_USER_SUCCESS,
-        data: response
+        type: LOG_IN_USER_REQUEST,
+        data: {
+          accessToken: response.accessToken,
+          name: response.profileObj.name
+        }
       })
     }
     console.log(response);

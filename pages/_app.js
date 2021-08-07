@@ -8,7 +8,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 
 import wrapper from '../store/configureStore';
 import { LOAD_POSTS_REQUEST } from '../reducers/posts';
-
+import 'react-toastify/dist/ReactToastify.css';
 
 const WebT = ({ Component }) => {
 
