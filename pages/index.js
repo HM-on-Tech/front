@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import { ToastContainer, toast } from 'react-toastify';
 import CardComponent from '../components/CardComponent';
 import AppLayout from '../components/AppLayout';
 import { LOAD_POSTS_REQUEST } from '../reducers/posts';
@@ -39,6 +40,7 @@ const Home = ({children}) => {
           <CardComponent item={post} index={index} key={index} />
         ))} */}
       </PostsLayout>
+      <ToastContainer />
     </AppLayout>
 
   );

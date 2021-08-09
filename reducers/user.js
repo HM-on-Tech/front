@@ -1,13 +1,17 @@
 
+import { ToastContainer, toast } from 'react-toastify';
+import { authenticate } from '../helper/auth';
 import produce from '../util/produce';
+
 // =============================================================
 export const initialState = {
-    googleId: null,
+    userId: null,
     accessToken: null,
     userName: null,
     email: null,
     imageUrl: null,
     isLoggedIn: false,
+    isAdmin: false,
 };
 
 // =============================================================
@@ -19,17 +23,19 @@ export const LOG_IN_USER_FAILURE = 'LOG_IN_USER_FAILURE';
 const reducer = (state = initialState, action) => produce(state, (draft) => {
     switch (action.type) {
         case LOG_IN_USER_SUCCESS:
-            draft.googleId = action.data.googleId
+            console.log('hello', action.data)
+            draft.userId = action.data.user.id
+            draft.userName = action.data.user.name
+            draft.isAdmin = action.data.user.isAdmin
             draft.accessToken = action.data.accessToken
-            draft.userName = action.data.profileObj.givenName
-            draft.email = action.data.profileObj.email
-            draft.imageUrl = action.data.profileObj.imageUrl
+            toast.success("You are Logged In");
+            authenticate(action.data);
+            // requestToken
             draft.isLoggedIn = true
-            console.log('success')
             break;
         case LOG_IN_USER_FAILURE:
             draft.isLoggedIn = false
-            console.log('failure')
+            toast.error("로그인 실패!!!!");
             break;
         default:
             break;
