@@ -7,17 +7,18 @@ const MyGoogleLogin = () => {
   const dispatch = useDispatch()
 
   const responseGoogle = (response) => {
+    console.log(response)
     if (response?.error) {
       dispatch({
         type: LOG_IN_USER_FAILURE,
         data: response,
       })
     }
-    if (response?.accessToken) {
+    if (response?.googleId) {
       dispatch({
         type: LOG_IN_USER_REQUEST,
         data: {
-          accessToken: response.accessToken,
+          googleId: response.googleId,
           name: response.profileObj.name
         }
       })
