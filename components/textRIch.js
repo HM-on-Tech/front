@@ -17,13 +17,13 @@ const TextRich = () => {
   const [value, setValue] = useState('');
   const [title, setTitle] = useState('');
 
-  // const imageHandler = () => {
-  //   const range = inputEl.current.getEditor().getSelection();
-  //   const value = prompt('Insert image URL');
-  //   if (value){ 
-  //     inputEl.current.getEditor().insertEmbed(range.index, 'image', value); //, Quill.sources.USER
-  //   }
-  // }
+  const imageHandler = () => {
+    const range = inputEl.current.getEditor().getSelection();
+    const value = prompt('Insert image URL');
+    if (value){ 
+      inputEl.current.getEditor().insertEmbed(range.index, 'image', value); //, Quill.sources.USER
+    }
+  }
   const QuillModules = {
     // ImageResize: {
     //   modules: [ Resize ],
@@ -41,9 +41,9 @@ const TextRich = () => {
         ["clean"]
         ['code-block'],
       ],
-    //   handlers: {
-    //     image: imageHandler
-    // },
+      handlers: {
+        image: imageHandler
+    },
   },
     clipboard: {
       matchVisual: false,

@@ -121,7 +121,7 @@ export default function AppLayout( {children}) {
   };
 
 
-  const { isLoggedIn, userName } = useSelector(state => state.user)
+  const { isLoggedIn, isAdmin } = useSelector(state => state.user)
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -215,13 +215,14 @@ export default function AppLayout( {children}) {
               Home
             </Button>
           </Link>
-          <Link href="/textRich">
-            <Button>
-            Admin
-            </Button>
-          </Link>
-          <MyGoogleLogin />
-
+          {isLoggedIn && isAdmin &&
+            <Link href="/textRich">
+              <Button>
+              Admin
+              </Button>
+            </Link>
+          }
+            <MyGoogleLogin />
             <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <MailIcon />
@@ -257,8 +258,8 @@ export default function AppLayout( {children}) {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {renderMenu}
-
+      { renderMenu}
+      
       {children}
       {/* <Grid container spacing={3}>
         <Grid item xs={12} sm={3}>
