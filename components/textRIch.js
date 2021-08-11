@@ -83,32 +83,26 @@ const TextRich = () => {
   }
   return (
     <>
-    <AppLayout>
-      <Admin>
-        <AdminLayout>
-        <div style={{backgroundColor:'gery', marginTop:20, marginLeft:20, marginRight:20}}>
-          <TextField
-                label="Title"
-                id="blog_title"
-                margin="normal"
-                variant="outlined"
-                onChange={titleHandler}
-                style={{width:'100%'}}
-              />
-          <ReactQuill 
-            ref={inputEl} 
-            theme="snow" 
-            value={value} 
-            onChange={setValue} 
-            style={{height:450}}
-            modules={QuillModules}
-            formats={QuillFormats}
-          />
-          <Button onClick={quillSubmit}>Submit</Button>
-        </div>
-        </AdminLayout>
-      </Admin>
-    </AppLayout>  
+      <div style={{backgroundColor:'gery', marginTop:20, marginLeft:20, marginRight:20}}>
+        <TextField
+              label="Title"
+              id="blog_title"
+              margin="normal"
+              variant="outlined"
+              onChange={titleHandler}
+              style={{width:'100%'}}
+            />
+        <ReactQuill 
+          ref={inputEl} 
+          theme="snow" 
+          value={value} 
+          onChange={setValue} 
+          style={{height:450}}
+          modules={QuillModules}
+          formats={QuillFormats}
+        />
+        <Button onClick={quillSubmit}>Submit</Button>
+      </div>
     </>
   );
 }

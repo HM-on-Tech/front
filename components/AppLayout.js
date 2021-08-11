@@ -215,13 +215,13 @@ export default function AppLayout( {children}) {
               Home
             </Button>
           </Link>
-          {isLoggedIn && isAdmin &&
-            <Link href="/textRich">
+          {/* {isLoggedIn && isAdmin && */}
+            <Link href="/admin">
               <Button>
               Admin
               </Button>
             </Link>
-          }
+          {/* } */}
             <MyGoogleLogin />
             <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="secondary">

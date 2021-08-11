@@ -36,9 +36,9 @@ const Home = ({children}) => {
   return (
     <AppLayout>
       <PostsLayout posts={mainPosts}>
-        {/* {mainPosts.map((post, index) => (
+        {mainPosts.map((post, index) => (
           <CardComponent item={post} index={index} key={index} />
-        ))} */}
+        ))}
       </PostsLayout>
       <ToastContainer />
     </AppLayout>

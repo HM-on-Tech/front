@@ -1,4 +1,5 @@
 
+import { Router } from 'next/router';
 import produce from '../util/produce';
 // =============================================================
 export const initialState = {
@@ -38,6 +39,7 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       break;
     case ADD_POST_SUCCESS:
       draft.mainPosts = [action.data,  ...draft.mainPosts];
+      Router.push('/');
       break;
     case REMOVE_POST_SUCCESS:
       draft.removePostDone = true;
