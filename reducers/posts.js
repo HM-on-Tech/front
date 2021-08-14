@@ -1,5 +1,7 @@
 
 import produce from '../util/produce';
+import { ToastContainer, toast } from 'react-toastify';
+
 // =============================================================
 export const initialState = {
   mainPosts: [
@@ -22,7 +24,9 @@ export const LOAD_POSTS_FAILURE = 'LOAD_POSTS_FAILURE';
 export const ADD_POSTS_REQUEST = 'ADD_POSTS_REQUEST';
 export const ADD_POSTS_SUCCESS = 'ADD_POSTS_SUCCESS';
 export const ADD_POSTS_FAILURE = 'ADD_POSTS_FAILURE';
+export const REMOVE_POSTS_REQUEST = 'REMOVE_POSTS_REQUEST';
 export const REMOVE_POSTS_SUCCESS = 'REMOVE_POSTS_SUCCESS';
+export const REMOVE_POSTS_FAILURE = 'REMOVE_POSTS_FAILURE';
 export const REMOVE_POSTS_DONE = 'REMOVE_POSTS_DONE';
 
 const reducer = (state = initialState, action) => produce(state, (draft) => {
@@ -45,12 +49,15 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       break;
 
     case REMOVE_POSTS_SUCCESS:
-      draft.removePostDone = true;
-      let filterCandidate = action.data?.PatientIds?.map( (x)=> parseInt(x) )
-      draft.mainPosts = draft.mainPosts.filter( (v) => !filterCandidate?.includes(v.id))
+      console.log('wefcnwekjcREMOVE_POSTS_SUCCESS')
+      // draft.removePostDone = true;
+      // let filterCandidate = action.data?.PatientIds?.map( (x)=> parseInt(x) )
+      // draft.mainPosts = draft.mainPosts.filter( (v) => !filterCandidate?.includes(v.id))
+      toast.success("REMOVE_POSTS_SUCCESS");
       break;
-    case REMOVE_POSTS_DONE:
+    case REMOVE_POSTS_FAILURE:
       draft.removePostDone = false;
+      toast.error("REMOVE_POSTS_FAILURE");
       break;
     default:
       break;

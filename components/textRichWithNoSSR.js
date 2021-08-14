@@ -1,8 +1,10 @@
 import dynamic from 'next/dynamic'
 import AdminLayout from './AdminLayout'
 
-const TextRichWithNoSSR = dynamic(() => import('./textRich'), {
+const TextRichWithNoSSR2 = dynamic(() => import('./textRich'), {
   ssr: false
 })
 
-export default () => <TextRichWithNoSSR />
+const TextRichWithNoSSR = () => <TextRichWithNoSSR2 />
+
+export default TextRichWithNoSSR;

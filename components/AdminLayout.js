@@ -1,16 +1,14 @@
 import { useState } from 'react';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import AdminCrudArticle from "./AdminCrudArticle"
-import Admin from '../helper/admin';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import { ToastContainer, toast } from 'react-toastify';
+
 import TextRichWithNoSSR from './textRichWithNoSSR';
 import AppLayout from './AppLayout';
+import ArticleList from './ArticleList';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -24,8 +22,10 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
+        <Box div={3}>
+          {/* <Typography variant="div"> */}
+            {children}
+            {/* </Typography> */}
         </Box>
       )}
     </div>
@@ -76,8 +76,8 @@ const AdminLayout = () => {
           aria-label="Vertical tabs example"
           className={classes.tabs}
           >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
+          <Tab label="List Article" {...a11yProps(0)} />
+          <Tab label="Create Article" {...a11yProps(1)} />
           <Tab label="Item Three" {...a11yProps(2)} />
           <Tab label="Item Four" {...a11yProps(3)} />
           <Tab label="Item Five" {...a11yProps(4)} />
@@ -85,10 +85,10 @@ const AdminLayout = () => {
           <Tab label="Item Seven" {...a11yProps(6)} />
         </Tabs>
         <TabPanel value={value} index={0}>
-          <TextRichWithNoSSR />
+          <ArticleList />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Item Two
+          <TextRichWithNoSSR />
         </TabPanel>
         <TabPanel value={value} index={2}>
           Item Three
@@ -117,6 +117,7 @@ const AdminLayout = () => {
         </Grid>
       </Grid> */}
     {/* </Admin> */}
+    <ToastContainer />
     </AppLayout>
     </>
   )
