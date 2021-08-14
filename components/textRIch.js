@@ -41,9 +41,9 @@ const TextRich = () => {
         ["clean"]
         ['code-block'],
       ],
-      handlers: {
-        image: imageHandler
-    },
+    //   handlers: {
+    //     image: imageHandler
+    // },
   },
     clipboard: {
       matchVisual: false,

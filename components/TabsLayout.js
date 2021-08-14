@@ -72,7 +72,6 @@ const TabLayout = ({children}) => {
         <Tab label="Item Seven" {...a11yProps(6)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <Paper className={classes.paper}>{children}</Paper>
       </TabPanel>
       <TabPanel value={value} index={1}>
         Drafts
