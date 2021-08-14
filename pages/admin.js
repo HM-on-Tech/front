@@ -5,5 +5,5 @@ const DynamicComponentWithNoSSR = dynamic(() => import('../components/AdminLayou
   ssr: false
 })
 
-export default () => <DynamicComponentWithNoSSR />
+export default () => < DynamicComponentWithNoSSR />
 
