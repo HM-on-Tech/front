@@ -1,13 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 import { useSelector, useDispatch } from 'react-redux';
-import { REMOVE_POSTS_REQUEST } from '../reducers/posts';
+import { LOAD_POSTS_REQUEST, REMOVE_POSTS_REQUEST } from '../reducers/posts';
+import axios from 'axios';
 
 const ArticleList = () => {
+  const [row, setRow] = useState([]);
+
   const dispatch = useDispatch();
+  const { mainPosts } = useSelector(state => state.posts)
 
   const [selectionModel, setSelectionModel] = useState([]);
+
+  useEffect( async () => {
+    dispatch({
+      type: LOAD_POSTS_REQUEST,
+    })
+    //  Request post lists to the server directly
+    // const result  = await axios.post('http://localhost:3065/api/posts/list');
+    // console.log('result from server', result)
+  },[])
+
+  useEffect(() => {
+    setRow(mainPosts);
+    console.log(mainPosts)
+  },[mainPosts.length])
 
   const deleteArticle = () => {
     dispatch({
@@ -20,15 +38,15 @@ const ArticleList = () => {
   const columns = [
     { field: 'Author', flex:1 },
     { field: 'title', flex:2 },
-    { field: 'CreatedAt', flex:1 },
+    { field: 'createdAt',
+      flex:1 ,
+      valueFormatter: (params) => {
+        return `${params.value.split('T')[0]}`;
+      },
+  
+    },
   ]
-
-  const rows = [
-    { id: 1, Author:'a', name: 'React', title: 'title' },
-    { id: 2, Author:'a',name: 'Material-UI', title: 'title' },
-    { id: 3, Author:'a',name: 'Material-UI', title: 'edit' },
-    { id: 4, Author:'a',name: 'Material-UI', title: 'delete' },
-  ]
+  
   return (
     <>
       <Button> New </Button>
@@ -37,7 +55,7 @@ const ArticleList = () => {
       <div style={{ height: 1000, width: 600 }}>
         <DataGrid
           columns={columns}
-          rows={rows}
+          rows={row}
           checkboxSelection={true}
           onSelectionModelChange={(newSelectionModel) => {
             setSelectionModel(newSelectionModel);

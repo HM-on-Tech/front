@@ -5,8 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 // =============================================================
 export const initialState = {
   mainPosts: [
-      
-    ],
+  ],
   loadPostsDone: false,
   loadPostsError: null,
   addPostDone: false,
@@ -49,10 +48,12 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       break;
 
     case REMOVE_POSTS_SUCCESS:
-      console.log('wefcnwekjcREMOVE_POSTS_SUCCESS')
-      // draft.removePostDone = true;
-      // let filterCandidate = action.data?.PatientIds?.map( (x)=> parseInt(x) )
-      // draft.mainPosts = draft.mainPosts.filter( (v) => !filterCandidate?.includes(v.id))
+      draft.removePostDone = true;
+      console.log(action.data.id) // removed id list
+      console.log(draft.mainPosts)
+      action.data.id.forEach((_id) => {
+        draft.mainPosts = draft.mainPosts.filter( (post) => post.id !== _id);
+      })
       toast.success("REMOVE_POSTS_SUCCESS");
       break;
     case REMOVE_POSTS_FAILURE:
