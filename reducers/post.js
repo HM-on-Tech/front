@@ -40,10 +40,6 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       draft.loadPostsError = action.error;
       break;
     case ADD_POST_SUCCESS:
-
-      // console.log(action.data)
-      // draft.mainPosts = [action.data,  ...draft.mainPosts];
-      // router.push('/');
       break;
     case REMOVE_POST_SUCCESS:
       draft.removePostDone = true;

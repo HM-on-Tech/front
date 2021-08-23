@@ -216,7 +216,7 @@ export default function AppLayout( {children}) {
             </Button>
           </Link>
           {/* {isLoggedIn && isAdmin && */}
-            <Link href="/admin">
+            <Link href="/admins/editor">
               <Button>
               Admin
               </Button>

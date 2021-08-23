@@ -1,6 +1,7 @@
 
 import produce from '../util/produce';
 import { ToastContainer, toast } from 'react-toastify';
+import { current } from 'immer';
 
 // =============================================================
 export const initialState = {
@@ -49,10 +50,13 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
 
     case REMOVE_POSTS_SUCCESS:
       draft.removePostDone = true;
-      console.log(action.data.id) // removed id list
-      console.log(draft.mainPosts)
-      action.data.id.forEach((_id) => {
-        draft.mainPosts = draft.mainPosts.filter( (post) => post.id !== _id);
+      console.log('action.data.id', action.data.id) // removed id list
+      console.log('draft.mainPosts',current(draft.mainPosts))
+      draft.mainPosts = draft.mainPosts.filter((post) => {
+        if ( action.data.id.includes(post.id.toString())) {
+          return false
+        }
+        return true
       })
       toast.success("REMOVE_POSTS_SUCCESS");
       break;
