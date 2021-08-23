@@ -60,10 +60,7 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       })
       toast.success("REMOVE_POSTS_SUCCESS");
       break;
-    case REMOVE_POSTS_FAILURE:
-      draft.removePostDone = false;
-      toast.error("REMOVE_POSTS_FAILURE");
-      break;
+   
     default:
       break;
   }

@@ -56,6 +56,10 @@ function addPostAPI(data) {
   return axios.post('http://localhost:3065/api/post/add', data);
 }
 
+function editPostAPI(data) {
+  return axios.post('http://localhost:3065/api/post/edit', data)
+}
+
 function* addPost(action) {
   try {
     const result = yield call(addPostAPI, action.data);

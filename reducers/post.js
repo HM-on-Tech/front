@@ -1,5 +1,6 @@
 
 import { Router } from 'next/router';
+import { toast } from 'react-toastify';
 import produce from '../util/produce';
 
 
@@ -26,6 +27,10 @@ export const ADD_POST_FAILURE = 'ADD_POST_FAILURE';
 export const REMOVE_POST_SUCCESS = 'REMOVE_POST_SUCCESS';
 export const REMOVE_POST_DONE = 'REMOVE_POST_DONE';
 
+export const EDIT_POST_REQUEST = 'EDIT_POST_REQUEST'
+export const EDIT_POST_SUCCESS = 'EDIT_POST_SUCCESS'
+export const EDIT_POST_FAILURE = 'EDIT_POST_FAILURE'
+
 const reducer = (state = initialState, action) => produce(state, (draft) => {
   switch (action.type) {
     case LOAD_POST_REQUEST:
@@ -48,6 +53,18 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       break;
     case REMOVE_POST_DONE:
       draft.removePostDone = false;
+      break;
+    case EDIT_POST_FAILURE:
+      toast.error('failed to edit post')
+      break;
+    case EDIT_POST_REQUEST:
+      if (action.data.selectionModel.length >= 2){
+        toast.error('cannot edit multiple articles')
+        break;
+      }
+      break;
+    case EDIT_POST_SUCCESS:
+
       break;
     default:
       break;

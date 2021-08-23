@@ -4,6 +4,7 @@ import { DataGrid } from '@material-ui/data-grid';
 import { useSelector, useDispatch } from 'react-redux';
 import { LOAD_POSTS_REQUEST, REMOVE_POSTS_REQUEST } from '../reducers/posts';
 import axios from 'axios';
+import { EDIT_POST_REQUEST } from '../reducers/post';
 
 const ArticleList = () => {
   const [row, setRow] = useState([]);
@@ -35,6 +36,15 @@ const ArticleList = () => {
     console.log('delete rows', selectionModel)
     
   }
+
+  const editArticle = () => {
+    dispatch({
+      type: EDIT_POST_REQUEST,
+      data: selectionModel
+    })
+  }
+
+
   const columns = [
     { field: 'Author', flex:1 },
     { field: 'title', flex:2 },
@@ -50,7 +60,7 @@ const ArticleList = () => {
   return (
     <>
       <Button> New </Button>
-      <Button> Edit </Button>
+      <Button onClick={editArticle}> Edit </Button>
       <Button onClick={deleteArticle}> Delete </Button>
       <div style={{ height: 1000, width: 600 }}>
         <DataGrid
