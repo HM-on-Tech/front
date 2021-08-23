@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Link from "next/link";
 import Head from 'next/head';
 import AppLayout from "../../components/AppLayout";
-import AdminLayout2 from "../../components/AdminLayout2";
+import AdminLayout from "../../components/AdminLayout2";
 
 const UserInfo = () => {
   const [name, setName] = useState('--------------');
@@ -20,12 +20,12 @@ const UserInfo = () => {
   return(
     <>
     <AppLayout>
-      <AdminLayout2>
+      <AdminLayout>
         <Link href="/">
           <a>Home</a>
         </Link>
         user Name : {name}
-      </AdminLayout2>
+      </AdminLayout>
     </AppLayout>
     
     </>

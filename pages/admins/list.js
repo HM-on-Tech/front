@@ -1,17 +1,17 @@
-import AdminLayout2 from "../../components/AdminLayout2"
+import AdminLayout from "../../components/AdminLayout"
 import AppLayout from "../../components/AppLayout"
 import ArticleList from "../../components/ArticleList"
 
-const D = () => {
+const articleList = () => {
   return(
     <>
       <AppLayout>
-        <AdminLayout2>
+        <AdminLayout>
           <ArticleList></ArticleList>
-        </AdminLayout2>
+        </AdminLayout>
       </AppLayout>
     </>
   )  
 }
 
-export default D;
+export default articleList;

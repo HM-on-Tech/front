@@ -1,17 +1,17 @@
-import AdminLayout2 from "../../components/AdminLayout2"
+import AdminLayout from "../../components/AdminLayout"
 import AppLayout from "../../components/AppLayout"
 import TextRichWithNoSSR from "../../components/textRichWithNoSSR"
 
-const C = () => {
+const Editor = () => {
   return(
     <>
       <AppLayout>
-        <AdminLayout2>
+        <AdminLayout>
           <TextRichWithNoSSR />
-        </AdminLayout2>
+        </AdminLayout>
       </AppLayout>
     </>
   )  
 }
 
-export default C;
+export default Editor;
