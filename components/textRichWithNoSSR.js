@@ -5,6 +5,9 @@ const TextRichWithNoSSR2 = dynamic(() => import('./textRich'), {
   ssr: false
 })
 
-const TextRichWithNoSSR = () => <TextRichWithNoSSR2 />
+const TextRichWithNoSSR = ({content, title}) => {
+  console.log(content, title)
+  return <TextRichWithNoSSR2 />
+}
 
 export default TextRichWithNoSSR;

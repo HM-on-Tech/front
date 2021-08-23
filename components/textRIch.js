@@ -4,11 +4,6 @@ import { Button, TextField} from '@material-ui/core';
 import 'react-quill/dist/quill.snow.css';
 import { useDispatch } from 'react-redux';
 import { ADD_POST_REQUEST} from '../reducers/post'
-import AppLayout from "./AppLayout";
-import AdminLayout from "./AdminLayout";
-// import { ImageResize } from 'quill-image-resize-module';
-
-// Quill.register('modules/imageResize', ImageResize);
 
 import Admin from '../helper/admin';
 const TextRich = () => {
