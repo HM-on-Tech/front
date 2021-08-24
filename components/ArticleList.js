@@ -3,8 +3,7 @@ import { Button } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 import { useSelector, useDispatch } from 'react-redux';
 import { LOAD_POSTS_REQUEST, REMOVE_POSTS_REQUEST } from '../reducers/posts';
-import axios from 'axios';
-import { EDIT_POST_REQUEST } from '../reducers/post';
+import Router from 'next/router';
 
 const ArticleList = () => {
   const [row, setRow] = useState([]);
@@ -25,7 +24,6 @@ const ArticleList = () => {
 
   useEffect(() => {
     setRow(mainPosts);
-    console.log(mainPosts)
   },[mainPosts.length])
 
   const deleteArticle = () => {
@@ -36,12 +34,13 @@ const ArticleList = () => {
     console.log('delete rows', selectionModel)
     
   }
-
+  
   const editArticle = () => {
-    dispatch({
-      type: EDIT_POST_REQUEST,
-      data: selectionModel
-    })
+    Router.push(`/admins/editor/${selectionModel.selectionModel[0]}`)
+    // dispatch({
+    //   type: EDIT_POST_REQUEST,
+    //   data: selectionModel
+    // })
   }
 
 

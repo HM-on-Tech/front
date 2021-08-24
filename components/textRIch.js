@@ -1,16 +1,20 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactQuill, {Quill} from 'react-quill';
 import { Button, TextField} from '@material-ui/core';
 import 'react-quill/dist/quill.snow.css';
 import { useDispatch } from 'react-redux';
 import { ADD_POST_REQUEST} from '../reducers/post'
 
-import Admin from '../helper/admin';
-const TextRich = () => {
-  const inputEl = useRef(null);
-
+const TextRich = ({titleProp, contentProp, idProp}) => {
   const [value, setValue] = useState('');
   const [title, setTitle] = useState('');
+
+  useEffect(() => {
+    setValue(contentProp);
+    setTitle(titleProp);
+  }, [])
+  const inputEl = useRef(null);
+
 
   const imageHandler = () => {
     const range = inputEl.current.getEditor().getSelection();
@@ -86,6 +90,7 @@ const TextRich = () => {
               variant="outlined"
               onChange={titleHandler}
               style={{width:'100%'}}
+              label={title}
             />
         <ReactQuill 
           ref={inputEl} 
