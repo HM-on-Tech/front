@@ -59,11 +59,11 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
     case EDIT_POST_FAILURE:
       toast.error('failed to edit post')
       break;
-    case EDIT_POST_REQUEST:
-      if (action.data.selectionModel.length >= 2){
-        toast.error('cannot edit multiple articles')
-        break;
-      }
+    // case EDIT_POST_REQUEST:
+    //   if (action.data.selectionModel.length >= 2){
+    //     toast.error('cannot edit multiple articles')
+    //     break;
+    //   }
       break;
     case EDIT_POST_SUCCESS:
 

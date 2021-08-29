@@ -3,16 +3,22 @@ import ReactQuill, {Quill} from 'react-quill';
 import { Button, TextField} from '@material-ui/core';
 import 'react-quill/dist/quill.snow.css';
 import { useDispatch } from 'react-redux';
-import { ADD_POST_REQUEST} from '../reducers/post'
+import { ADD_POST_REQUEST, EDIT_POST_REQUEST, EDIT_POST_FAILURE } from '../reducers/post'
+import { useRouter } from 'next/router' 
 
 const TextRich = ({titleProp, contentProp, idProp}) => {
   console.log('TestRIch: ',titleProp, contentProp, idProp);
+  const router = useRouter()
+
   const [value, setValue] = useState('');
   const [title, setTitle] = useState('');
+  const [id, setId] = useState('');
+
 
   useEffect(() => {
     setValue(contentProp);
     setTitle(titleProp);
+    setId(idProp);
   }, [titleProp, contentProp, idProp])
   const inputEl = useRef(null);
 
@@ -70,13 +76,26 @@ const TextRich = ({titleProp, contentProp, idProp}) => {
 
   const dispatch = useDispatch();
   const quillSubmit = (e) => {
-    dispatch({
-      type: ADD_POST_REQUEST,
-      data: {
-        title,
-        content:value,
-      },
-    });
+    if(router.asPath.endsWith('new')){
+      dispatch({
+        type: ADD_POST_REQUEST,
+        data: {
+          title,
+          content:value,
+        },
+      }); 
+    }
+    else{
+      dispatch({
+        type: EDIT_POST_REQUEST,
+        data: {
+          title,
+          content:value,
+          id: id,
+        }
+      })
+    }
+      
   }
   const titleHandler = (e) => {
     setTitle(e.target.value)
