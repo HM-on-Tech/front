@@ -36,7 +36,7 @@ const ArticleList = () => {
   }
   
   const editArticle = () => {
-    Router.push(`/admins/editor/${selectionModel.selectionModel[0]}`)
+    Router.push(`/admins/edit/${selectionModel.selectionModel[0]}`)
     // dispatch({
     //   type: EDIT_POST_REQUEST,
     //   data: selectionModel

@@ -4,6 +4,7 @@ import Head from 'next/head';
 import PropTypes from 'prop-types';
 import withReduxSaga from 'next-redux-saga';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 import wrapper from '../store/configureStore';
@@ -21,6 +22,8 @@ const WebT = ({ Component }) => {
 
       </Head>
       <Component />
+      <ToastContainer />
+
       
     </>
   );

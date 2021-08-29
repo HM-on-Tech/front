@@ -6,13 +6,14 @@ import { useDispatch } from 'react-redux';
 import { ADD_POST_REQUEST} from '../reducers/post'
 
 const TextRich = ({titleProp, contentProp, idProp}) => {
+  console.log('TestRIch: ',titleProp, contentProp, idProp);
   const [value, setValue] = useState('');
   const [title, setTitle] = useState('');
 
   useEffect(() => {
     setValue(contentProp);
     setTitle(titleProp);
-  }, [])
+  }, [titleProp, contentProp, idProp])
   const inputEl = useRef(null);
 
 
@@ -95,7 +96,7 @@ const TextRich = ({titleProp, contentProp, idProp}) => {
         <ReactQuill 
           ref={inputEl} 
           theme="snow" 
-          value={value} 
+          value={value || ''} 
           onChange={setValue} 
           style={{height:450}}
           modules={QuillModules}

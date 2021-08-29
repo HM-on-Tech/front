@@ -1,5 +1,5 @@
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { authenticate } from '../helper/auth';
 import produce from '../util/produce';
 

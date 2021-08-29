@@ -1,7 +1,7 @@
 
-import { Router } from 'next/router';
 import { toast } from 'react-toastify';
 import produce from '../util/produce';
+import Router from 'next/router';
 
 
 // =============================================================
@@ -38,13 +38,15 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       draft.loadPostError = null;
       break;
     case LOAD_POST_SUCCESS:
-      draft.loadPostDone = true;
+      draft.loadPostDone = false;
       draft.loadPostError = null;
       draft.mainPost = action.data
     case LOAD_POST_FAILURE:
       draft.loadPostsError = action.error;
       break;
     case ADD_POST_SUCCESS:
+      Router.push('/admins/list')
+      toast.success('Post Added')
       break;
     case REMOVE_POST_SUCCESS:
       draft.removePostDone = true;

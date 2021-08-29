@@ -1,8 +1,11 @@
-import AdminLayout from "../../../components/AdminLayout"
-import AppLayout from "../../../components/AppLayout"
-import TextRichWithNoSSR from "../../../components/textRichWithNoSSR"
+
+import AdminLayout from "../../components/AdminLayout"
+import AppLayout from "../../components/AppLayout"
+import TextRichWithNoSSR from "../../components/textRichWithNoSSR"
+
 
 const Editor = () => {
+
   return(
     <>
       <AppLayout>

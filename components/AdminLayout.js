@@ -25,8 +25,8 @@ const AdminLayout = ({children}) => {
       <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={1}>
-          <Link href='/admins/editor'><Button>Create Article</Button></Link>
           <Link href='/admins/list'><Button>Article List</Button></Link>
+          <Link href='/admins/new'><Button>Create Article</Button></Link>
         </Grid>
         <Grid item xs={9}>
           {children}
