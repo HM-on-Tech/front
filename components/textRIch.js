@@ -84,8 +84,7 @@ const TextRich = ({titleProp, contentProp, idProp}) => {
           content:value,
         },
       }); 
-    }
-    else{
+    } else {
       dispatch({
         type: EDIT_POST_REQUEST,
         data: {

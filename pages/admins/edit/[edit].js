@@ -8,7 +8,7 @@ import AdminLayout from '../../../components/AdminLayout'
 const EditPageComponent = () => {
 
   useEffect( async () => {
-    const post = await axios.get(`http://localhost:3065/api/post/edit/${edit}`);
+    const post = await axios.get(`http://localhost:3065/api/post/get/${edit}`);
     console.log(post.data)
     const {id, title, content} = post.data;
     setId(id)
