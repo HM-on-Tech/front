@@ -64,10 +64,11 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
     //     toast.error('cannot edit multiple articles')
     //     break;
     //   }
-      break;
+    //   break;
     case EDIT_POST_SUCCESS:
       console.log('EDIT_POST_SUCCESS EDIT_POST_SUCCESS')
       Router.push('/admins/list')
+
       toast.success('edit success')
       break;
     default:

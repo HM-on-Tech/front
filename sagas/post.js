@@ -7,6 +7,7 @@ import {
   ADD_POST_REQUEST,
   ADD_POST_SUCCESS,
   EDIT_POST_REQUEST,
+  EDIT_POST_SUCCESS,
 } from '../reducers/post';
 import { LOAD_POSTS_FAILURE, LOAD_POSTS_REQUEST, LOAD_POSTS_SUCCESS } from '../reducers/posts';
 
@@ -16,7 +17,7 @@ function loadPostAPI(blogId) {
 
 function* loadPost(action) {
   try {
-    const result = yield call(loadPostAPI,action.data);
+    const result = yield call(loadPostAPI, action.data);
     yield put({
       type: LOAD_POST_SUCCESS,
       data: result.data
@@ -80,7 +81,6 @@ function addPostAPI(data) {
 function* addPost(action) {
   try {
     const result = yield call(addPostAPI, action.data);
-    console.log(result)
     yield put({
       type: ADD_POST_SUCCESS,
       data: result.data

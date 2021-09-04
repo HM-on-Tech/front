@@ -4,6 +4,7 @@ import { DataGrid } from '@material-ui/data-grid';
 import { useSelector, useDispatch } from 'react-redux';
 import { LOAD_POSTS_REQUEST, REMOVE_POSTS_REQUEST } from '../reducers/posts';
 import Router from 'next/router';
+import { toast } from 'react-toastify';
 
 const ArticleList = () => {
   const [row, setRow] = useState([]);
@@ -27,16 +28,27 @@ const ArticleList = () => {
   },[mainPosts.length])
 
   const deleteArticle = () => {
+    if (selectionModel.length === 0){
+      toast.warning('please select article to delete')
+      return;
+    }
     dispatch({
       type: REMOVE_POSTS_REQUEST,
       data: selectionModel
     })
     console.log('delete rows', selectionModel)
-    
   }
   
-  const editArticle = () => {
-    Router.push(`/admins/edit/${selectionModel.selectionModel[0]}`)
+  const editArticle = (length) => {
+    if (length === 0){
+      toast.warning('please select article to edit')
+    }
+    if (length > 1){
+      toast.warning('please select one article at a time')
+    }
+    if (length === 1){
+      Router.push(`/admins/edit/${selectionModel[0]}`)
+    }
   }
 
 
@@ -55,15 +67,15 @@ const ArticleList = () => {
   return (
     <>
       <Button> New </Button>
-      <Button onClick={editArticle}> Edit </Button>
+      <Button onClick={() => editArticle(selectionModel.length)}> Edit </Button>
       <Button onClick={deleteArticle}> Delete </Button>
       <div style={{ height: 1000, width: 600 }}>
         <DataGrid
           columns={columns}
           rows={row}
           checkboxSelection={true}
-          onSelectionModelChange={(newSelectionModel) => {
-            setSelectionModel(newSelectionModel);
+          onSelectionModelChange={(model) => {
+            setSelectionModel(model.selectionModel);
           }}
         />
       </div>

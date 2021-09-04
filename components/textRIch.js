@@ -1,78 +1,33 @@
 import React, { useEffect, useRef, useState } from "react";
-import ReactQuill, {Quill} from 'react-quill';
 import { Button, TextField} from '@material-ui/core';
-import 'react-quill/dist/quill.snow.css';
 import { useDispatch } from 'react-redux';
 import { ADD_POST_REQUEST, EDIT_POST_REQUEST, EDIT_POST_FAILURE } from '../reducers/post'
 import { useRouter } from 'next/router' 
+import { Editor } from '@tinymce/tinymce-react'
 
 const TextRich = ({titleProp, contentProp, idProp}) => {
-  console.log('TestRIch: ',titleProp, contentProp, idProp);
   const router = useRouter()
 
   const [value, setValue] = useState('');
+  // const [text, setText] = useState('');
   const [title, setTitle] = useState('');
   const [id, setId] = useState('');
 
-
   useEffect(() => {
+    console.log('title', title, titleProp)
     setValue(contentProp);
     setTitle(titleProp);
     setId(idProp);
   }, [titleProp, contentProp, idProp])
   const inputEl = useRef(null);
 
-
-  const imageHandler = () => {
-    const range = inputEl.current.getEditor().getSelection();
-    const value = prompt('Insert image URL');
-    if (value){ 
-      inputEl.current.getEditor().insertEmbed(range.index, 'image', value); //, Quill.sources.USER
-    }
-  }
-  const QuillModules = {
-    // ImageResize: {
-    //   modules: [ Resize ],
-    // },
-    toolbar: {
-      container: [
-        [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }, { font: [] }],
-        ["bold", "italic", "underline", "strike", { color: ['red','blue'] }, { background: [] }],
-        [
-          { list: "ordered" },
-          { list: "bullet" },
-          { align: [] }
-        ],
-        ["link", "image"],
-        ["clean"]
-        ['code-block'],
-      ],
-    //   handlers: {
-    //     image: imageHandler
-    // },
-  },
-    clipboard: {
-      matchVisual: false,
-    }
-  }
-
+  const editorRef = useRef(null);
+    const log = () => {
+      if (editorRef.current) {
+        console.log(editorRef.current.getContent());
+      }
+    };
   
-  const QuillFormats = [
-    'header',
-    'font',
-    'size',
-    'bold',
-    'italic',
-    'underline',
-    'strike',
-    'blockquote',
-    'list',
-    'bullet',
-    'link',
-    'image',
-    'video',
-    'code-block'
-  ];
 
   const dispatch = useDispatch();
   const quillSubmit = (e) => {
@@ -101,25 +56,40 @@ const TextRich = ({titleProp, contentProp, idProp}) => {
   }
   return (
     <>
-      <div style={{backgroundColor:'gery', marginTop:20, marginLeft:20, marginRight:20}}>
+      <div style={{marginTop:20, marginLeft:20, marginRight:20}}>
         <TextField
-              label="Title"
-              id="blog_title"
-              margin="normal"
-              variant="outlined"
-              onChange={titleHandler}
-              style={{width:'100%'}}
-              label={title}
-            />
-        <ReactQuill 
-          ref={inputEl} 
-          theme="snow" 
-          value={value || ''} 
-          onChange={setValue} 
-          style={{height:450}}
-          modules={QuillModules}
-          formats={QuillFormats}
+          id="blog_title"
+          margin="normal"
+          variant="outlined"
+          onChange={titleHandler}
+          style={{width:'100%'}}
+          label={"Title"}
+          value={title}
         />
+        <Editor
+         apiKey='9p9f0eymaqvyy6mlg0ny191sn3w8rx25uq8mwdj7fstwe1dr'
+         onInit={(evt, editor) => editorRef.current = editor}
+         init={{
+           height: 500,
+           menubar: false,
+           plugins: [
+             'advlist autolink lists link image charmap print preview anchor',
+             'searchreplace visualblocks code fullscreen',
+             'insertdatetime media table paste code help wordcount'
+           ],
+           toolbar: 'image | undo redo | formatselect | ' +
+           'bold italic backcolor | alignleft aligncenter ' +
+           'alignright alignjustify | bullist numlist outdent indent | ' +
+           'removeformat | help',
+           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+          }}
+          onEditorChange={(newValue, editor) => {
+            setValue(newValue);
+            // setText(editor.getContent({format: 'text'}));
+          }}
+        value={value || ''}
+         
+      />
         <Button onClick={quillSubmit}>Submit</Button>
       </div>
     </>
