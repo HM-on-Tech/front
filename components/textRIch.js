@@ -5,20 +5,22 @@ import { ADD_POST_REQUEST, EDIT_POST_REQUEST, EDIT_POST_FAILURE } from '../reduc
 import { useRouter } from 'next/router' 
 import { Editor } from '@tinymce/tinymce-react'
 
-const TextRich = ({titleProp, contentProp, idProp}) => {
+
+const TextRich = ({titleProp, contentProp, idProp, authorProp}) => {
+  const {REACT_APP_TINY_API} = process.env
   const router = useRouter()
 
   const [value, setValue] = useState('');
-  // const [text, setText] = useState('');
   const [title, setTitle] = useState('');
   const [id, setId] = useState('');
+  const [author, setAuthor] = useState('');
 
   useEffect(() => {
-    console.log('title', title, titleProp)
     setValue(contentProp);
     setTitle(titleProp);
     setId(idProp);
-  }, [titleProp, contentProp, idProp])
+    setAuthor(authorProp)
+  }, [titleProp, contentProp, idProp, authorProp])
   const inputEl = useRef(null);
 
   const editorRef = useRef(null);
@@ -37,6 +39,7 @@ const TextRich = ({titleProp, contentProp, idProp}) => {
         data: {
           title,
           content:value,
+          author:author,
         },
       }); 
     } else {
@@ -46,6 +49,7 @@ const TextRich = ({titleProp, contentProp, idProp}) => {
           title,
           content:value,
           id: id,
+          author:author,
         }
       })
     }
@@ -54,20 +58,39 @@ const TextRich = ({titleProp, contentProp, idProp}) => {
   const titleHandler = (e) => {
     setTitle(e.target.value)
   }
+
+  const authorHandler = (e) => {
+    setAuthor(e.target.value)
+  }
+
   return (
     <>
       <div style={{marginTop:20, marginLeft:20, marginRight:20}}>
         <TextField
           id="blog_title"
-          margin="normal"
+          margin="dense"
           variant="outlined"
           onChange={titleHandler}
           style={{width:'100%'}}
           label={"Title"}
           value={title}
+          size="medium"
         />
+        <div style={{marginTop:-5, marginBottom:10}}>
+          <TextField
+            id="article_author"
+            margin="dense"
+            variant="outlined"
+            size="small"
+            onChange={authorHandler}
+            style={{width:'100%'}}
+            label={"By"}
+            value={author}
+          />
+        </div>
+        
         <Editor
-         apiKey='9p9f0eymaqvyy6mlg0ny191sn3w8rx25uq8mwdj7fstwe1dr'
+         apiKey={process.env.REACT_APP_TINY_API} // referencing a .env var?
          onInit={(evt, editor) => editorRef.current = editor}
          init={{
            height: 500,
