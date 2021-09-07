@@ -31,13 +31,13 @@ function* loadPosts(action) {
   }
 }
 function removePostsAPI(data) {
-  console.log(data)
   return axios.post('http://localhost:3065/api/posts/remove',data );
 }
 
 function* removePosts(action) {
   try {
-    const result = yield call(removePostsAPI, action.data.selectionModel);
+    console.log('actiondata', action.data)
+    const result = yield call(removePostsAPI, action.data);
     yield put({
       type: REMOVE_POSTS_SUCCESS,
       data: result.data

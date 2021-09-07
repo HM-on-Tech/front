@@ -18,7 +18,6 @@ const WebT = ({ Component }) => {
       <Head>
         <title>Hello</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-        <script src="/node_modules/quill-image-resize-module/image-resize.min.js"></script>
 
       </Head>
       <Component />

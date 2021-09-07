@@ -6,8 +6,8 @@ import { useRouter } from 'next/router'
 import { Editor } from '@tinymce/tinymce-react'
 
 
-const TextRich = ({titleProp, contentProp, idProp, authorProp}) => {
-  const {REACT_APP_TINY_API} = process.env
+const TextRich = ({postInfo}) => {
+
   const router = useRouter()
 
   const [value, setValue] = useState('');
@@ -16,11 +16,14 @@ const TextRich = ({titleProp, contentProp, idProp, authorProp}) => {
   const [author, setAuthor] = useState('');
 
   useEffect(() => {
-    setValue(contentProp);
-    setTitle(titleProp);
-    setId(idProp);
-    setAuthor(authorProp)
-  }, [titleProp, contentProp, idProp, authorProp])
+    if (postInfo != null){
+      setValue(postInfo.value);
+      setTitle(postInfo.title);
+      setId(postInfo.id);
+      setAuthor(postInfo.author)
+    }
+    
+  }, [postInfo])
   const inputEl = useRef(null);
 
   const editorRef = useRef(null);
@@ -90,7 +93,7 @@ const TextRich = ({titleProp, contentProp, idProp, authorProp}) => {
         </div>
         
         <Editor
-         apiKey={process.env.REACT_APP_TINY_API} // referencing a .env var?
+         apiKey={process.env.TINY_API_KEY} // referencing a .env var?
          onInit={(evt, editor) => editorRef.current = editor}
          init={{
            height: 500,
@@ -100,7 +103,7 @@ const TextRich = ({titleProp, contentProp, idProp, authorProp}) => {
              'searchreplace visualblocks code fullscreen',
              'insertdatetime media table paste code help wordcount'
            ],
-           toolbar: 'image | undo redo | formatselect | ' +
+           toolbar: 'image preview | undo redo | formatselect | ' +
            'bold italic backcolor | alignleft aligncenter ' +
            'alignright alignjustify | bullist numlist outdent indent | ' +
            'removeformat | help',

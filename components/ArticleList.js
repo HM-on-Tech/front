@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { LOAD_POSTS_REQUEST, REMOVE_POSTS_REQUEST } from '../reducers/posts';
 import Router from 'next/router';
 import { toast } from 'react-toastify';
+import router from 'next/router';
 
 const ArticleList = () => {
   const [row, setRow] = useState([]);
@@ -53,7 +54,7 @@ const ArticleList = () => {
 
 
   const columns = [
-    { field: 'Author', flex:1 },
+    { field: 'author', flex:1 },
     { field: 'title', flex:2 },
     { field: 'createdAt',
       flex:1 ,
@@ -66,7 +67,7 @@ const ArticleList = () => {
   
   return (
     <>
-      <Button> New </Button>
+      <Button onClick={() => router.push('/admins/new')}> New </Button>
       <Button onClick={() => editArticle(selectionModel.length)}> Edit </Button>
       <Button onClick={deleteArticle}> Delete </Button>
       <div style={{ height: 1000, width: 600 }}>

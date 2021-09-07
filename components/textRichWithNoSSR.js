@@ -2,8 +2,8 @@ import dynamic from 'next/dynamic'
 
 const TextRichWithNoSSR2 = dynamic(() => import('./textRich'), {ssr: false})
 
-const TextRichWithNoSSR = ({content, title, id}) => {
-  return <TextRichWithNoSSR2 titleProp = {title} contentProp = {content} idProp = {id}/>
+const TextRichWithNoSSR = ({postInfo}) => {
+  return <TextRichWithNoSSR2 postInfo={postInfo}/>
 }
 
 export default TextRichWithNoSSR;

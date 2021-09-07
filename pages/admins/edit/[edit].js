@@ -7,17 +7,13 @@ import AdminLayout from '../../../components/AdminLayout'
 
 const EditPageComponent = () => {
 
+  const [data, setData] = useState()
+
   useEffect( async () => {
     const post = await axios.get(`http://localhost:3065/api/post/get/${edit}`);
-    console.log(post.data)
-    const {id, title, content} = post.data;
-    setId(id)
-    setTitle(title)
-    setContent(content)
+    setData(post.data)
   }, [])
-  const [id, setId] = useState()
-  const [title, setTitle] = useState();
-  const [content, setContent] = useState();
+
   const router = useRouter()
 
   const { edit } = router.query
@@ -26,7 +22,7 @@ const EditPageComponent = () => {
   <>
     <AppLayout>
       <AdminLayout>
-        <TextRichWithNoSSR id= {id} title={title} content={content}/>
+        <TextRichWithNoSSR postInfo={data}/>
       </AdminLayout>
     </AppLayout>
   </>

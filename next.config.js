@@ -1,5 +1,5 @@
-// module.exports = {
-//     env: {
-//         customKey: process.env.KEY (from /.env.local)
-//     },
-// } 
+module.exports = {
+    env: {
+        TINY_API_KEY: process.env.REACT_APP_TINY_API
+    },
+} 

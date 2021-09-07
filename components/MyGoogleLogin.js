@@ -19,7 +19,8 @@ const MyGoogleLogin = () => {
         type: LOG_IN_USER_REQUEST,
         data: {
           googleId: response.googleId,
-          name: response.profileObj.name
+          name: response.profileObj.name,
+          organization: 'HM_ON_TECG',
         }
       })
     }
