@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import withReduxSaga from 'next-redux-saga';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { ToastContainer, toast } from 'react-toastify';
-
-
 import wrapper from '../store/configureStore';
 import { LOAD_POSTS_REQUEST } from '../reducers/posts';
 import 'react-toastify/dist/ReactToastify.css';
