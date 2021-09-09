@@ -17,7 +17,7 @@ const TextRich = ({postInfo}) => {
 
   useEffect(() => {
     if (postInfo != null){
-      setValue(postInfo.value);
+      setValue(postInfo.content);
       setTitle(postInfo.title);
       setId(postInfo.id);
       setAuthor(postInfo.author)
@@ -58,6 +58,12 @@ const TextRich = ({postInfo}) => {
     }
       
   }
+
+const cancelSubmit = (e) => {
+  router.back()
+    
+}
+
   const titleHandler = (e) => {
     setTitle(e.target.value)
   }
@@ -117,6 +123,7 @@ const TextRich = ({postInfo}) => {
          
       />
         <Button onClick={quillSubmit}>Submit</Button>
+        <Button onClick={cancelSubmit}>Cancel</Button>
       </div>
     </>
   );
