@@ -10,6 +10,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import Header from './Header'
 // import Paper from '@material-ui/core/Paper';
 // import Grid from '@material-ui/core/Grid';
 
@@ -43,6 +44,18 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+const sections = [
+  { title: 'Technology', url: '/home' },
+  { title: 'Design', url: '/admins' },
+  { title: 'Culture', url: '#' },
+  { title: 'Business', url: '#' },
+  { title: 'Politics', url: '#' },
+  { title: 'Opinion', url: '#' },
+  { title: 'Science', url: '#' },
+  { title: 'Health', url: '#' },
+  { title: 'Style', url: '#' },
+  { title: 'Travel', url: '#' },
+];
 
 export default function AppLayout( {children}) {
   const classes = useStyles();
@@ -116,6 +129,11 @@ export default function AppLayout( {children}) {
   );
 
   return (
+    <>
+      <Header title="Blog" sections={sections} />
+
+
+
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
@@ -154,5 +172,6 @@ export default function AppLayout( {children}) {
       {children}
       
     </div>
+    </>
   );
 }

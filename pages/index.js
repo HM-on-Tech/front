@@ -7,6 +7,7 @@ import CardComponent from '../components/CardComponent';
 import AppLayout from '../components/AppLayout';
 import { LOAD_POSTS_REQUEST } from '../reducers/posts';
 import PostsLayout from '../components/PostsLayout';
+import Blog from '../components/Blog'
 
 const Home = ({children}) => {
 
@@ -31,14 +32,10 @@ const Home = ({children}) => {
   }, [])
 
 
-
+ 
   return (
     <AppLayout>
-      <PostsLayout posts={mainPosts}>
-        {mainPosts.map((post, index) => (
-          <CardComponent item={post} index={index} key={index} />
-        ))}
-      </PostsLayout>
+      <Blog/>
     </AppLayout>
 
   );
