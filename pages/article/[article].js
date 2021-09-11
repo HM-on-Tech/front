@@ -23,6 +23,7 @@ const ArticleComponent = () => {
     <AppLayout>
       <ArticleLayout >
         <Article post={data}/>
+        {console.log('data', data)}
       </ArticleLayout>
         {/* {loaded()} */}
     </AppLayout>
