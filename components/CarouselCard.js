@@ -14,12 +14,12 @@ function getText(html){
   divContainer.innerHTML = html;
   return divContainer.textContent || divContainer.innerText || "";
 }
-export default function ImgMediaCard({key, post, id}) {
+export default function CarouselCard({post}) {
   const router = useRouter();
-  console.log(key, post)
   const useStyles = makeStyles({
     root: {
       maxWidth: 345,
+      height: '100%',
       marginRight: 10,
       marginTop: 10,
     },
@@ -30,22 +30,20 @@ export default function ImgMediaCard({key, post, id}) {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea onClick={() => router.push(`/article/${id}`)}>
+      <CardActionArea onClick={() => router.push(`/article/${post.id}`)}>
         <CardMedia
           component="img"
           alt="Contemplative Reptile"
           height="140"
-          image={post.image}
+          image={post.thumbnail}
           title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {key}
+            {post.key}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {getText(post.content).split(' ').slice(0,Math.max(post.content.split(' ').length,15)).join(" ")}...
-            {console.log('post.content', post.content)}
-            {console.log('getText(post.content)', getText(post.content))}
           </Typography>
         </CardContent>
       </CardActionArea>

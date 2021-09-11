@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import wrapper from '../store/configureStore';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const WebT = ({ Component }) => {
 
   return (
@@ -18,7 +19,7 @@ const WebT = ({ Component }) => {
 
       </Head>
       <Component />
-      <ToastContainer />
+      <ToastContainer autoClose={2500}/>
 
       
     </>

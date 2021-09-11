@@ -67,7 +67,7 @@ const ArticleList = () => {
   
   return (
     <>
-      <Button onClick={() => router.push('/admins/new')}> New </Button>
+      <Button onClick={() => router.push('/admin/new')}> New </Button>
       <Button onClick={() => editArticle(selectionModel.length)}> Edit </Button>
       <Button onClick={deleteArticle}> Delete </Button>
       <div style={{ height: 1000, width: 600 }}>

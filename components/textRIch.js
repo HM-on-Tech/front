@@ -4,16 +4,26 @@ import { useDispatch } from 'react-redux';
 import { ADD_POST_REQUEST, EDIT_POST_REQUEST, EDIT_POST_FAILURE } from '../reducers/post'
 import { useRouter } from 'next/router' 
 import { Editor } from '@tinymce/tinymce-react'
+import { toast } from "react-toastify";
+
 
 
 const TextRich = ({postInfo}) => {
-
+  const toastId = React.useRef(null);
+  
+  const notify = () => {
+    console.log(toast.isActive(toastId.current))
+    if(! toast.isActive(toastId.current)) {
+      toastId.current = toast.error('Not a Valid Image. Must start with "https://"');
+    }
+  }
   const router = useRouter()
 
   const [value, setValue] = useState('');
   const [title, setTitle] = useState('');
   const [id, setId] = useState('');
   const [author, setAuthor] = useState('');
+  const [thumbnail, setThumbnail] = useState('');
 
   useEffect(() => {
     if (postInfo != null){
@@ -21,6 +31,7 @@ const TextRich = ({postInfo}) => {
       setTitle(postInfo.title);
       setId(postInfo.id);
       setAuthor(postInfo.author)
+      setThumbnail(postInfo.thumbnail)
     }
     
   }, [postInfo])
@@ -35,14 +46,18 @@ const TextRich = ({postInfo}) => {
   
 
   const dispatch = useDispatch();
-  const quillSubmit = (e) => {
+  const articleSubmit = (e) => {
     if(router.asPath.endsWith('new')){
+      if (! thumbnail.startsWith('http')){
+        return ;
+      }
       dispatch({
         type: ADD_POST_REQUEST,
         data: {
           title,
           content:value,
           author:author,
+          thumbnail:thumbnail,
         },
       }); 
     } else {
@@ -53,6 +68,7 @@ const TextRich = ({postInfo}) => {
           content:value,
           id: id,
           author:author,
+          thumbnail:thumbnail,
         }
       })
     }
@@ -72,6 +88,11 @@ const cancelSubmit = (e) => {
     setAuthor(e.target.value)
   }
 
+  const thumbnailHandler = (e) => {
+    setThumbnail(e.target.value)
+  }
+
+
   return (
     <>
       <div style={{marginTop:20, marginLeft:20, marginRight:20}}>
@@ -85,18 +106,44 @@ const cancelSubmit = (e) => {
           value={title}
           size="medium"
         />
-        <div style={{marginTop:-5, marginBottom:10}}>
-          <TextField
-            id="article_author"
-            margin="dense"
-            variant="outlined"
-            size="small"
-            onChange={authorHandler}
-            style={{width:'100%'}}
-            label={"By"}
-            value={author}
-          />
-        </div>
+        <TextField
+          style={{marginTop:-5, marginBottom:10}}
+          id="article_author"
+          margin="dense"
+          variant="outlined"
+          size="small"
+          onChange={authorHandler}
+          style={{width:'100%'}}
+          label={"By"}
+          value={author}
+        />
+        <TextField
+          style={{marginTop:-5, marginBottom:10}}
+          id="article_author"
+          margin="dense"
+          variant="outlined"
+          size="small"
+          onChange={thumbnailHandler}
+          style={{width:'100%'}}
+          label={"Thumbnail URL"}
+          value={thumbnail}
+        />
+        <img
+          hidden
+          src={thumbnail}
+          onError={() => {
+            if(thumbnail === '') return
+            notify()
+
+          }}
+          onLoad={() => {
+            if (thumbnail.startsWith('http')){
+              toast.success('Thumbnail Successfully Loaded')
+            } else {
+              toast.error('Not a Valid Image. Must start with "https://"')
+            }
+          }}
+        />
         
         <Editor
          apiKey={process.env.TINY_API_KEY} // referencing a .env var?
@@ -122,7 +169,7 @@ const cancelSubmit = (e) => {
         value={value || ''}
          
       />
-        <Button onClick={quillSubmit}>Submit</Button>
+        <Button onClick={articleSubmit}>Submit</Button>
         <Button onClick={cancelSubmit}>Cancel</Button>
       </div>
     </>
