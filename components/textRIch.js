@@ -156,15 +156,14 @@ const cancelSubmit = (e) => {
              'searchreplace visualblocks code fullscreen',
              'insertdatetime media table paste code help wordcount'
            ],
-           toolbar: 'image preview | undo redo | formatselect | ' +
-           'bold italic backcolor | alignleft aligncenter ' +
+           toolbar: 'image preview | undo redo | formatselect' +
+           'bold italic | alignleft aligncenter ' +
            'alignright alignjustify | bullist numlist outdent indent | ' +
            'removeformat | help',
            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
           }}
           onEditorChange={(newValue, editor) => {
             setValue(newValue);
-            // setText(editor.getContent({format: 'text'}));
           }}
         value={value || ''}
          
