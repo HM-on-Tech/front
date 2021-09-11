@@ -21,12 +21,12 @@ const useStyles = makeStyles({
   },
 });
 
-export default function FeaturedPost(props) {
+export default function RegularPost(props) {
   const classes = useStyles();
   const { post } = props;
 
   return (
-    <Grid item xs={12} md={6} style={{marginTop:10}}>
+    <Grid item xs={12} md={12} style={{marginTop:10}}>
       <CardActionArea component="a" href="#">
         <Card className={classes.card}>
           <div className={classes.cardDetails}>
@@ -54,6 +54,6 @@ export default function FeaturedPost(props) {
   );
 }
 
-FeaturedPost.propTypes = {
+RegularPost.propTypes = {
   post: PropTypes.object,
 };

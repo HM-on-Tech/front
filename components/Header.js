@@ -52,19 +52,20 @@ export default function Header(props) {
       </Toolbar>
       <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
         {sections.map((section) => ( 
-          // <Link
-          //   href={section.url}>
-            <MUILink 
-              color="inherit"
-              noWrap
-              key={section.title}
-              variant="body2"
-              // href={section.url}
-              className={classes.toolbarLink}
-            >
-            {section.title}
-          </MUILink>
-          // </Link>   
+          <Button>
+            <Link href={section.url}>
+              <MUILink 
+                color="inherit"
+                noWrap
+                key={section.title}
+                variant="body2"
+                // href={section.url}
+                className={classes.toolbarLink}
+              >
+                {section.title}
+              </MUILink>
+            </Link>   
+          </Button>
         ))}
       </Toolbar>
     </React.Fragment>

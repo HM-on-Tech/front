@@ -86,14 +86,12 @@ const sidebar = {
   ],
 };
 
-export default function Blog() {
+export default function LandingPage() {
   const classes = useStyles();
 
   return (
     <>
-      <CssBaseline />
       <Container maxWidth="lg">
-        <Header title="Blog" sections={sections} />
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
           <Grid container spacing={4}>
@@ -102,7 +100,7 @@ export default function Blog() {
             ))}
           </Grid>
           <Grid container spacing={5} className={classes.mainGrid}>
-            <Main title="From the firehose" posts={posts} />
+            <Main title="From the firehose" posts={featuredPosts} />
             <Sidebar
               title={sidebar.title}
               description={sidebar.description}

@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import RegularPost from './RegularPost';
 
 const useStyles = makeStyles((theme) => ({
   markdown: {
@@ -23,7 +24,7 @@ export default function Main(props) {
       </Typography>
       <Divider />
       {posts.map((post) => (
-        post
+        <RegularPost key={post.title} post={post}/>
       ))}
     </Grid>
   );

@@ -7,7 +7,7 @@ import CardComponent from '../components/CardComponent';
 import AppLayout from '../components/AppLayout';
 import { LOAD_POSTS_REQUEST } from '../reducers/posts';
 import PostsLayout from '../components/PostsLayout';
-import Blog from '../components/Blog'
+import LandingPage from '../components/LandingPage'
 
 const Home = ({children}) => {
 
@@ -35,7 +35,7 @@ const Home = ({children}) => {
  
   return (
     <AppLayout>
-      <Blog/>
+      <LandingPage/>
     </AppLayout>
 
   );
