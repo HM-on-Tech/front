@@ -1,47 +1,30 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
-
+import React, { useState, useEffect } from 'react'
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { useRouter } from 'next/router'
+import axios from 'axios'
+
 
 import AppLayout from '../../components/Layout/AppLayout'
-import { useRouter } from 'next/router'
-import { LOAD_POST_REQUEST } from '../../reducers/post';
-import { Grid } from '@material-ui/core';
+import ArticleLayout from '../../components/Layout/ArticleLayout';
+import Article from '../../components/Article'
 
 const ArticleComponent = () => {
+  const [data, setData] = useState()
   const router = useRouter()
   const { article } = router.query
 
-  const dispatch = useDispatch()
-  const { mainPost, loadPostDone } = useSelector(state => state.post)
-  
-  useEffect(() => {
-    dispatch({
-      type: LOAD_POST_REQUEST,
-      data: article,
-    })
+  useEffect( async () => {
+    const post = await axios.get(`http://localhost:3065/api/post/get/${article}`);
+    setData(post.data)
   }, [])
 
-
-  const loaded = () => {
-    if (loadPostDone) {
-      return (
-        <>
-          <h1>{mainPost.title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: mainPost.content }} />
-        </>
-      )
-    }else{
-      return <CircularProgress />
-
-    }
-  }
     return(
     <>
     <AppLayout>
-      <Grid>
-        {loaded()}
-      </Grid>
+      <ArticleLayout >
+        <Article post={data}/>
+      </ArticleLayout>
+        {/* {loaded()} */}
     </AppLayout>
     </>
     )

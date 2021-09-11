@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 export default function ImgMediaCard({key, post}) {
+  console.log(key, post)
   const useStyles = makeStyles({
     root: {
       maxWidth: 345,
@@ -35,7 +36,7 @@ export default function ImgMediaCard({key, post}) {
             {key}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {post.description.split(' ').slice(0,Math.max(post.description.split(' ').length,15)).join(" ")}...
+            {post.content.split(' ').slice(0,Math.max(post.content.split(' ').length,15)).join(" ")}...
           </Typography>
         </CardContent>
       </CardActionArea>

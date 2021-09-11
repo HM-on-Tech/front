@@ -8,15 +8,15 @@ import AdminLayout from '../../../components/Layout/AdminLayout'
 const EditPageComponent = () => {
 
   const [data, setData] = useState()
+  const router = useRouter()
+  const { edit } = router.query
 
   useEffect( async () => {
     const post = await axios.get(`http://localhost:3065/api/post/get/${edit}`);
     setData(post.data)
   }, [])
 
-  const router = useRouter()
 
-  const { edit } = router.query
 
   return(
   <>
