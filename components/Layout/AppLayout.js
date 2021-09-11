@@ -1,20 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import Header from './Header'
-import Link from 'next/link';
+import Header from '../Header'
 import { useSelector } from 'react-redux';
 import { Button, CssBaseline } from '@material-ui/core';
-import MyGoogleLogin from './MyGoogleLogin';
 import { Container } from 'next/app';
 
 const useStyles = makeStyles((theme) => ({
@@ -42,8 +30,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const sections = [
-  { title: 'Home', url: '/' },
-  { title: 'Admins', url: '/admins/list' },
+  { title: 'pub #1', url: '#' },
+  { title: 'pub #2', url: '#' },
   { title: 'Culture', url: '#' },
   { title: 'Business', url: '#' },
   { title: 'Politics', url: '#' },
@@ -62,7 +50,7 @@ export default function AppLayout( {children}) {
     <>
       <CssBaseline />
       <Container maxWidth="lg">
-        <Header title="Blog" sections={sections} />
+        <Header title="HM on Tech" sections={sections} />
         {children}
       </Container>
     </>

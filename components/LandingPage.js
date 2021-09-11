@@ -7,11 +7,12 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import Header from './Header';
-import MainFeaturedPost from './MainFeaturedPost';
-import FeaturedPost from './FeaturedPost';
+import MainFeaturedPost from './Post/MainFeaturedPost';
+import FeaturedPost from './Post/FeaturedPost';
 import Main from './Main';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
+import FeaturedPostCarousel from './FeaturedPostCarousel'
 
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
@@ -45,6 +46,38 @@ const featuredPosts = [
   {
     title: 'Featured post',
     date: 'Nov 12',
+    description:
+      'This is a wider card with supporting text below as a natural lead-in to additional content.',
+    image: 'https://source.unsplash.com/random',
+    imageText: 'Image Text',
+  },
+  {
+    title: 'Post title',
+    date: 'Nov 11',
+    description:
+      'This is a wider card with supporting text below as a natural lead-in to additional content.',
+    image: 'https://source.unsplash.com/random',
+    imageText: 'Image Text',
+  },
+  {
+    title: 'Post title',
+    date: 'Nov 11',
+    description:
+      'This is a wider card with supporting text below as a natural lead-in to additional content.',
+    image: 'https://source.unsplash.com/random',
+    imageText: 'Image Text',
+  },
+  {
+    title: 'Post title',
+    date: 'Nov 11',
+    description:
+      'This is a wider card with supporting text below as a natural lead-in to additional content.',
+    image: 'https://source.unsplash.com/random',
+    imageText: 'Image Text',
+  },
+  {
+    title: 'Post title',
+    date: 'Nov 11',
     description:
       'This is a wider card with supporting text below as a natural lead-in to additional content.',
     image: 'https://source.unsplash.com/random',
@@ -95,10 +128,12 @@ export default function LandingPage() {
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
           <Grid container spacing={4}>
-            {featuredPosts.map((post) => (
-              <FeaturedPost key={post.title} post={post} />
-            ))}
+              {/* {featuredPosts.map((post) => (
+                <FeaturedPost key={post.title} post={post} />
+              ))} */}
           </Grid>
+          <FeaturedPostCarousel featuredPosts={featuredPosts} />
+
           <Grid container spacing={5} className={classes.mainGrid}>
             <Main title="From the firehose" posts={featuredPosts} />
             <Sidebar

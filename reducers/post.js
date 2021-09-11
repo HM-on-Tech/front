@@ -45,7 +45,7 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       draft.loadPostsError = action.error;
       break;
     case ADD_POST_SUCCESS:
-      Router.push('/admins/list')
+      Router.push('/admin/list')
       toast.success('Post Added')
       break;
     case REMOVE_POST_SUCCESS:
@@ -66,7 +66,7 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
     //   }
     //   break;
     case EDIT_POST_SUCCESS:
-      Router.push('/admins/list')
+      Router.push('/admin/list')
       console.log(draft)
       toast.success('edit success')
       break;

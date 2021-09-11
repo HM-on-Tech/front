@@ -1,5 +1,5 @@
 import React from 'react'
-import AppLayout from '../components/AppLayout'
+import AppLayout from '../components/Layout/AppLayout'
 import { useRouter } from 'next/router'
 
 const heartComponent = () => {

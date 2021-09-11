@@ -236,16 +236,7 @@ const AppBarComponent = ({item, index}) => {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-          <Link href="/">
-            <Button>
-              Home
-            </Button>
-          </Link>
-          <Link href="/textRich">
-            <Button>
-            Admin
-            </Button>
-          </Link>
+          
 
             <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="secondary">

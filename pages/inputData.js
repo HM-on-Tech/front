@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField'
-import AppLayout from '../components/AppLayout';
+import AppLayout from '../components/Layout/AppLayout';
 import Button from '@material-ui/core/Button'
 import axios from 'axios'
 

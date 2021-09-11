@@ -4,7 +4,7 @@ import { useEffect, useState, } from "react";
 import { useRouter } from 'next/router'
 import Link from "next/link";
 import Head from 'next/head';
-import AppLayout from "../../components/AppLayout";
+import AppLayout from "../../components/Layout/AppLayout";
 import AdminLayout from "../../components/AdminLayout2";
 
 const UserInfo = () => {

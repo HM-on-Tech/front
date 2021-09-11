@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import RegularPost from './RegularPost';
+import RegularPost from './Post/RegularPost';
 
 const useStyles = makeStyles((theme) => ({
   markdown: {

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import AppLayout from '../../components/AppLayout'
+import AppLayout from '../../components/Layout/AppLayout'
 import { useRouter } from 'next/router'
 import { LOAD_POST_REQUEST } from '../../reducers/post';
 import { Grid } from '@material-ui/core';

@@ -48,7 +48,7 @@ const ArticleList = () => {
       toast.warning('please select one article at a time')
     }
     if (length === 1){
-      Router.push(`/admins/edit/${selectionModel[0]}`)
+      Router.push(`/admin/edit/${selectionModel[0]}`)
     }
   }
 

@@ -1,6 +1,6 @@
 
-import AdminLayout from "../../components/AdminLayout"
-import AppLayout from "../../components/AppLayout"
+import AdminLayout from "../../components/Layout/AdminLayout"
+import AppLayout from "../../components/Layout/AppLayout"
 import TextRichWithNoSSR from "../../components/textRichWithNoSSR"
 
 

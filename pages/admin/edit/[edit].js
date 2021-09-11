@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
-import AppLayout from '../../../components/AppLayout'
+import AppLayout from '../../../components/Layout/AppLayout'
 import TextRichWithNoSSR from "../../../components/textRichWithNoSSR"
-import AdminLayout from '../../../components/AdminLayout'
+import AdminLayout from '../../../components/Layout/AdminLayout'
 
 const EditPageComponent = () => {
 

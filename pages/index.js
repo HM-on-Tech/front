@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import CardComponent from '../components/CardComponent';
-import AppLayout from '../components/AppLayout';
+import AppLayout from '../components/Layout/AppLayout';
 import { LOAD_POSTS_REQUEST } from '../reducers/posts';
-import PostsLayout from '../components/PostsLayout';
 import LandingPage from '../components/LandingPage'
 
 const Home = ({children}) => {
