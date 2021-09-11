@@ -8,7 +8,7 @@ const Article = ({post}) => {
     <Container>
       {console.log(post)}
       <h1 style={{marginBottom:'-20px'}}>{post?.title}</h1>
-      <h3>{post?.author}</h3>
+      <h3>By {post?.author}</h3>
       <div dangerouslySetInnerHTML={{ __html: post?.content }} />
     </Container>
     </>

@@ -8,6 +8,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Hidden from '@material-ui/core/Hidden';
+import Link from 'next/link'
+
 
 const useStyles = makeStyles({
   card: {
@@ -21,13 +23,20 @@ const useStyles = makeStyles({
   },
 });
 
+function getText(html){
+  var divContainer= document.createElement("div");
+  divContainer.innerHTML = html;
+  return divContainer.textContent || divContainer.innerText || "";
+}
+
 export default function RegularPost(props) {
   const classes = useStyles();
   const { post } = props;
 
   return (
     <Grid item xs={12} md={12} style={{marginTop:10}}>
-      <CardActionArea component="a" href="#">
+      {/* <CardActionArea component="a" >* href="#" */}
+      <Link href={`/article/${post.id}`}>
         <Card className={classes.card}>
           <div className={classes.cardDetails}>
             <CardContent>
@@ -37,11 +46,8 @@ export default function RegularPost(props) {
               <Typography variant="subtitle1" color="textSecondary">
                 {post.date}
               </Typography>
-              <Typography variant="subtitle1" paragraph>
-                {post.description}
-              </Typography>
-              <Typography variant="subtitle1" color="primary">
-                Continue reading...
+              <Typography variant="body2" color="textSecondary" component="p">
+                {getText(post.content).split(' ').slice(0,Math.max(post.content.split(' ').length,15)).join(" ")}...
               </Typography>
             </CardContent>
           </div>
@@ -49,7 +55,8 @@ export default function RegularPost(props) {
             <CardMedia className={classes.cardMedia} image={post.image} title={post.imageTitle} />
           </Hidden>
         </Card>
-      </CardActionArea>
+      </Link>
+      {/* </CardActionArea> */}
     </Grid>
   );
 }

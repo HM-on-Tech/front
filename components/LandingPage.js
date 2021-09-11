@@ -9,7 +9,6 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import Header from './Header';
 import MainFeaturedPost from './Post/MainFeaturedPost';
-import FeaturedPost from './Post/FeaturedPost';
 import Main from './Main';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
@@ -33,54 +32,7 @@ const useStyles = makeStyles((theme) => ({
   };
   
   const featuredPosts = [
-    {
-      title: 'Featured post',
-      date: 'Nov 12',
-      description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-      image: 'https://source.unsplash.com/random',
-      imageText: 'Image Text',
-    },
-    {
-      title: 'Post title',
-      date: 'Nov 11',
-      description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-      image: 'https://source.unsplash.com/random',
-      imageText: 'Image Text',
-    },
-    {
-      title: 'Post title',
-      date: 'Nov 11',
-      description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-      image: 'https://source.unsplash.com/random',
-      imageText: 'Image Text',
-    },
-    {
-      title: 'Post title',
-      date: 'Nov 11',
-      description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-      image: 'https://source.unsplash.com/random',
-      imageText: 'Image Text',
-    },
-    {
-      title: 'Post title',
-      date: 'Nov 11',
-      description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-      image: 'https://source.unsplash.com/random',
-      imageText: 'Image Text',
-    },
-    {
-      title: 'Post title',
-      date: 'Nov 11',
-      description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-      image: 'https://source.unsplash.com/random',
-      imageText: 'Image Text',
-    },
+    
   ];
   
   const sidebar = {
@@ -125,15 +77,12 @@ const useStyles = makeStyles((theme) => ({
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
           <Grid container spacing={4}>
-              {/* {featuredPosts.map((post) => (
-                <FeaturedPost key={post.title} post={post} />
-              ))} */}
           </Grid>
-          {/* <FeaturedPostCarousel featuredPosts={featuredPosts} /> */}
-          <FeaturedPostCarousel featuredPosts={mainPosts.slice(4)} />
-
+          <FeaturedPostCarousel featuredPosts={mainPosts.slice(0, 4)} />
+          {console.log('slice', mainPosts.slice(0, 4))}
           <Grid container spacing={5} className={classes.mainGrid}>
-            <Main title="From the firehose" posts={featuredPosts} />
+            <Main title="Recently Published" posts={mainPosts.slice(4, mainPosts.length)} />
+              
             <Sidebar
               title={sidebar.title}
               description={sidebar.description}

@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Main(props) {
   const classes = useStyles();
-  const { posts, title } = props;
+  const { posts, title, content, id } = props;
 
   return (
     <Grid item xs={12} md={8}>
@@ -24,7 +24,7 @@ export default function Main(props) {
       </Typography>
       <Divider />
       {posts.map((post) => (
-        <RegularPost key={post.title} post={post}/>
+        <RegularPost key={post.title} post={post} content={content} id={id}/>
       ))}
     </Grid>
   );

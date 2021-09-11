@@ -1,25 +1,10 @@
-import { Button, Link as MUILink } from '@material-ui/core';
-import Link from 'next/link';
 import React from 'react'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import FeaturedPost from './Post/FeaturedPost';
 import CarouselCard from './CarouselCard'
 
 const FeaturedPostCarousel = ( {featuredPosts, countPost} ) => {
 
-  const sections = [
-    { title: 'Technology', url: '#' },
-    { title: 'Design', url: '#' },
-    { title: 'Culture', url: '#' },
-    { title: 'Business', url: '#' },
-    { title: 'Politics', url: '#' },
-    { title: 'Opinion', url: '#' },
-    { title: 'Science', url: '#' },
-    { title: 'Health', url: '#' },
-    { title: 'Style', url: '#' },
-    { title: 'Travel', url: '#' },
-  ];
   
   const responsive = {
     desktop: {
@@ -61,7 +46,7 @@ const FeaturedPostCarousel = ( {featuredPosts, countPost} ) => {
       >
 
       {featuredPosts.map((post) => (
-        <CarouselCard key={post.title} post={post} />
+        <CarouselCard key={post.title} post={post} id={post.id}/>
       ))}
     </Carousel>
   </>

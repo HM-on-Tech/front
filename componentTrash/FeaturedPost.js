@@ -37,12 +37,12 @@ export default function FeaturedPost(props) {
               <Typography variant="subtitle1" color="textSecondary">
                 {post.date}
               </Typography>
-              <Typography variant="subtitle1" paragraph>
-                {post.description}
+              <Typography variant="body2" color="textSecondary" component="p">
+                {post.content.split(' ').slice(0,Math.max(post.content.split(' ').length,15)).join(" ")}...
               </Typography>
-              <Typography variant="subtitle1" color="primary">
+              {/* <Typography variant="subtitle1" color="primary">
                 Continue reading...
-              </Typography>
+              </Typography> */}
             </CardContent>
           </div>
           <Hidden xsDown>

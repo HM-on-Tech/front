@@ -7,8 +7,15 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import {useRouter} from 'next/router';
 
-export default function ImgMediaCard({key, post}) {
+function getText(html){
+  var divContainer= document.createElement("div");
+  divContainer.innerHTML = html;
+  return divContainer.textContent || divContainer.innerText || "";
+}
+export default function ImgMediaCard({key, post, id}) {
+  const router = useRouter();
   console.log(key, post)
   const useStyles = makeStyles({
     root: {
@@ -23,7 +30,7 @@ export default function ImgMediaCard({key, post}) {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea onClick={() => router.push('/#')}>
+      <CardActionArea onClick={() => router.push(`/article/${id}`)}>
         <CardMedia
           component="img"
           alt="Contemplative Reptile"
@@ -36,7 +43,9 @@ export default function ImgMediaCard({key, post}) {
             {key}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {post.content.split(' ').slice(0,Math.max(post.content.split(' ').length,15)).join(" ")}...
+            {getText(post.content).split(' ').slice(0,Math.max(post.content.split(' ').length,15)).join(" ")}...
+            {console.log('post.content', post.content)}
+            {console.log('getText(post.content)', getText(post.content))}
           </Typography>
         </CardContent>
       </CardActionArea>
