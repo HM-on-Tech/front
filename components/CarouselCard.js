@@ -12,7 +12,10 @@ import {useRouter} from 'next/router';
 function getText(html){
   var divContainer= document.createElement("div");
   divContainer.innerHTML = html;
-  return divContainer.textContent || divContainer.innerText || "";
+  let semiResult =  divContainer.textContent || divContainer.innerText || "";
+  const length = semiResult.length
+  semiResult = semiResult.split(' ').slice(0, Math.min(length, 15));
+  return semiResult.join(" ");
 }
 export default function CarouselCard({post}) {
   const router = useRouter();
@@ -43,7 +46,7 @@ export default function CarouselCard({post}) {
             {post.key}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {getText(post.content).split(' ').slice(0,Math.max(post.content.split(' ').length,15)).join(" ")}...
+            {getText(post.content)}...
           </Typography>
         </CardContent>
       </CardActionArea>

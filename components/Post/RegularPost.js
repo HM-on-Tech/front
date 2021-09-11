@@ -14,19 +14,23 @@ import Link from 'next/link'
 const useStyles = makeStyles({
   card: {
     display: 'flex',
+    height: 150,
   },
   cardDetails: {
     flex: 1,
   },
   cardMedia: {
-    width: 160,
+    width: '40%',
   },
 });
 
 function getText(html){
   var divContainer= document.createElement("div");
   divContainer.innerHTML = html;
-  return divContainer.textContent || divContainer.innerText || "";
+  let semiResult =  divContainer.textContent || divContainer.innerText || "";
+  const length = semiResult.length
+  semiResult = semiResult.split(' ').slice(0, Math.min(length, 15));
+  return semiResult.join(" ");
 }
 
 export default function RegularPost(props) {
@@ -44,15 +48,18 @@ export default function RegularPost(props) {
                 {post.title}
               </Typography>
               <Typography variant="subtitle1" color="textSecondary">
+                By {post.author}
+              </Typography>
+              <Typography variant="subtitle2" color="textSecondary">
                 {post.date}
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
-                {getText(post.content).split(' ').slice(0,Math.max(post.content.split(' ').length,15)).join(" ")}...
+                {getText(post.content)}...
               </Typography>
             </CardContent>
           </div>
           <Hidden xsDown>
-            <CardMedia className={classes.cardMedia} image={post.image} title={post.imageTitle} />
+            <CardMedia className={classes.cardMedia} image={post.thumbnail} title={post.imageTitle} />
           </Hidden>
         </Card>
       </Link>
