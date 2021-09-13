@@ -1,8 +1,7 @@
 
 import produce from '../util/produce';
 import { toast } from 'react-toastify';
-
-import { current } from 'immer';
+import { shuffleArray } from '../helper/util'
 
 // =============================================================
 export const initialState = {
@@ -15,8 +14,8 @@ export const initialState = {
   removePostDone: false,
   removePostError: null,
 };
-
 // =============================================================
+
 //  Action Define
 export const LOAD_POSTS_REQUEST = 'LOAD_POSTS_REQUEST';
 export const LOAD_POSTS_SUCCESS = 'LOAD_POSTS_SUCCESS';
@@ -38,9 +37,8 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       break;
     case LOAD_POSTS_SUCCESS:
       draft.loadPostsDone = true;
-      // console.log('data',action.data )
       draft.mainPosts = [...action.data];
-      // draft.mainPosts = [...action.data.results];
+      draft.mainPosts = shuffleArray(draft.mainPosts)
       break;
     case LOAD_POSTS_FAILURE:
       draft.loadPostsError = action.error;
