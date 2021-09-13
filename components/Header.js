@@ -8,10 +8,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
 import Link from 'next/link';
 import { Link as MUILink} from '@material-ui/core';
-import MyGoogleLogin from './MyGoogleLogin';
 import 'react-multi-carousel/lib/styles.css';
 import Carousel from 'react-multi-carousel';
-import { CustomLeftArrow, CustomRightArrow } from './CustomArrows'
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -80,7 +78,6 @@ export default function Header(props) {
         <IconButton>
           <SearchIcon />
         </IconButton>
-        <MyGoogleLogin/>
       </Toolbar>
       
       <Carousel
@@ -97,27 +94,22 @@ export default function Header(props) {
         // deviceType={this.props.deviceType}
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
-        // customRightArrow={<CustomRightArrow />} 
-        // customLeftArrow={<CustomLeftArrow />}  
-        >
-        {/* <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}> */}
-          {sections.map((section) => ( 
-            <Button>
-              <Link href={section.url}>
-                <MUILink 
-                  color="inherit"
-                  noWrap
-                  key={section.title}
-                  variant="body2"
-                  // href={section.url}
-                  className={classes.toolbarLink}
-                >
-                  {section.title}
-                </MUILink>
-              </Link>   
-            </Button>
-          ))} 
-        {/* </Toolbar> */}
+      >
+        {sections.map((section) => ( 
+          <Button>
+            <Link href={section.url}>
+              <MUILink 
+                color="inherit"
+                noWrap
+                key={section.title}
+                variant="body2"
+                className={classes.toolbarLink}
+              >
+                {section.title}
+              </MUILink>
+            </Link>   
+          </Button>
+        ))} 
       </Carousel>
     </>
   );
