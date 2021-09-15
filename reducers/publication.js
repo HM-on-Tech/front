@@ -6,7 +6,13 @@ import Router from 'next/router';
 
 // =============================================================
 export const initialState = {
-  publicationList: []
+  publicationList: [],
+  loadPublicationDone: false,
+  loadPublicationError: null,
+  addPublicationDone: false,
+  addPublicationError: null,
+  removePublicationDone: false,
+  removePublicationError: null,
 };
 
 // =============================================================
@@ -24,50 +30,43 @@ export const LOAD_PUBLICATION_FAILURE = 'LOAD_PUBLICATION_FAILURE';
 
 const reducer = (state = initialState, action) => produce(state, (draft) => {
   switch (action.type) {
-    case REMOVE_PUBLICATION_REQUEST:
-      Router.push('/admin/list')
-      console.log(draft)
-      toast.success('publication successfully removed')
-      break;
+    // case REMOVE_PUBLICATION_REQUEST:
+    //   Router.push('/admin/list')
+    //   console.log(draft)
+    //   toast.success('publication successfully removed')
+    //   break;
     case REMOVE_PUBLICATION_SUCCESS:
-      Router.push('/admin/list')
-      console.log(draft)
-      toast.success('edit success')
+      draft.removePublicationDone = true;
+      let filterCandidate = action.data?.PatientIds?.map( (x)=> parseInt(x) )
+      draft.publicationList = draft.publicationList.filter( (v) => !filterCandidate?.includes(v.id))
       break;
     case REMOVE_PUBLICATION_FAILURE:
-      Router.push('/admin/list')
-      console.log(draft)
-      toast.success('edit success')
+      toast.error('Failed to Delete Publication')
       break;
     case ADD_PUBLICATION_REQUEST:
-      Router.push('/admin/list')
-      console.log(draft)
-      toast.success('edit success')
+      draft.addPublicationDone = false;
+      draft.addPublicationError = null;
       break;
     case ADD_PUBLICATION_SUCCESS:
-      Router.push('/admin/list')
+      Router.push('/publication/list')
       console.log(draft)
-      toast.success('edit success')
+      toast.success('Publication Added')
       break;
     case ADD_PUBLICATION_FAILURE:
-      Router.push('/admin/list')
-      console.log(draft)
-      toast.success('edit success')
+      toast.error('Failed to Add Publication')
+      draft.addPublicationError = action.error
+      break;
+    case LOAD_PUBLICATION_REQUEST:
+      draft.loadPostDone = false;
+      draft.loadPostError = null;
       break;
     case LOAD_PUBLICATION_FAILURE:
-      Router.push('/admin/list')
-      console.log(draft)
-      toast.success('edit success')
+      draft.loadPostsError = action.error;
       break;
-    case LOAD_PUBLICATION_FAILURE:
-      Router.push('/admin/list')
-      console.log(draft)
-      toast.success('edit success')
-      break;
-    case LOAD_PUBLICATION_FAILURE:
-      Router.push('/admin/list')
-      console.log(draft)
-      toast.success('edit success')
+    case LOAD_PUBLICATION_SUCCESS:
+      draft.loadPostDone = false;
+      draft.loadPostError = null;
+      draft.mainPost = action.data
       break;
     default:
       break;

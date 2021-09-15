@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 import { useSelector, useDispatch } from 'react-redux';
-import { REMOVE_PUBLICATION_REQUEST, ADD_PUBLICATION_REQUEST, LOAD_PUBLICATION_REQUEST } from '../reducers/publication';
-import Router from 'next/router';
+import { REMOVE_PUBLICATION_REQUEST, ADD_PUBLICATION_REQUEST, LOAD_PUBLICATION_REQUEST } from '../../reducers/publication';
 import { toast } from 'react-toastify';
 import router from 'next/router';
 
@@ -54,7 +53,7 @@ const PublicationList = () => {
   
   return (
     <>
-      <Button onClick={() => router.push('/admin/new')}> New </Button>
+      <Button onClick={() => router.push('/admin/publication/new')}> New </Button>
       <Button onClick={deletePublication}> Delete </Button>
       <div style={{ height: 1000, width: 600 }}>
         <DataGrid
