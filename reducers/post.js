@@ -41,6 +41,7 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       draft.loadPostDone = false;
       draft.loadPostError = null;
       draft.mainPost = action.data
+      break;
     case LOAD_POST_FAILURE:
       draft.loadPostsError = action.error;
       break;
@@ -53,9 +54,9 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       let filterCandidate = action.data?.PatientIds?.map( (x)=> parseInt(x) )
       draft.mainPosts = draft.mainPosts.filter( (v) => !filterCandidate?.includes(v.id))
       break;
-    case REMOVE_POST_DONE:
-      draft.removePostDone = false;
-      break;
+    // case REMOVE_POST_DONE:
+    //   draft.removePostDone = false;
+    //   break;
     case EDIT_POST_FAILURE:
       toast.error('failed to edit post')
       break;

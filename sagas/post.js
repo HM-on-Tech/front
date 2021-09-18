@@ -32,26 +32,26 @@ function* loadPost(action) {
 }
 
 
-function loadPostsAPI() {
-  return axios.post('http://localhost:3065/api/post/list');
-  // return axios.get('https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=kzMmOlHAw7K5LxjTAHqQ9KJ4tS44W4zr');
-}
+// function loadPostsAPI() {
+//   return axios.post('http://localhost:3065/api/post/list');
+//   // return axios.get('https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=kzMmOlHAw7K5LxjTAHqQ9KJ4tS44W4zr');
+// }
 
-function* loadPosts(action) {
-  try {
-    const result = yield call(loadPostsAPI);
-    yield put({
-      type: LOAD_POSTS_SUCCESS,
-      data: result.data
-    });
-  } catch (err) {
-    console.error(err);
-    yield put({
-      type: LOAD_POSTS_FAILURE,
-      data: err.response.data,
-    });
-  }
-}
+// function* loadPosts(action) {
+//   try {
+//     const result = yield call(loadPostsAPI);
+//     yield put({
+//       type: LOAD_POSTS_SUCCESS,
+//       data: result.data
+//     });
+//   } catch (err) {
+//     console.error(err);
+//     yield put({
+//       type: LOAD_POSTS_FAILURE,
+//       data: err.response.data,
+//     });
+//   }
+// }
 
 function editPostAPI(data) {
   return axios.post(`http://localhost:3065/api/post/edit/${data.id}`, data)
@@ -95,9 +95,6 @@ function* addPost(action) {
   }
 }
 
-function* watchLoadPosts() {
-  yield throttle(5000, LOAD_POSTS_REQUEST, loadPosts);
-}
 function* watchLoadPost() {
   yield throttle(5000, LOAD_POST_REQUEST, loadPost);
 }
@@ -112,7 +109,6 @@ function* watchEditPost() {
 
 export default function* postSaga() {
   yield all([
-    fork(watchLoadPosts),
     fork(watchLoadPost),
     fork(watchAddPost),
     fork(watchEditPost),

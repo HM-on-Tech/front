@@ -5,6 +5,7 @@ import axios from 'axios';
 import post from './post';
 import posts from './posts';
 import user from './user';
+import publication from './publication'
 
 
 // axios.defaults.baseURL = '';
@@ -14,5 +15,6 @@ export default function* rootSaga() {
     fork(post),
     fork(posts),
     fork(user),
+    fork(publication),
   ]);
 }
