@@ -10,7 +10,7 @@ import {
   REMOVE_PUBLICATION_REQUEST,
   REMOVE_PUBLICATION_SUCCESS,
   REMOVE_PUBLICATION_FAILURE,
-} from '../reducers/post';
+} from '../reducers/publication';
 
 
 function loadPublicationAPI(blogId) {
@@ -19,6 +19,7 @@ function loadPublicationAPI(blogId) {
 
 function* loadPublication(action) {
   try {
+    console.log('loadPublication')
     const result = yield call(loadPublicationAPI, action.data);
     yield put({
       type: LOAD_PUBLICATION_SUCCESS,
@@ -33,7 +34,7 @@ function* loadPublication(action) {
   }
 }
 
-function addPublicationAPI(blogId) {
+function addPublicationAPI(data) {
   return axios.post('http://localhost:3065/api/publication/add', data);
 }
 
@@ -53,13 +54,12 @@ function* addPublication(action) {
   }
 }
 
-function removePublicationAPI(blogId) {
+function removePublicationAPI(data) {
   return axios.post('http://localhost:3065/api/publication/remove', data);
 }
 
 function* removePublication(action) {
   try {
-    console.log('actiondata', action.data)
     const result = yield call(removePublicationAPI, action.data);
     yield put({
       type: REMOVE_PUBLICATION_SUCCESS,

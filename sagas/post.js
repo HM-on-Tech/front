@@ -95,9 +95,6 @@ function* addPost(action) {
   }
 }
 
-function* watchLoadPosts() {
-  yield throttle(5000, LOAD_POSTS_REQUEST, loadPosts);
-}
 function* watchLoadPost() {
   yield throttle(5000, LOAD_POST_REQUEST, loadPost);
 }
@@ -112,7 +109,6 @@ function* watchEditPost() {
 
 export default function* postSaga() {
   yield all([
-    fork(watchLoadPosts),
     fork(watchLoadPost),
     fork(watchAddPost),
     fork(watchEditPost),

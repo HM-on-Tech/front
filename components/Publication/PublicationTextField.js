@@ -27,26 +27,12 @@ const PublicationTextField = ({publicationInfo}) => {
 
   const dispatch = useDispatch();
   const publicationSubmit = (e) => {
-    if(router.asPath.endsWith('new')){
-      dispatch({
-        type: ADD_PUBLICATION_REQUEST,
-        data: {
-          name,
-          content:value,
-        },
-      }); 
-    } 
-    // else {
-    //   dispatch({
-    //     type: EDIT_PUBLICATION_REQUEST,
-    //     data: {
-    //       name,
-    //       content:value,
-    //       id: id,
-    //     }
-    //   })
-    // }
-      
+    dispatch({
+      type: ADD_PUBLICATION_REQUEST,
+      data: {
+        name: name,
+      },
+    });
   }
 
 const cancelSubmit = (e) => {

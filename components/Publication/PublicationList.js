@@ -24,6 +24,7 @@ const PublicationList = () => {
   },[])
 
   useEffect(() => {
+    console.log(publicationList)
     setRow(publicationList);
   },[publicationList.length])
 
@@ -38,22 +39,13 @@ const PublicationList = () => {
     })
     console.log('delete publication', selectionModel)
   }
-
-  const addPublication = () => {
-    dispatch({
-      type: ADD_PUBLICATION_REQUEST,
-      data: selectionModel
-    })
-    console.log('add publication', selectionModel)
-  }
   
   const columns = [
-    { field: 'publications', flex:1 }
+    { field: 'name', flex:1 }
   ]
   
   return (
     <>
-      <Button onClick={() => router.push('/admin/publication/new')}> New </Button>
       <Button onClick={deletePublication}> Delete </Button>
       <div style={{ height: 1000, width: 600 }}>
         <DataGrid

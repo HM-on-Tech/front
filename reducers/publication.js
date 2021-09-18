@@ -30,14 +30,9 @@ export const LOAD_PUBLICATION_FAILURE = 'LOAD_PUBLICATION_FAILURE';
 
 const reducer = (state = initialState, action) => produce(state, (draft) => {
   switch (action.type) {
-    // case REMOVE_PUBLICATION_REQUEST:
-    //   Router.push('/admin/list')
-    //   console.log(draft)
-    //   toast.success('publication successfully removed')
-    //   break;
     case REMOVE_PUBLICATION_SUCCESS:
       draft.removePublicationDone = true;
-      let filterCandidate = action.data?.PatientIds?.map( (x)=> parseInt(x) )
+      let filterCandidate = action.data?.id.map( (x)=> parseInt(x) )
       draft.publicationList = draft.publicationList.filter( (v) => !filterCandidate?.includes(v.id))
       break;
     case REMOVE_PUBLICATION_FAILURE:
@@ -48,9 +43,13 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       draft.addPublicationError = null;
       break;
     case ADD_PUBLICATION_SUCCESS:
-      Router.push('/publication/list')
-      console.log(draft)
-      toast.success('Publication Added')
+      Router.push('/admin/publication')
+      if ( action.data == null) {
+        toast.warning('Publication already exist')
+      } else {
+        toast.success('Publication Added')
+        draft.publicationList = [action.data, ...draft.publicationList]
+      }
       break;
     case ADD_PUBLICATION_FAILURE:
       toast.error('Failed to Add Publication')
@@ -66,7 +65,7 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
     case LOAD_PUBLICATION_SUCCESS:
       draft.loadPostDone = false;
       draft.loadPostError = null;
-      draft.mainPost = action.data
+      draft.publicationList = action.data
       break;
     default:
       break;
