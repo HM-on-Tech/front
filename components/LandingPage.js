@@ -20,7 +20,12 @@ import { LOAD_POSTS_REQUEST } from '../reducers/posts';
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
     marginTop: theme.spacing(3),
-  }}));
+    padding: 20,
+  },
+  sidebarGrid:{
+    padding: 20,
+  }}
+  ));
   
   const mainFeaturedPost = {
     title: 'Title of a longer featured blog post',
@@ -73,16 +78,17 @@ const useStyles = makeStyles((theme) => ({
     
     return (
       <>
-      <Container maxWidth="lg">
-        <main>
+        <Grid container>
           <MainFeaturedPost post={mainFeaturedPost} />
-          <Grid container spacing={4}>
-          </Grid>
+          
           <FeaturedPostCarousel featuredPosts={mainPosts.slice(0, 4)} />
-          {console.log('slice', mainPosts.slice(0, 4))}
-          <Grid container spacing={5} className={classes.mainGrid}>
+
+          <Grid item xs={0} md={1} />
+          <Grid item xs={12} md={6} className={classes.mainGrid}>
             <Main title="Recently Published" posts={mainPosts.slice(4, mainPosts.length)} />
-              
+          </Grid>
+          <Grid item xs={12} md={4} className={classes.sidebarGrid}>
+          
             <Sidebar
               title={sidebar.title}
               description={sidebar.description}
@@ -90,9 +96,9 @@ const useStyles = makeStyles((theme) => ({
               social={sidebar.social}
             />
           </Grid>
-        </main>
-      </Container>
-      <Footer title="Footer" description="Something here to give the footer a purpose!" />
-    </>
+          <Grid item xs={0} md={1} />
+        </Grid>
+        <Footer title="Footer" description="Something here to give the footer a purpose!" />
+      </>
   );
 }
