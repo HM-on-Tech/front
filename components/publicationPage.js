@@ -68,18 +68,22 @@ const PublicationComponent = () => {
     <>
         <Grid container>
           <Grid item xs={0} md={1} />
-          <Main 
-            title="Recently Published"
-            posts={publicationList}
-          />
-          <Sidebar
-            title={sidebar.title}
-            description={sidebar.description}
-            archives={sidebar.archives}
-            social={sidebar.social}
-            className={classes.sidebarGrid}
-          />
-          <Grid item xs={2} md={2} />
+          <Grid item xs={12} md={6}>
+            <Main 
+              title="Recently Published"
+              posts={publicationList}
+            />
+          </Grid>
+          <Grid item xs={12} md={4} style={{padding:40}}>
+            <Sidebar
+              title={sidebar.title}
+              description={sidebar.description}
+              archives={sidebar.archives}
+              social={sidebar.social}
+              className={classes.sidebarGrid}
+            />
+          </Grid>
+          <Grid item xs={0} md={1} />
         </Grid>
     </>
     )

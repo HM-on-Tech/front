@@ -18,7 +18,7 @@ export default function Main(props) {
   const { posts, title, content, id } = props;
 
   return (
-    <Grid item xs={12} md={7}>
+    <>
       <Typography variant="h6" gutterBottom>
         {title}
       </Typography>
@@ -26,7 +26,7 @@ export default function Main(props) {
       {posts.map((post) => (
         <RegularPost key={post.title} post={post} content={content} id={id}/>
       ))}
-    </Grid>
+    </>
   );
 }
 
