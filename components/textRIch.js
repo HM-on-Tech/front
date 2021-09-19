@@ -1,18 +1,23 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button, TextField} from '@material-ui/core';
-import { useDispatch } from 'react-redux';
-import { ADD_POST_REQUEST, EDIT_POST_REQUEST, EDIT_POST_FAILURE } from '../reducers/post'
+import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router' 
 import { Editor } from '@tinymce/tinymce-react'
 import { toast } from "react-toastify";
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
+import { ADD_POST_REQUEST, EDIT_POST_REQUEST, EDIT_POST_FAILURE } from '../reducers/post'
+import { LOAD_PUBLICATION_REQUEST } from "../reducers/publication";
 
 
 const TextRich = ({postInfo}) => {
   const toastId = React.useRef(null);
   
   const notify = () => {
-    console.log(toast.isActive(toastId.current))
     if(! toast.isActive(toastId.current)) {
       toastId.current = toast.error('Not a Valid Image. Must start with "https://"');
     }
@@ -24,17 +29,29 @@ const TextRich = ({postInfo}) => {
   const [id, setId] = useState('');
   const [author, setAuthor] = useState('');
   const [thumbnail, setThumbnail] = useState('');
+  const [publication, setPublication] = useState('');
+
+  const { publicationList } = useSelector(state => state.publication)
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (postInfo != null){
       setValue(postInfo.content);
       setTitle(postInfo.title);
       setId(postInfo.id);
-      setAuthor(postInfo.author)
-      setThumbnail(postInfo.thumbnail)
+      setAuthor(postInfo.author);
+      setThumbnail(postInfo.thumbnail);
+      setPublication(postInfo.PublicationId);
     }
     
   }, [postInfo])
+
+  useEffect(() => {
+    dispatch({
+      type: LOAD_PUBLICATION_REQUEST,
+    })
+  })
   const inputEl = useRef(null);
 
   const editorRef = useRef(null);
@@ -45,7 +62,6 @@ const TextRich = ({postInfo}) => {
     };
   
 
-  const dispatch = useDispatch();
   const articleSubmit = (e) => {
     if(router.asPath.endsWith('new')){
       if (! thumbnail.startsWith('http')){
@@ -58,6 +74,7 @@ const TextRich = ({postInfo}) => {
           content:value,
           author:author,
           thumbnail:thumbnail,
+          PublicationId: publication,
         },
       }); 
     } else {
@@ -69,6 +86,7 @@ const TextRich = ({postInfo}) => {
           id: id,
           author:author,
           thumbnail:thumbnail,
+          PublicationId: publication,
         }
       })
     }
@@ -92,6 +110,9 @@ const cancelSubmit = (e) => {
     setThumbnail(e.target.value)
   }
 
+  const handleChange = (event) => {
+    setPublication(event.target.value);
+  };
 
   return (
     <>
@@ -117,6 +138,26 @@ const cancelSubmit = (e) => {
           label={"By"}
           value={author}
         />
+        <FormControl>
+          <InputLabel id="demo-simple-select-label">Pulication</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={publication}
+            onChange={handleChange}
+          >
+            {
+              publicationList?.map(
+                (publication) => <MenuItem 
+                                  key={`${publication.name}-${publication.id}`}
+                                  value={publication.id}
+                                >
+                                  {publication.name}
+                                </MenuItem>
+              )
+            }
+          </Select>
+        </FormControl>
         <TextField
           style={{marginTop:-5, marginBottom:10}}
           id="article_author"

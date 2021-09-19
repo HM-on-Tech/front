@@ -13,13 +13,12 @@ import {
 } from '../reducers/publication';
 
 
-function loadPublicationAPI(blogId) {
-  return axios.post('http://localhost:3065/api/publication/list',{blogId:blogId});
+function loadPublicationAPI() {
+  return axios.post('http://localhost:3065/api/publication/list');
 }
 
 function* loadPublication(action) {
   try {
-    console.log('loadPublication')
     const result = yield call(loadPublicationAPI, action.data);
     yield put({
       type: LOAD_PUBLICATION_SUCCESS,

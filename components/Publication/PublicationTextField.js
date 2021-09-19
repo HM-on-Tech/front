@@ -46,13 +46,14 @@ const nameHandler = (e) => {
 
   return (
     <>
-      <div style={{marginTop:20, marginLeft:20, marginRight:20}}>
+      <div style={{marginTop:20,  marginRight:20,
+      display:'flex', flexDirection:'row'}}>
         <TextField
           id="publication_name"
           margin="dense"
           variant="outlined"
           onChange={nameHandler}
-          style={{width:'70%'}}
+          style={{width:'50%'}}
           label={"Name"}
           value={name}
           size="medium"

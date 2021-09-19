@@ -26,6 +26,11 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
     flexShrink: 0,
   },
+  header: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  }
 }));
 
 const responsive = {
@@ -48,22 +53,17 @@ const responsive = {
 
 
 
-export default function Header(props) {
+export default function Header({ sections, title }) {
   const classes = useStyles();
-  const { sections, title } = props;
 
   return (
     <>
       <Toolbar className={classes.toolbar}>
         <Link href="/">
-          <Button>
-            Home
-          </Button>
+          <Button>Home</Button>
         </Link>
         <Link href="/admin/list">
-          <Button>
-          Admin
-          </Button>
+          <Button>Admin</Button>
         </Link>
         <Typography
           component="h2"
@@ -94,18 +94,19 @@ export default function Header(props) {
         // deviceType={this.props.deviceType}
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
+        className={classes.header}
       >
         {sections.map((section) => ( 
-          <Button>
-            <Link href={section.url}>
+          <Button key={`header-button-${section.name}`}>
+            <Link href={`/publication/${section.name}`}>
               <MUILink 
                 color="inherit"
                 noWrap
-                key={section.title}
+                key={section.name}
                 variant="body2"
                 className={classes.toolbarLink}
               >
-                {section.title}
+                {section.name}
               </MUILink>
             </Link>   
           </Button>

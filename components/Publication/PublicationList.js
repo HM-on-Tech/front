@@ -47,7 +47,7 @@ const PublicationList = () => {
   return (
     <>
       <Button onClick={deletePublication}> Delete </Button>
-      <div style={{ height: 1000, width: 600 }}>
+      <div style={{ height: 1000 }}>
         <DataGrid
           columns={columns}
           rows={row}
