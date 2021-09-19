@@ -56,17 +56,23 @@ const ArticleList = () => {
   const columns = [
     { field: 'author', flex:1 },
     { field: 'title', flex:2 },
-    { field: 'createdAt',
+    { 
+      field: 'createdAt',
       flex:1 ,
       valueFormatter: (params) => {
         return `${params.value.split('T')[0]}`;
       },
-  
     },
+    { 
+      field: 'viewCount',
+      flex:1
+    },
+  
   ]
   
   return (
     <>
+      {console.log('rows', row)}
       <Button onClick={() => router.push('/admin/new')}> New </Button>
       <Button onClick={() => editArticle(selectionModel.length)}> Edit </Button>
       <Button onClick={deleteArticle}> Delete </Button>

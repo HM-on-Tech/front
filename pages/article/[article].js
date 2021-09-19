@@ -15,6 +15,7 @@ const ArticleComponent = () => {
 
   useEffect( async () => {
     const post = await axios.get(`http://localhost:3065/api/post/get/${article}`);
+    
     setData(post.data)
   }, [])
 
@@ -23,7 +24,6 @@ const ArticleComponent = () => {
     <AppLayout>
       <ArticleLayout >
         <Article post={data}/>
-        {console.log('data', data)}
       </ArticleLayout>
         {/* {loaded()} */}
     </AppLayout>
