@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Button, TextField} from '@material-ui/core';
+import { Box, Button, Grid, TextField} from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router' 
 import { Editor } from '@tinymce/tinymce-react'
@@ -9,6 +9,20 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Hidden from '@material-ui/core/Hidden';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    marginLeft:15,
+    [theme.breakpoints.down('md')]: {
+      width:'40%',
+    },
+    [theme.breakpoints.up('md')]: {
+      width:'73%',
+    },
+  },
+}));
 
 import { ADD_POST_REQUEST, EDIT_POST_REQUEST, EDIT_POST_FAILURE } from '../reducers/post'
 import { LOAD_PUBLICATION_REQUEST } from "../reducers/publication";
@@ -16,6 +30,7 @@ import { LOAD_PUBLICATION_REQUEST } from "../reducers/publication";
 
 const TextRich = ({postInfo}) => {
   const toastId = React.useRef(null);
+  const classes = useStyles();
   
   const notify = () => {
     if(! toast.isActive(toastId.current)) {
@@ -122,22 +137,12 @@ const cancelSubmit = (e) => {
           margin="dense"
           variant="outlined"
           onChange={titleHandler}
-          style={{width:'100%'}}
           label={"Title"}
           value={title}
           size="medium"
-        />
-        <TextField
-          style={{marginTop:-5, marginBottom:10}}
-          id="article_author"
-          margin="dense"
-          variant="outlined"
-          size="small"
-          onChange={authorHandler}
           style={{width:'100%'}}
-          label={"By"}
-          value={author}
         />
+        
         <FormControl>
           <InputLabel id="demo-simple-select-label">Pulication</InputLabel>
           <Select
@@ -145,19 +150,33 @@ const cancelSubmit = (e) => {
             id="demo-simple-select"
             value={publication}
             onChange={handleChange}
+            style={{minWidth: 100, marginRight:10}}
           >
             {
               publicationList?.map(
                 (publication) => <MenuItem 
-                                  key={`${publication.name}-${publication.id}`}
-                                  value={publication.id}
-                                >
+                key={`${publication.name}-${publication.id}`}
+                value={publication.id}
+                >
                                   {publication.name}
                                 </MenuItem>
               )
             }
           </Select>
         </FormControl>
+        <TextField
+          style={{marginTop:-5, marginBottom:10}}
+          id="article_author"
+          margin="dense"
+          variant="outlined"
+          size="small"
+          onChange={authorHandler}
+          label={"By"}
+          value={author}
+          className={classes.root}
+          style={{width: window.innerWidth < 700 ? '40%' : '76%', marginLeft:15}}
+          />
+
         <TextField
           style={{marginTop:-5, marginBottom:10}}
           id="article_author"

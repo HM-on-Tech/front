@@ -37,14 +37,15 @@ const sidebar = {
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
     marginRight: 15,
+    padding:20,
   },
   sidebarGrid: {
     marginLeft : 15,
     marginRight : 15,
   },
-  articleSpacing: {
-    marginLeft : 35,
-  }
+  // articleSpacing: {
+  //   marginLeft : 10,
+  // }
 
 }));
 
@@ -65,28 +66,21 @@ const PublicationComponent = () => {
 
     return(
     <>
-      <Container container className={classes.mainGrid}>
-      <main>
         <Grid container>
-          {/* {console.log(publicationList)} */}
-          <Grid item xs={12} md={8} className={classes.articleSpacing}>
-            <Main title="Recently Published" posts={publicationList} />
-          </Grid>
-          
-          <Grid item xs={12} md={3} className={classes.sidebarGrid}>
-            <Sidebar
-              title={sidebar.title}
-              description={sidebar.description}
-              archives={sidebar.archives}
-              social={sidebar.social}
-            />
-          </Grid>
-
-            
+          <Grid item xs={0} md={1} />
+          <Main 
+            title="Recently Published"
+            posts={publicationList}
+          />
+          <Sidebar
+            title={sidebar.title}
+            description={sidebar.description}
+            archives={sidebar.archives}
+            social={sidebar.social}
+            className={classes.sidebarGrid}
+          />
           <Grid item xs={2} md={2} />
         </Grid>
-      </main>
-    </Container>
     </>
     )
 }

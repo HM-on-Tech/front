@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Button } from '@material-ui/core';
+import { Box, Button, Grid } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 import { useSelector, useDispatch } from 'react-redux';
 import { LOAD_POSTS_REQUEST, REMOVE_POSTS_REQUEST } from '../reducers/posts';
@@ -56,36 +56,57 @@ const ArticleList = () => {
   const columns = [
     { field: 'author', flex:1 },
     { field: 'title', flex:2 },
-    { 
-      field: 'createdAt',
-      flex:1 ,
+    { field: 'createdAt', flex:1 ,
       valueFormatter: (params) => {
         return `${params.value.split('T')[0]}`;
       },
     },
-    { 
-      field: 'viewCount',
-      flex:1
-    },
-  
+    { field: 'viewCount', flex:1},
   ]
   
+  const columnsForMobile = [
+    { field: 'title', flex:2 },
+  ]
+
   return (
     <>
-      {console.log('rows', row)}
       <Button onClick={() => router.push('/admin/new')}> New </Button>
       <Button onClick={() => editArticle(selectionModel.length)}> Edit </Button>
       <Button onClick={deleteArticle}> Delete </Button>
-      <div style={{ height: 1000, width: 600 }}>
-        <DataGrid
-          columns={columns}
-          rows={row}
-          checkboxSelection={true}
-          onSelectionModelChange={(model) => {
-            setSelectionModel(model.selectionModel);
-          }}
-        />
-      </div>
+      <Box
+        component={Grid}
+        item
+        xs={12}
+        display={{ xs: "none", sm: "none",md:"block", lg: "block" }}
+      >
+        <div style={{ height: 1000, width: '100%' }}>
+          <DataGrid
+            columns={columns}
+            rows={row}
+            checkboxSelection={true}
+            onSelectionModelChange={(model) => {
+              setSelectionModel(model.selectionModel);
+            }}
+          />
+        </div>
+      </Box>
+      <Box
+        component={Grid}
+        item
+        xs={12}
+        display={{ xs: "block", sm: "block",md:"none", lg: "none" }}
+      >
+        <div style={{ height: 1000, width: '100%' }}>
+          <DataGrid
+            columns={columnsForMobile}
+            rows={row}
+            checkboxSelection={true}
+            onSelectionModelChange={(model) => {
+              setSelectionModel(model.selectionModel);
+            }}
+          />
+        </div>
+      </Box>
     </>
   )
 }

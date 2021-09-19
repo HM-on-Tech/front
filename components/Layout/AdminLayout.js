@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+  adminCol: {
+    textAlign: 'center',
+  },
 }));
 
 const AdminLayout = ({children}) => {
@@ -23,15 +26,15 @@ const AdminLayout = ({children}) => {
   <>
       <div className={classes.root}>
       <Grid container>
-        <Grid item xs={2}>
-          <Link href='/admin/list'><Button>Article List</Button></Link>
-          <Link href='/admin/new'><Button>Create Article</Button></Link>
-          <Link href='/admin/publication'><Button>Publication List</Button></Link>
+        <Grid item xs={3} sm={2} className={classes.adminCol}>
+          <div><Link href='/admin/list'><Button>Article List</Button></Link></div>
+          <div><Link href='/admin/new'><Button>Create Article</Button></Link></div>
+          <div><Link href='/admin/publication'><Button>Pub List</Button></Link></div>
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={8} sm={8}>
           {children}
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={1} sm={2}>
         </Grid>
       </Grid>
     </div>

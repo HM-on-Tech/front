@@ -27,9 +27,9 @@ const useStyles = makeStyles((theme) => ({
     flexShrink: 0,
   },
   header: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
   }
 }));
 
