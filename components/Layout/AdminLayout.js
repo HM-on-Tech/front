@@ -22,13 +22,16 @@ const AdminLayout = ({children}) => {
   return(
   <>
       <div className={classes.root}>
-      <Grid container spacing={3}>
-        <Grid item xs={1}>
+      <Grid container>
+        <Grid item xs={2}>
           <Link href='/admin/list'><Button>Article List</Button></Link>
           <Link href='/admin/new'><Button>Create Article</Button></Link>
+          <Link href='/admin/publication'><Button>Publication List</Button></Link>
         </Grid>
-        <Grid item xs={9}>
+        <Grid item xs={8}>
           {children}
+        </Grid>
+        <Grid item xs={2}>
         </Grid>
       </Grid>
     </div>

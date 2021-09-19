@@ -38,8 +38,10 @@ export default function RegularPost(props) {
   const { post } = props;
 
   return (
-    <Grid item xs={12} md={12} style={{marginTop:10}}>
-      {/* <CardActionArea component="a" >* href="#" */}
+    <>
+
+    <Grid item xs={12} md={12} style={{marginTop:10, margin:'20px 10px'}}>
+      <CardActionArea component="a" >
       <Link href={`/article/${post.id}`}>
         <Card className={classes.card}>
           <div className={classes.cardDetails}>
@@ -63,8 +65,9 @@ export default function RegularPost(props) {
           </Hidden>
         </Card>
       </Link>
-      {/* </CardActionArea> */}
+      </CardActionArea>
     </Grid>
+  </>
   );
 }
 
