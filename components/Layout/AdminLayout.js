@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
 import { Button } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AdminLayout = ({children}) => {
   const classes = useStyles();
+  const { isAdmin } = useSelector(state => state.user)
 
   return(
   <>
@@ -29,7 +31,9 @@ const AdminLayout = ({children}) => {
         <Grid item xs={3} sm={2} className={classes.adminCol}>
           <div><Link href='/admin/list'><Button>Article List</Button></Link></div>
           <div><Link href='/admin/new'><Button>Create Article</Button></Link></div>
-          <div><Link href='/admin/publication'><Button>Pub List</Button></Link></div>
+          { 
+            isAdmin === 0 && <div><Link href='/admin/publication'><Button>Pub List</Button></Link></div>
+          }
         </Grid>
         <Grid item xs={8} sm={8}>
           {children}

@@ -12,34 +12,16 @@ const ArticleList = () => {
   const [row, setRow] = useState([]);
 
   const dispatch = useDispatch();
-  const { mainPosts } = useSelector(state => state.posts)
+
   const { userId } = useSelector(state => state.user)
 
   const [selectionModel, setSelectionModel] = useState([]);
 
-  // useEffect( async () => {
-  //   dispatch({
-  //     type: LOAD_POSTS_REQUEST,
-  //     data: {
-  //       userId: userId
-  //     }
-  //   })
-  //   //  Request post lists to the server directly
-  //   // const result  = await axios.post('http://localhost:3065/api/posts/list');
-  //   // console.log('result from server', result)
-  // },[])
   useEffect( async () => {
-    const posts = axios.post(`http://localhost:3065/api/posts/list/${userId}`);
-    console.log(posts)
-    //  Request post lists to the server directly
-    // const result  = await axios.post('http://localhost:3065/api/posts/list');
-    // console.log('result from server', result)
+    const posts = await axios.post(`http://localhost:3065/api/posts/list/${userId}`);
+    setRow(posts.data);
   },[userId])
  
-  useEffect(() => {
-    setRow(mainPosts);
-  },[mainPosts.length])
-
   const deleteArticle = () => {
     if (selectionModel.length === 0){
       toast.warning('please select article to delete')
