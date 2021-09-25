@@ -15,7 +15,7 @@ export default function AppLayout( {children}) {
     dispatch({
       type: LOAD_PUBLICATION_REQUEST,
     })
-  })
+  }, [])
 
   const { isLoggedIn, isAdmin } = useSelector(state => state.user)
   return (

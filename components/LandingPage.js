@@ -81,9 +81,13 @@ const useStyles = makeStyles((theme) => ({
         <Grid container>
           <MainFeaturedPost post={mainFeaturedPost} />
           
-          <FeaturedPostCarousel featuredPosts={mainPosts.slice(0, 4)} />
-
-          <Grid item xs={0} md={1} />
+          <Grid item xs={1} md={1}></Grid>
+          <Grid item xs={10} md={10}>
+            <FeaturedPostCarousel featuredPosts={mainPosts.slice(0, 4)} />
+          </Grid>
+          <Grid item xs={1} md={1}></Grid>
+          
+          <Grid item xs={4} md={1} />
           <Grid item xs={12} md={6} className={classes.mainGrid}>
             <Main title="Recently Published" posts={mainPosts.slice(4, mainPosts.length)} />
           </Grid>

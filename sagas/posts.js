@@ -9,15 +9,16 @@ import {
   REMOVE_POSTS_FAILURE,
 } from '../reducers/posts';
 
-function loadPostsAPI() {
-  return axios.post('http://localhost:3065/api/posts/list',null ,{
+function loadPostsAPI(data) {
+  return axios.post('http://localhost:3065/api/posts/list',data ,{
     withCredentials: true,
   });
 }
 
 function* loadPosts(action) {
   try {
-    const result = yield call(loadPostsAPI);
+    console.log(action)
+    const result = yield call(loadPostsAPI,action.data);
     yield put({
       type: LOAD_POSTS_SUCCESS,
       data: result.data

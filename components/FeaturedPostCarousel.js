@@ -1,11 +1,18 @@
 import React from 'react'
 import Carousel from "react-multi-carousel";
+import { makeStyles } from '@material-ui/core/styles';
 import "react-multi-carousel/lib/styles.css";
 import CarouselCard from './CarouselCard'
 
 const FeaturedPostCarousel = ( {featuredPosts, countPost} ) => {
 
-  
+  const useStyles = makeStyles({
+    carouselPadding: {
+      paddingRight: 20,
+    },
+  });
+
+  const classes = useStyles();
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -41,6 +48,7 @@ const FeaturedPostCarousel = ( {featuredPosts, countPost} ) => {
       // deviceType={this.props.deviceType}
       dotListClass="custom-dot-list-style"
       itemClass="carousel-item-padding-40-px"
+      className={classes.carouselPadding}
       // customRightArrow={<CustomRightArrow />} 
       // customLeftArrow={<CustomLeftArrow />}  
       >

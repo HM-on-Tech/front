@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Box, Button, Grid, TextField} from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router' 
-import { Editor } from '@tinymce/tinymce-react'
 import { toast } from "react-toastify";
+import { Editor } from '@tinymce/tinymce-react'
+import { Box, Button, Grid, TextField} from '@material-ui/core';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -11,6 +11,10 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Hidden from '@material-ui/core/Hidden';
 import { makeStyles } from '@material-ui/core/styles';
+
+
+import { ADD_POST_REQUEST, EDIT_POST_REQUEST, EDIT_POST_FAILURE } from '../reducers/post'
+import { LOAD_PUBLICATION_REQUEST } from "../reducers/publication";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,14 +28,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-import { ADD_POST_REQUEST, EDIT_POST_REQUEST, EDIT_POST_FAILURE } from '../reducers/post'
-import { LOAD_PUBLICATION_REQUEST } from "../reducers/publication";
-
-
 const TextRich = ({postInfo}) => {
   const toastId = React.useRef(null);
   const classes = useStyles();
+  const { user } = useSelector(state => state.user)
   
+
   const notify = () => {
     if(! toast.isActive(toastId.current)) {
       toastId.current = toast.error('Not a Valid Image. Must start with "https://"');
@@ -66,7 +68,7 @@ const TextRich = ({postInfo}) => {
     dispatch({
       type: LOAD_PUBLICATION_REQUEST,
     })
-  })
+  }, [])
   const inputEl = useRef(null);
 
   const editorRef = useRef(null);
@@ -90,6 +92,7 @@ const TextRich = ({postInfo}) => {
           author:author,
           thumbnail:thumbnail,
           PublicationId: publication,
+          UserId: user?.id || null,
         },
       }); 
     } else {

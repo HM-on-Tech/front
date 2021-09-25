@@ -6,24 +6,36 @@ import { LOAD_POSTS_REQUEST, REMOVE_POSTS_REQUEST } from '../reducers/posts';
 import Router from 'next/router';
 import { toast } from 'react-toastify';
 import router from 'next/router';
+import axios from 'axios';
 
 const ArticleList = () => {
   const [row, setRow] = useState([]);
 
   const dispatch = useDispatch();
   const { mainPosts } = useSelector(state => state.posts)
+  const { userId } = useSelector(state => state.user)
 
   const [selectionModel, setSelectionModel] = useState([]);
 
+  // useEffect( async () => {
+  //   dispatch({
+  //     type: LOAD_POSTS_REQUEST,
+  //     data: {
+  //       userId: userId
+  //     }
+  //   })
+  //   //  Request post lists to the server directly
+  //   // const result  = await axios.post('http://localhost:3065/api/posts/list');
+  //   // console.log('result from server', result)
+  // },[])
   useEffect( async () => {
-    dispatch({
-      type: LOAD_POSTS_REQUEST,
-    })
+    const posts = axios.post(`http://localhost:3065/api/posts/list/${userId}`);
+    console.log(posts)
     //  Request post lists to the server directly
     // const result  = await axios.post('http://localhost:3065/api/posts/list');
     // console.log('result from server', result)
-  },[])
-
+  },[userId])
+ 
   useEffect(() => {
     setRow(mainPosts);
   },[mainPosts.length])

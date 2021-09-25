@@ -11,6 +11,9 @@ function* loadLogin(action) {
   try {
     console.log('loadLogin called');
     const result = yield call(loadLoginAPI,action.data);
+    if (result.data.statusCode === 0) {
+      return toast.error(result.data.message);
+    }
     yield put({
       type: LOG_IN_USER_SUCCESS,
       data: result.data

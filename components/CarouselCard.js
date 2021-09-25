@@ -15,7 +15,7 @@ function getText(html){
   semiResult = semiResult.split(' ').slice(0, Math.min(length, 15));
   return semiResult.join(" ");
 }
-export default function CarouselCard({post}) {
+export default function CarouselCard({key, post, id}) {
   const router = useRouter();
   const useStyles = makeStyles({
     root: {
@@ -31,7 +31,7 @@ export default function CarouselCard({post}) {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea onClick={() => router.push(`/article/${post.id}`)}>
+      <CardActionArea onClick={() => router.push(`/article/${id}`)}>
         <CardMedia
           component="img"
           alt="Contemplative Reptile"
@@ -41,7 +41,7 @@ export default function CarouselCard({post}) {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {post.key}
+            {key}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {getText(post.content)}...

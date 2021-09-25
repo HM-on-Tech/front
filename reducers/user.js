@@ -5,11 +5,10 @@ import produce from '../util/produce';
 
 // =============================================================
 export const initialState = {
-    userId: null,
     accessToken: null,
     userName: null,
+    userId: null,
     email: null,
-    imageUrl: null,
     isLoggedIn: false,
     isAdmin: false,
 };
@@ -25,11 +24,15 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
         case LOG_IN_USER_SUCCESS:
             console.log('hello', action.data)
             draft.userId = action.data.user.id
+            draft.email = action.data.user.email
             draft.userName = action.data.user.name
             draft.isAdmin = action.data.user.isAdmin
-            draft.accessToken = action.data.accessToken
+            draft.accessToken = action.data.requestToken
+            draft.isLoggedIn = true;
+            localStorage.setItem('HM_ON_TECH_ACCESS_TOKEN', action.data.requestToken);
+
             toast.success("You are Logged In");
-            authenticate(action.data);
+            // authenticate(action.data);
             // requestToken
             draft.isLoggedIn = true
             break;
