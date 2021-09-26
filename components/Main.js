@@ -23,7 +23,7 @@ export default function Main(props) {
         {title}
       </Typography>
       <Divider />
-      {posts.map((post) => (
+      {posts?.map((post) => (
         <RegularPost key={post.title} post={post} content={content} id={id}/>
       ))}
     </>

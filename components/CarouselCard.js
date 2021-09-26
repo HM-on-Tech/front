@@ -15,7 +15,7 @@ function getText(html){
   semiResult = semiResult.split(' ').slice(0, Math.min(length, 15));
   return semiResult.join(" ");
 }
-export default function CarouselCard({key, post, id}) {
+export default function CarouselCard({title, post, id}) {
   const router = useRouter();
   const useStyles = makeStyles({
     root: {
@@ -41,7 +41,7 @@ export default function CarouselCard({key, post, id}) {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {key}
+            {title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {getText(post.content)}...

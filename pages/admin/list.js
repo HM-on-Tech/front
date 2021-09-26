@@ -8,11 +8,9 @@ const articleList = () => {
   return(
     <>
       <AppLayout>
-        <AdminAccess>
-          <AdminLayout>
-            <ArticleList></ArticleList>
-          </AdminLayout>
-        </AdminAccess>
+        <AdminLayout>
+          <ArticleList></ArticleList>
+        </AdminLayout>
       </AppLayout>
     </>
   )  

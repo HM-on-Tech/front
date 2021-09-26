@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Box, Button, Grid } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 import { useSelector, useDispatch } from 'react-redux';
-import { LOAD_POSTS_REQUEST, REMOVE_POSTS_REQUEST } from '../reducers/posts';
+import { LOAD_AUTHOR_POSTS_REQUEST, LOAD_POSTS_REQUEST, REMOVE_POSTS_REQUEST } from '../reducers/posts';
 import Router from 'next/router';
 import { toast } from 'react-toastify';
 import router from 'next/router';
@@ -14,13 +14,21 @@ const ArticleList = () => {
   const dispatch = useDispatch();
 
   const { userId } = useSelector(state => state.user)
+  const { mainPosts } = useSelector(state => state.posts)
 
   const [selectionModel, setSelectionModel] = useState([]);
 
   useEffect( async () => {
-    const posts = await axios.post(`http://localhost:3065/api/posts/list/${userId}`);
-    setRow(posts.data);
-  },[userId])
+    dispatch({
+      type: LOAD_AUTHOR_POSTS_REQUEST,
+      data: userId
+    })
+    setRow(mainPosts);
+  },[])
+
+  useEffect(() => {
+    setRow(mainPosts);
+  }, [mainPosts])
  
   const deleteArticle = () => {
     if (selectionModel.length === 0){
@@ -31,7 +39,6 @@ const ArticleList = () => {
       type: REMOVE_POSTS_REQUEST,
       data: selectionModel
     })
-    console.log('delete rows', selectionModel)
   }
   
   const editArticle = (length) => {

@@ -59,7 +59,9 @@ const PublicationComponent = () => {
   console.log(name, name, name)
   useEffect( async () => {
     const nameWithPosts = await axios.post(`http://localhost:3065/api/posts/publication`, {name: name});
-    setPublicationList(nameWithPosts.data.Posts)
+    console.log('=-=-=-=-=-=-==-=-')
+    console.log(nameWithPosts)
+    setPublicationList(nameWithPosts.data.Articles)
   }, [name])
 
 

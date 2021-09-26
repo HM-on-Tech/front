@@ -68,13 +68,6 @@ const useStyles = makeStyles((theme) => ({
     const classes = useStyles();
     const dispatch = useDispatch()
     const { mainPosts } = useSelector(state => state.posts)
-
-    useEffect( async () => {
-      dispatch({
-        type: LOAD_POSTS_REQUEST,
-        
-      })
-    },[])
     
     return (
       <>
@@ -100,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
               social={sidebar.social}
             />
           </Grid>
-          <Grid item xs={0} md={1} />
+          <Grid item md={1} />
         </Grid>
         <Footer title="Footer" description="Something here to give the footer a purpose!" />
       </>

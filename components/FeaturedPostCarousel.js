@@ -55,7 +55,8 @@ const FeaturedPostCarousel = ( {featuredPosts, countPost} ) => {
         
       {featuredPosts.map((post) => (
         <CarouselCard 
-          key={post.title}
+          key={`carouselCard-${post.title}`}
+          title={post.title}
           post={post}
           id={post.id}
           />

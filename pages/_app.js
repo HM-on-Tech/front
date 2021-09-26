@@ -7,10 +7,15 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { ToastContainer, toast } from 'react-toastify';
 import wrapper from '../store/configureStore';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from 'react-redux';
+import { LOAD_ME_REQUEST } from '../reducers/user';
 
 
 const WebT = ({ Component }) => {
-
+  const dispatch = useDispatch();
+  dispatch({
+    type: LOAD_ME_REQUEST,
+  })
   return (
     <>
       <Head>

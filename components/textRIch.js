@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 const TextRich = ({postInfo}) => {
   const toastId = React.useRef(null);
   const classes = useStyles();
-  const { user } = useSelector(state => state.user)
+  const { userId } = useSelector(state => state.user)
   
 
   const notify = () => {
@@ -92,7 +92,7 @@ const TextRich = ({postInfo}) => {
           author:author,
           thumbnail:thumbnail,
           PublicationId: publication,
-          UserId: user?.id || null,
+          UserId: userId,
         },
       }); 
     } else {

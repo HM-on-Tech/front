@@ -10,6 +10,8 @@ import Link from 'next/link';
 import { Link as MUILink} from '@material-ui/core';
 import 'react-multi-carousel/lib/styles.css';
 import Carousel from 'react-multi-carousel';
+import { useDispatch, useSelector } from 'react-redux';
+import {LOG_OUT_REQUEST } from '../reducers/user';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -55,16 +57,29 @@ const responsive = {
 
 export default function Header({ sections, title }) {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const { role, isLoggedIn, userName } = useSelector(state => state.user)
 
+  const logout = () => {
+    dispatch({
+      type: LOG_OUT_REQUEST,
+    })
+  }
   return (
     <>
       <Toolbar className={classes.toolbar}>
         <Link href="/">
           <Button>Home</Button>
         </Link>
-        <Link href="/admin/list">
-          <Button>Admin</Button>
-        </Link>
+        {
+          role < 2 && isLoggedIn &&
+          <>
+            <Link href="/admin/list">
+              <Button>Admin</Button>
+            </Link>
+            <Button onClick={logout}>LogOut</Button>
+          </>
+        }
         <Typography
           component="h2"
           variant="h5"

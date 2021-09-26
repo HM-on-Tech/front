@@ -44,13 +44,10 @@ export const authenticate = (data, next) => {
 
 export const isAuth = () => {
   if (process.browser) {
-      const cookieChecked = getCookie('token');
-      if (cookieChecked) {
-          if (localStorage.getItem('user')) {
-              return JSON.parse(localStorage.getItem('user'));
-          } else {
-              return false;
-          }
-      }
+    if (localStorage.getItem('HM_ON_TECH_ACCESS_TOKEN')) {
+        return localStorage.getItem('HM_ON_TECH_ACCESS_TOKEN');
+    } else {
+        return false;
+    }
   }
 };

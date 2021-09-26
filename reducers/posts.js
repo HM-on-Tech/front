@@ -20,6 +20,9 @@ export const initialState = {
 export const LOAD_POSTS_REQUEST = 'LOAD_POSTS_REQUEST';
 export const LOAD_POSTS_SUCCESS = 'LOAD_POSTS_SUCCESS';
 export const LOAD_POSTS_FAILURE = 'LOAD_POSTS_FAILURE';
+export const LOAD_AUTHOR_POSTS_REQUEST = 'LOAD_AUTHOR_POSTS_REQUEST';
+export const LOAD_AUTHOR_POSTS_SUCCESS = 'LOAD_AUTHOR_POSTS_SUCCESS';
+export const LOAD_AUTHOR_POSTS_FAILURE = 'LOAD_AUTHOR_POSTS_FAILURE';
 
 export const ADD_POSTS_REQUEST = 'ADD_POSTS_REQUEST';
 export const ADD_POSTS_SUCCESS = 'ADD_POSTS_SUCCESS';
@@ -43,6 +46,19 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
     case LOAD_POSTS_FAILURE:
       draft.loadPostsError = action.error;
       break;
+    case LOAD_AUTHOR_POSTS_REQUEST:
+      draft.loadPostsDone = false;
+      draft.loadPostsError = null;
+      break;
+    case LOAD_AUTHOR_POSTS_SUCCESS:
+      draft.loadPostsDone = true;
+      draft.mainPosts = [...action.data];
+      console.log('-=-=-=-=-=-=-=-=');
+      console.log(draft.mainPosts)
+      break;
+    case LOAD_AUTHOR_POSTS_FAILURE:
+      draft.loadPostsError = action.error;
+      break;
     case ADD_POSTS_SUCCESS:
       draft.mainPosts = [action.data,  ...draft.mainPosts];
       break;
@@ -50,6 +66,8 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
     case REMOVE_POSTS_SUCCESS:
       draft.removePostDone = true;
       draft.mainPosts = draft.mainPosts.filter((post) => {
+        console.log('action.data.id',action.data.id,typeof action.data.id)
+        console.log('post.id.toString()',post.id.toString(), typeof post.id.toString())
         if ( action.data.id.includes(post.id.toString())) {
           return false
         }
