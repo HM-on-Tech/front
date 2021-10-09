@@ -52,15 +52,14 @@ const FeaturedPostCarousel = ( {featuredPosts, countPost} ) => {
       // customRightArrow={<CustomRightArrow />} 
       // customLeftArrow={<CustomLeftArrow />}  
       >
-        
       {featuredPosts.map((post) => (
         <CarouselCard 
-          key={`carouselCard-${post.title}`}
-          title={post.title}
-          post={post}
-          id={post.id}
-          />
-      ))}
+        key={`carouselCard-${post.title}`}
+        title={post.title}
+        post={post}
+        id={post.id}
+        />
+        ))}
     </Carousel>
   </>
   )

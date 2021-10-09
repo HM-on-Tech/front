@@ -32,13 +32,13 @@ export default function CarouselCard({title, post, id}) {
   return (
     <Card className={classes.root}>
       <CardActionArea onClick={() => router.push(`/article/${id}`)}>
-        <CardMedia
-          component="img"
-          alt="Contemplative Reptile"
-          height="140"
-          image={post.thumbnail}
-          title="Contemplative Reptile"
-        />
+      <CardMedia
+        component="img"
+        alt="Contemplative Reptile"
+        height="140"
+        image={post.thumbnail}
+        title="Contemplative Reptile"
+      />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {title}

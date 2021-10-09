@@ -80,7 +80,7 @@ function* watchLoadPublication() {
 }
 
 function* watchAddPublication() {
-  yield throttle(5000, ADD_PUBLICATION_REQUEST, addPublication);
+  yield takeLatest(ADD_PUBLICATION_REQUEST, addPublication);
 }
 
 function* watchRemovePublication() {

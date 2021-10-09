@@ -98,7 +98,7 @@ function* watchLoadPost() {
 }
 
 function* watchAddPost() {
-  yield throttle(5000, ADD_POST_REQUEST, addPost);
+  yield takeLatest(ADD_POST_REQUEST, addPost);
 }
 
 function* watchEditPost() {

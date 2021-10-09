@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -12,6 +13,7 @@ import 'react-multi-carousel/lib/styles.css';
 import Carousel from 'react-multi-carousel';
 import { useDispatch, useSelector } from 'react-redux';
 import {LOG_OUT_REQUEST } from '../reducers/user';
+import { LOAD_PUBLICATION_REQUEST } from '../reducers/publication';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -65,6 +67,13 @@ export default function Header({ sections, title }) {
       type: LOG_OUT_REQUEST,
     })
   }
+
+  useEffect(() => {
+    dispatch({
+      type: LOAD_PUBLICATION_REQUEST,
+    })
+  }, [])
+
   return (
     <>
       <Toolbar className={classes.toolbar}>

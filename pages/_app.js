@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 import { LOAD_ME_REQUEST } from '../reducers/user';
 
 
-const WebT = ({ Component }) => {
+const WebT = ({ Component, pageProps }) => {
   const dispatch = useDispatch();
   dispatch({
     type: LOAD_ME_REQUEST,
@@ -21,9 +21,8 @@ const WebT = ({ Component }) => {
       <Head>
         <title>HM on Tech</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-
       </Head>
-      <Component />
+      <Component {...pageProps}/>
       <ToastContainer autoClose={2500}/>
 
       

@@ -33,6 +33,7 @@ const PublicationTextField = ({publicationInfo}) => {
         name: name,
       },
     });
+    setName('');
   }
 
 const cancelSubmit = (e) => {

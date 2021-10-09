@@ -66,7 +66,7 @@ const PublicationComponent = () => {
     return(
     <>
         <Grid container>
-          <Grid item xs={0} md={1} />
+          <Grid item xs={false} md={1} />
           <Grid item xs={12} md={6}>
             <Main 
               title="Recently Published"
@@ -82,7 +82,7 @@ const PublicationComponent = () => {
               className={classes.sidebarGrid}
             />
           </Grid>
-          <Grid item xs={0} md={1} />
+          <Grid item xs={false} md={1} />
         </Grid>
     </>
     )

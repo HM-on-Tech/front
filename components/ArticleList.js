@@ -7,6 +7,7 @@ import Router from 'next/router';
 import { toast } from 'react-toastify';
 import router from 'next/router';
 import axios from 'axios';
+import Link from 'next/link';
 
 const ArticleList = () => {
   const [row, setRow] = useState([]);
@@ -29,7 +30,7 @@ const ArticleList = () => {
   useEffect(() => {
     setRow(mainPosts);
   }, [mainPosts])
- 
+  console.log(row)
   const deleteArticle = () => {
     if (selectionModel.length === 0){
       toast.warning('please select article to delete')
@@ -57,6 +58,25 @@ const ArticleList = () => {
   const columns = [
     { field: 'author', flex:1 },
     { field: 'title', flex:2 },
+    { field: 'link', flex:1,
+      renderCell: (params) => (
+        <>
+          <Link href={`${params.value}`}>
+            <Button>link</Button>
+          </Link>
+        </>
+      ),
+
+      // valueFormatter: (params) => {
+      //   return (
+      //     <>
+      //       <Link href={`article/${params.value}`}>
+      //         <Button>Home</Button>
+      //       </Link>
+      //     </>
+      //   )
+      // },
+    },
     { field: 'createdAt', flex:1 ,
       valueFormatter: (params) => {
         return `${params.value.split('T')[0]}`;
@@ -69,6 +89,13 @@ const ArticleList = () => {
     { field: 'title', flex:2 },
   ]
 
+  const makeArticleLink = (rows) => rows.map((row) => {
+    return {
+      ...row,
+      link: `/article/${row.id}`
+    }
+  });
+  console.log(makeArticleLink(row))
   return (
     <>
       <Button onClick={() => router.push('/admin/new')}> New </Button>
@@ -83,7 +110,7 @@ const ArticleList = () => {
         <div style={{ height: 1000, width: '100%' }}>
           <DataGrid
             columns={columns}
-            rows={row}
+            rows={makeArticleLink(row)}
             checkboxSelection={true}
             onSelectionModelChange={(model) => {
               setSelectionModel(model.selectionModel);

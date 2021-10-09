@@ -46,8 +46,8 @@ const TextRich = ({postInfo}) => {
   const [id, setId] = useState('');
   const [author, setAuthor] = useState('');
   const [thumbnail, setThumbnail] = useState('');
-  const [publication, setPublication] = useState('');
-
+  const [publication, setPublication] = useState(1);
+  const [validImage, setValidImage] = useState(false);
   const { publicationList } = useSelector(state => state.publication)
 
   const dispatch = useDispatch();
@@ -64,11 +64,11 @@ const TextRich = ({postInfo}) => {
     
   }, [postInfo])
 
-  useEffect(() => {
-    dispatch({
-      type: LOAD_PUBLICATION_REQUEST,
-    })
-  }, [])
+  // useEffect(() => {
+  //   dispatch({
+  //     type: LOAD_PUBLICATION_REQUEST,
+  //   })
+  // }, [])
   const inputEl = useRef(null);
 
   const editorRef = useRef(null);
@@ -76,11 +76,29 @@ const TextRich = ({postInfo}) => {
       if (editorRef.current) {
       }
     };
-  
-
+  const nullCheck = (value, valueName) => {
+    console.log(value,valueName)
+    if (value == null || value.trim() === '') {
+      toast.warning(`no ${valueName}`);
+      return ;
+    }
+  }
   const articleSubmit = (e) => {
     if(router.asPath.endsWith('new')){
-      if (thumbnail.startsWith('http') || thumbnail.length === 0){
+      nullCheck(title,'title');
+      nullCheck(author, 'author');
+      // nullCheck(publication,'publication' );
+      nullCheck(value, 'content');
+      nullCheck(thumbnail, 'thumbnail');
+      if (publication == null) {
+        toast.warning(`publication is null`);
+        return ;
+      }
+      if (!validImage) {
+        toast.warning(`image is not valid`);
+        return ;
+      }
+      if (thumbnail.startsWith('http')){
         dispatch({
           type: ADD_POST_REQUEST,
           data: {
@@ -143,7 +161,7 @@ const cancelSubmit = (e) => {
           size="medium"
           style={{width:'100%'}}
         />
-        
+        {console.log('publication', publication)}
         <FormControl>
           <InputLabel id="demo-simple-select-label">Pulication</InputLabel>
           <Select
@@ -155,12 +173,14 @@ const cancelSubmit = (e) => {
           >
             {
               publicationList?.map(
-                (publication) => <MenuItem 
-                key={`${publication.name}-${publication.id}`}
-                value={publication.id}
+                (publication) => (
+                <MenuItem 
+                  key={`${publication.name}-${publication.id}`}
+                  value={publication.id}
                 >
-                                  {publication.name}
-                                </MenuItem>
+                  {publication.name}
+                </MenuItem>
+                )
               )
             }
           </Select>
@@ -193,19 +213,20 @@ const cancelSubmit = (e) => {
           hidden
           src={thumbnail}
           onError={() => {
+            setValidImage(false);
             if(thumbnail === '') return
             notify()
 
           }}
           onLoad={() => {
             if (thumbnail.startsWith('http')){
+            setValidImage(true);
               toast.success('Thumbnail Successfully Loaded')
             } else {
               toast.error('Not a Valid Image. Must start with "https://"')
             }
           }}
         />
-        
         <Editor
          apiKey={process.env.TINY_API_KEY} // referencing a .env var?
          onInit={(evt, editor) => editorRef.current = editor}
