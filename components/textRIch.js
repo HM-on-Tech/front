@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import { Editor } from '@tinymce/tinymce-react'
 import { Box, Button, Grid, TextField} from '@material-ui/core';
 import InputLabel from '@material-ui/core/InputLabel';
+import Input from '@material-ui/core/Input';
+
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
@@ -15,6 +17,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { ADD_POST_REQUEST, EDIT_POST_REQUEST, EDIT_POST_FAILURE } from '../reducers/post'
 import { LOAD_PUBLICATION_REQUEST } from "../reducers/publication";
+import { Label } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,6 +45,8 @@ const TextRich = ({postInfo}) => {
   const router = useRouter()
 
   const [value, setValue] = useState('');
+  const [volume, setVolume] = useState(0);
+  const [issue, setIssue] = useState(0);
   const [title, setTitle] = useState('');
   const [id, setId] = useState('');
   const [author, setAuthor] = useState('');
@@ -60,6 +65,8 @@ const TextRich = ({postInfo}) => {
       setAuthor(postInfo.author);
       setThumbnail(postInfo.thumbnail);
       setPublication(postInfo.PublicationId);
+      setVolume(postInfo.volume);
+      setIssue(postInfo.issue);
     }
     
   }, [postInfo])
@@ -83,17 +90,22 @@ const TextRich = ({postInfo}) => {
       return ;
     }
   }
+  const zeroCheck = (value, valueName) => {
+    if (value == null || value === 0) {
+      toast.warning(`no ${valueName}`);
+      return ;
+    }
+  }
   const articleSubmit = (e) => {
     if(router.asPath.endsWith('new')){
       nullCheck(title,'title');
       nullCheck(author, 'author');
-      // nullCheck(publication,'publication' );
       nullCheck(value, 'content');
       nullCheck(thumbnail, 'thumbnail');
-      if (publication == null) {
-        toast.warning(`publication is null`);
-        return ;
-      }
+      zeroCheck(publication,'publication' );
+      zeroCheck(volume,'volume' );
+      zeroCheck(issue,'issue' );
+      
       if (!validImage) {
         toast.warning(`image is not valid`);
         return ;
@@ -108,6 +120,8 @@ const TextRich = ({postInfo}) => {
             thumbnail:thumbnail,
             PublicationId: publication,
             UserId: userId,
+            volume,
+            issue,
           },
         }); 
       }
@@ -121,6 +135,8 @@ const TextRich = ({postInfo}) => {
           author:author,
           thumbnail:thumbnail,
           PublicationId: publication,
+          volume,
+          issue,
         }
       })
     }
@@ -146,6 +162,12 @@ const cancelSubmit = (e) => {
 
   const handleChange = (event) => {
     setPublication(event.target.value);
+  };
+  const volumeHandler = (event) => {
+    setVolume(event.target.value);
+  };
+  const issueHandler = (event) => {
+    setIssue(event.target.value);
   };
 
   return (
@@ -196,8 +218,29 @@ const cancelSubmit = (e) => {
           value={author}
           className={classes.root}
           style={{width: window.innerWidth < 700 ? '40%' : '76%', marginLeft:15}}
-          />
-
+        />
+        <TextField
+          id="volume-number"
+          label="Vol."
+          type="number"
+          value={volume}
+          onChange={volumeHandler}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="standard"
+        />
+        <TextField
+          id="issue-number"
+          label="Issue."
+          type="number"
+          onChange={issueHandler}
+          value={issue}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="standard"
+        />
         <TextField
           style={{marginTop:-5, marginBottom:10}}
           id="article_author"

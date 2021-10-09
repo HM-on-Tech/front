@@ -58,6 +58,8 @@ const ArticleList = () => {
   const columns = [
     { field: 'author', flex:1 },
     { field: 'title', flex:2 },
+    { field: 'volume', flex:1 },
+    { field: 'issue', flex:1 },
     { field: 'link', flex:1,
       renderCell: (params) => (
         <>
@@ -66,16 +68,6 @@ const ArticleList = () => {
           </Link>
         </>
       ),
-
-      // valueFormatter: (params) => {
-      //   return (
-      //     <>
-      //       <Link href={`article/${params.value}`}>
-      //         <Button>Home</Button>
-      //       </Link>
-      //     </>
-      //   )
-      // },
     },
     { field: 'createdAt', flex:1 ,
       valueFormatter: (params) => {
