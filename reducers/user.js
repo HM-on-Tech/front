@@ -29,7 +29,6 @@ export const LOG_OUT_REQUEST = 'LOG_OUT_REQUEST';
 const reducer = (state = initialState, action) => produce(state, (draft) => {
     switch (action.type) {
         case LOG_IN_USER_SUCCESS:
-            console.log('hello', action.data)
             draft.userId = action.data.user.id
             draft.email = action.data.user.email
             draft.userName = action.data.user.name
@@ -50,8 +49,6 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
         case LOAD_ME_REQUEST:
             break;
         case LOAD_ME_SUCCESS:
-            console.log('0-2-19120-39120-391230-129-12309-0')
-            console.log('load me', action.data)
             draft.userId = action.data.id
             draft.userName = action.data.name
             draft.email = action.data.email

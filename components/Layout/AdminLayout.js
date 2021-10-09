@@ -34,7 +34,7 @@ const AdminLayout = ({children}) => {
             <div><Link href='/admin/list'><Button>Article List</Button></Link></div>
             <div><Link href='/admin/new'><Button>Create Article</Button></Link></div>
             { 
-              role === 0 && 
+              role === 'admin' && 
               <>
                 <div><Link href='/admin/publication'><Button>Pub List</Button></Link></div>
                 <div><Link href='/admin/userManagement'><Button>User Mgmt</Button></Link></div>

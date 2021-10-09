@@ -8,15 +8,11 @@ function loadMeAPI() {
 }
 function* loadMe(action) {
   try {
-    console.log('loadLoadMe called');
     const result = yield call(loadMeAPI);
-    console.log('load me result', result.data)
-    console.log('????????????????????????/')
     yield put({
       type: LOAD_ME_SUCCESS,
       data: result.data
     });
-    console.log('????????????????????????/222222')
   } catch (err) {
     toast.error('Server issue - login failed');
   }
@@ -28,7 +24,6 @@ function loadLoginAPI(data) {
 
 function* loadLogin(action) {
   try {
-    console.log('loadLogin called');
     const result = yield call(loadLoginAPI,action.data);
     if (result.data.statusCode === 0) {
       return toast.error(result.data.message);

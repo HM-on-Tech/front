@@ -7,7 +7,6 @@ const MyGoogleLogin = () => {
   const dispatch = useDispatch()
 
   const responseGoogle = (response) => {
-    console.log(response)
     if (response?.error) {
       dispatch({
         type: LOG_IN_USER_FAILURE,
@@ -23,7 +22,7 @@ const MyGoogleLogin = () => {
         }
       })
     }
-    console.log(response);
+    (response);
   }
 
 

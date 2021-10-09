@@ -53,8 +53,6 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
     case LOAD_AUTHOR_POSTS_SUCCESS:
       draft.loadPostsDone = true;
       draft.mainPosts = [...action.data];
-      console.log('-=-=-=-=-=-=-=-=');
-      console.log(draft.mainPosts)
       break;
     case LOAD_AUTHOR_POSTS_FAILURE:
       draft.loadPostsError = action.error;
@@ -66,8 +64,6 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
     case REMOVE_POSTS_SUCCESS:
       draft.removePostDone = true;
       draft.mainPosts = draft.mainPosts.filter((post) => {
-        console.log('action.data.id',action.data.id,typeof action.data.id)
-        console.log('post.id.toString()',post.id.toString(), typeof post.id.toString())
         if ( action.data.id.includes(post.id.toString())) {
           return false
         }

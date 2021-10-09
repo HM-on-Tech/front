@@ -74,27 +74,25 @@ const TextRich = ({postInfo}) => {
   const editorRef = useRef(null);
     const log = () => {
       if (editorRef.current) {
-        console.log(editorRef.current.getContent());
       }
     };
   
 
   const articleSubmit = (e) => {
     if(router.asPath.endsWith('new')){
-      if (! thumbnail.startsWith('http')){
-        return ;
+      if (thumbnail.startsWith('http') || thumbnail.length === 0){
+        dispatch({
+          type: ADD_POST_REQUEST,
+          data: {
+            title,
+            content:value,
+            author:author,
+            thumbnail:thumbnail,
+            PublicationId: publication,
+            UserId: userId,
+          },
+        }); 
       }
-      dispatch({
-        type: ADD_POST_REQUEST,
-        data: {
-          title,
-          content:value,
-          author:author,
-          thumbnail:thumbnail,
-          PublicationId: publication,
-          UserId: userId,
-        },
-      }); 
     } else {
       dispatch({
         type: EDIT_POST_REQUEST,

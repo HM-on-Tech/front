@@ -74,14 +74,12 @@ function* editPost(action) {
 }
 
 function addPostAPI(data) {
-  console.log('addPostAPI', data)
   return axios.post('http://localhost:3065/api/post/add', data);
 }
 
 function* addPost(action) {
   try {
     const result = yield call(addPostAPI, action.data);
-    console.log('datadata', result.data)
     yield put({
       type: ADD_POST_SUCCESS,
       data: result.data

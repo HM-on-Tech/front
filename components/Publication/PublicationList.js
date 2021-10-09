@@ -18,13 +18,9 @@ const PublicationList = () => {
     dispatch({
       type: LOAD_PUBLICATION_REQUEST,
     })
-    //  Request post lists to the server directly
-    // const result  = await axios.post('http://localhost:3065/api/posts/list');
-    // console.log('result from server', result)
   },[])
 
   useEffect(() => {
-    console.log(publicationList)
     setRow(publicationList);
   },[publicationList.length])
 
@@ -37,7 +33,6 @@ const PublicationList = () => {
       type: REMOVE_PUBLICATION_REQUEST,
       data: selectionModel
     })
-    console.log('delete publication', selectionModel)
   }
   
   const columns = [

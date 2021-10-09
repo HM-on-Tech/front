@@ -69,15 +69,29 @@ const UserManager = ({
     // New only
     const result = await axios.post('http://localhost:3065/api/user/add',
     { email, name, role })
-    
+
     if( result.data?.status === 1) {
       toast.warning(result.data?.message);
     } else {
       setUserList( (prev) => {
-        return [
-          ...prev,
-          result.data
-        ]
+        if (result.data?.role === 1) {
+          return [
+            ...prev,
+            {
+              ...result.data,
+              role: 'editor',
+            }
+          ]
+        } else {
+          return [
+            ...prev,
+            {
+              ...result.data,
+              role: 'admin',
+            }
+          ]
+
+        }
       })
       toast.success('User created');
       setEmail('');
@@ -113,9 +127,8 @@ const UserManager = ({
               label="Role"
               onChange={roleHandler}
             >
-              <MenuItem value={0}>Admin</MenuItem>
               <MenuItem value={1}>Editor</MenuItem>
-              <MenuItem value={2}>User</MenuItem>
+              <MenuItem value={2}>Admin</MenuItem>
             </Select>
           </FormControl>
         <TextField

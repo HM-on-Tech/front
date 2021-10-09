@@ -72,7 +72,7 @@ export default function Header({ sections, title }) {
           <Button>Home</Button>
         </Link>
         {
-          role < 2 && isLoggedIn &&
+          (role == 'admin' || role == 'editor') && isLoggedIn &&
           <>
             <Link href="/admin/list">
               <Button>Admin</Button>

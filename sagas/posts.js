@@ -20,7 +20,6 @@ function loadAuthorPostsAPI(data) {
 
 function* loadAuthorPosts(action) {
   try {
-    console.log(action)
     const result = yield call(loadAuthorPostsAPI,action.data);
     yield put({
       type: LOAD_AUTHOR_POSTS_SUCCESS,
@@ -42,7 +41,6 @@ function loadPostsAPI(data) {
 
 function* loadPosts(action) {
   try {
-    console.log(action)
     const result = yield call(loadPostsAPI,action.data);
     yield put({
       type: LOAD_POSTS_SUCCESS,

@@ -56,11 +56,8 @@ const PublicationComponent = () => {
   const { name } = router.query
   const [publicationList, setPublicationList] = useState([])
 
-  console.log(name, name, name)
   useEffect( async () => {
     const nameWithPosts = await axios.post(`http://localhost:3065/api/posts/publication`, {name: name});
-    console.log('=-=-=-=-=-=-==-=-')
-    console.log(nameWithPosts)
     setPublicationList(nameWithPosts.data.Articles)
   }, [name])
 

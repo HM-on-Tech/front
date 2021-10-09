@@ -136,19 +136,7 @@ const AppBarComponent = ({item, index}) => {
         data: response
       })
     }
-    console.log(response);
   }
-  // {isLoggedIn ?
-  //   `Hello, ${userName}`
-  //   :
-  //   <GoogleLogin
-  //     clientId="185607410093-fph2nms7s0bacisqfnc784ub3bea85vt.apps.googleusercontent.com"
-  //     buttonText="Login"
-  //     onSuccess={responseGoogle}
-  //     onFailure={responseGoogle}
-  //     cookiePolicy={'single_host_origin'}
-  //   />}
-
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
