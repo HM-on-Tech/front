@@ -120,7 +120,7 @@ export default function Header({ sections, title }) {
         itemClass="carousel-item-padding-40-px"
         className={classes.header}
       >
-        {sections.map((section) => ( 
+        {sections?.map((section) => ( 
           <Button key={`header-button-${section.name}`}>
             <Link href={`/publication/${section.name}`}>
               <MUILink 

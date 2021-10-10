@@ -13,7 +13,7 @@ import {
 } from '../reducers/publication';
 
 
-function loadPublicationAPI() {
+function loadPublicationAPI(dta) {
   return axios.post('http://localhost:3065/api/publication/list');
 }
 

@@ -20,6 +20,15 @@ export const initialState = {
 export const LOAD_POSTS_REQUEST = 'LOAD_POSTS_REQUEST';
 export const LOAD_POSTS_SUCCESS = 'LOAD_POSTS_SUCCESS';
 export const LOAD_POSTS_FAILURE = 'LOAD_POSTS_FAILURE';
+export const LOAD_POSTS_SCROLL_REQUEST = 'LOAD_POSTS_SCROLL_REQUEST';
+export const LOAD_POSTS_SCROLL_SUCCESS = 'LOAD_POSTS_SCROLL_SUCCESS';
+export const LOAD_POSTS_SCROLL_FAILURE = 'LOAD_POSTS_SCROLL_FAILURE';
+export const LOAD_POSTS_BY_PUBLICATION_REQUEST = 'LOAD_POSTS_BY_PUBLICATION_REQUEST';
+export const LOAD_POSTS_BY_PUBLICATION_SUCCESS = 'LOAD_POSTS_BY_PUBLICATION_SUCCESS';
+export const LOAD_POSTS_BY_PUBLICATION_FAILURE = 'LOAD_POSTS_BY_PUBLICATION_FAILURE';
+export const LOAD_POSTS_BY_PUBLICATION_SCROLL_REQUEST = 'LOAD_POSTS_BY_PUBLICATION_SCROLL_REQUEST';
+export const LOAD_POSTS_BY_PUBLICATION_SCROLL_SUCCESS = 'LOAD_POSTS_BY_PUBLICATION_SCROLL_SUCCESS';
+export const LOAD_POSTS_BY_PUBLICATION_SCROLL_FAILURE = 'LOAD_POSTS_BY_PUBLICATION_SCROLL_FAILURE';
 export const LOAD_AUTHOR_POSTS_REQUEST = 'LOAD_AUTHOR_POSTS_REQUEST';
 export const LOAD_AUTHOR_POSTS_SUCCESS = 'LOAD_AUTHOR_POSTS_SUCCESS';
 export const LOAD_AUTHOR_POSTS_FAILURE = 'LOAD_AUTHOR_POSTS_FAILURE';
@@ -59,6 +68,16 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       break;
     case ADD_POSTS_SUCCESS:
       draft.mainPosts = [action.data,  ...draft.mainPosts];
+      break;
+    case LOAD_POSTS_BY_PUBLICATION_SUCCESS:
+      draft.mainPosts = [...action.data.Articles];
+      break;
+    case LOAD_POSTS_BY_PUBLICATION_SCROLL_SUCCESS:
+      draft.mainPosts = [...draft.mainPosts, ...action.data.Articles];
+      break;
+        
+    case LOAD_POSTS_SCROLL_SUCCESS:
+      draft.mainPosts = [...draft.mainPosts, ...shuffleArray(action.data)];
       break;
 
     case REMOVE_POSTS_SUCCESS:

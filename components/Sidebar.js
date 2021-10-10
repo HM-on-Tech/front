@@ -4,7 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import Link from 'next/link';
+import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   sidebarAboutBox: {
@@ -32,8 +33,12 @@ export default function Sidebar(props) {
         Archives
       </Typography>
       {archives.map((archive) => (
-        <Link display="block" variant="body1" href={archive.url} key={archive.title}>
-          {archive.title}
+        <Link 
+          href={archive.url}
+          key={archive.title}
+          style={{ textDecoration: `none`}}
+        >
+          <Button>{archive.title}</Button>
         </Link>
       ))}
       <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
