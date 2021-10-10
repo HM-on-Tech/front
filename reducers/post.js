@@ -49,6 +49,9 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       Router.push('/admin/list')
       toast.success('Post Added')
       break;
+    case ADD_POST_FAILURE:
+      toast.error('add Post failed')
+      break;
     case REMOVE_POST_SUCCESS:
       draft.removePostDone = true;
       let filterCandidate = action.data?.PatientIds?.map( (x)=> parseInt(x) )

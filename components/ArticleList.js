@@ -16,7 +16,7 @@ const ArticleList = () => {
 
   const { userId } = useSelector(state => state.user)
   const { mainPosts } = useSelector(state => state.posts)
-
+  const { publicationList } = useSelector(state => state.publication)
   const [selectionModel, setSelectionModel] = useState([]);
 
   useEffect( async () => {
@@ -30,7 +30,6 @@ const ArticleList = () => {
   useEffect(() => {
     setRow(mainPosts);
   }, [mainPosts])
-  console.log(row)
   const deleteArticle = () => {
     if (selectionModel.length === 0){
       toast.warning('please select article to delete')
@@ -54,10 +53,10 @@ const ArticleList = () => {
     }
   }
 
-
   const columns = [
     { field: 'author', flex:1 },
     { field: 'title', flex:2 },
+    { field: 'publication', flex:2},
     { field: 'volume', flex:1 },
     { field: 'issue', flex:1 },
     { field: 'link', flex:1,
@@ -81,13 +80,13 @@ const ArticleList = () => {
     { field: 'title', flex:2 },
   ]
 
-  const makeArticleLink = (rows) => rows.map((row) => {
+  const processArticle = (rows) => rows.map((row) => {
     return {
       ...row,
-      link: `/article/${row.id}`
+      link: `/article/${row.id}`,
+      publication: publicationList.find((ele) => ele.id == row.PublicationId).name,
     }
   });
-  console.log(makeArticleLink(row))
   return (
     <>
       <Button onClick={() => router.push('/admin/new')}> New </Button>
@@ -102,7 +101,7 @@ const ArticleList = () => {
         <div style={{ height: 1000, width: '100%' }}>
           <DataGrid
             columns={columns}
-            rows={makeArticleLink(row)}
+            rows={processArticle(row)}
             checkboxSelection={true}
             onSelectionModelChange={(model) => {
               setSelectionModel(model.selectionModel);
