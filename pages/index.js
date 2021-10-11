@@ -1,15 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import AppLayout from '../components/Layout/AppLayout';
 import LandingPage from '../components/LandingPage'
 import { LOAD_PUBLICATION_REQUEST } from '../reducers/publication';
-import { LOAD_POSTS_REQUEST, LOAD_POSTS_SCROLL_REQUEST } from '../reducers/posts';
+import { CAN_SCROLL_REQUEST, LOAD_POSTS_REQUEST, LOAD_POSTS_SCROLL_REQUEST } from '../reducers/posts';
 import { useDispatch, useSelector } from 'react-redux';
 
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { mainPosts } = useSelector(state => state.posts)
-
+  const { mainPosts, canScroll } = useSelector(state => state.posts)
   useEffect( async () => {
     dispatch({
       type: LOAD_POSTS_REQUEST,
@@ -17,13 +16,14 @@ const Home = () => {
         howMany: 5,
       }
     })
+    dispatch({
+      type: CAN_SCROLL_REQUEST,
+    })
   },[])
-  
-
-  useEffect( async () => {
-    async function onScroll() {
+  useEffect( () => {
+    function onScroll() {
       if (window.pageYOffset + document.documentElement.clientHeight > document.documentElement.scrollHeight - 100) {
-        if ( mainPosts.length > 0 ) { // condition
+        if ( canScroll ) { // condition
           
           dispatch({
             type: LOAD_POSTS_SCROLL_REQUEST,
@@ -39,7 +39,7 @@ const Home = () => {
     return () => {
       window.removeEventListener('scroll', onScroll);
     };
-  }, [mainPosts, mainPosts.length]);
+  }, [mainPosts, mainPosts.length, canScroll]);
 
 
   useEffect(() => {

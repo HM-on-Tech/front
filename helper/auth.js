@@ -44,10 +44,11 @@ export const authenticate = (data, next) => {
 
 export const isAuth = () => {
   if (process.browser) {
+    console.log('Auth?????? ', localStorage.getItem('HM_ON_TECH_ACCESS_TOKEN'))
     if (localStorage.getItem('HM_ON_TECH_ACCESS_TOKEN')) {
         return localStorage.getItem('HM_ON_TECH_ACCESS_TOKEN');
     } else {
-        return false;
+        return null;
     }
   }
 };

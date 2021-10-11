@@ -8,12 +8,14 @@ import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
 import Link from 'next/link';
+import Hidden from '@material-ui/core/Hidden';
 import { Link as MUILink} from '@material-ui/core';
 import 'react-multi-carousel/lib/styles.css';
 import Carousel from 'react-multi-carousel';
 import { useDispatch, useSelector } from 'react-redux';
 import {LOG_OUT_REQUEST } from '../reducers/user';
 import { LOAD_PUBLICATION_REQUEST } from '../reducers/publication';
+import MyGoogleLogin from './MyGoogleLogin';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -61,7 +63,7 @@ export default function Header({ sections, title }) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { role, isLoggedIn, userName } = useSelector(state => state.user)
-
+  
   const logout = () => {
     dispatch({
       type: LOG_OUT_REQUEST,
@@ -74,6 +76,12 @@ export default function Header({ sections, title }) {
     })
   }, [])
 
+  const googleLoginComponent = () => {
+    if( isLoggedIn ) {
+      return <></>
+    }
+    return <MyGoogleLogin />
+  }
   return (
     <>
       <Toolbar className={classes.toolbar}>
@@ -97,11 +105,17 @@ export default function Header({ sections, title }) {
           noWrap
           className={classes.toolbarTitle}
         >
-          {title}
+          <Hidden mdDown>
+            <Link href="/"><Button style={{fontSize:25}}>{title}</Button></Link>
+          </Hidden>
+          {/* <Hidden only>
+            <Link href="/"><Button style={{fontSize:15}}>{title}</Button></Link>
+          </Hidden> */}
+          <Hidden mdUp>
+            <Link href="/"><Button style={{fontSize:40}}>{title}</Button></Link>
+          </Hidden>
         </Typography>
-        <IconButton>
-          <SearchIcon />
-        </IconButton>
+        {googleLoginComponent()}
       </Toolbar>
       
       <Carousel

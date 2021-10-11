@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 function loadMeAPI() {
   return axios.post('http://localhost:3065/api/auth/me');
 }
-function* loadMe(action) {
+function* loadMe() {
   try {
     const result = yield call(loadMeAPI);
     yield put({
@@ -14,7 +14,7 @@ function* loadMe(action) {
       data: result.data
     });
   } catch (err) {
-    toast.error('Server issue - login failed');
+
   }
 }
 

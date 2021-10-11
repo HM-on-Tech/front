@@ -58,7 +58,6 @@ const PublicationVolIssComponent = () => {
   }
 
   useEffect( async () => {
-    console.log(12131312312)
     dispatch({
       type: LOAD_POSTS_BY_PUBLICATION_REQUEST,
       data: {
@@ -76,8 +75,8 @@ const PublicationVolIssComponent = () => {
 }, [name, volume, issue])
 
 
-  useEffect( async () => {
-    async function onScroll() {
+  useEffect(() => {
+    function onScroll() {
       if (window.pageYOffset + document.documentElement.clientHeight > document.documentElement.scrollHeight - 300) {
         if ( mainPosts.length > 0 ) { // condition
           

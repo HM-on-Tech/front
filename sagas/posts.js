@@ -91,8 +91,6 @@ function loadPostsScrollAPI(data) {
 function* loadScrollPosts(action) {
   try {
     const result = yield call(loadPostsScrollAPI,action.data);
-    console.log('1213213123123213123123123123131231')
-    console.log(result)
 
     yield put({
       type: LOAD_POSTS_SCROLL_SUCCESS,

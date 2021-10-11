@@ -13,6 +13,8 @@ export const initialState = {
   addPostError: null,
   removePostDone: false,
   removePostError: null,
+  canScroll: true,
+  canPubScroll: true,
 };
 // =============================================================
 
@@ -40,6 +42,9 @@ export const REMOVE_POSTS_REQUEST = 'REMOVE_POSTS_REQUEST';
 export const REMOVE_POSTS_SUCCESS = 'REMOVE_POSTS_SUCCESS';
 export const REMOVE_POSTS_FAILURE = 'REMOVE_POSTS_FAILURE';
 export const REMOVE_POSTS_DONE = 'REMOVE_POSTS_DONE';
+
+export const CAN_SCROLL_BY_PUB_REQUEST = 'CAN_SCROLL_BY_PUB_REQUEST';
+export const CAN_SCROLL_REQUEST = 'CAN_SCROLL_REQUEST';
 
 const reducer = (state = initialState, action) => produce(state, (draft) => {
   switch (action.type) {
@@ -71,13 +76,26 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       break;
     case LOAD_POSTS_BY_PUBLICATION_SUCCESS:
       draft.mainPosts = [...action.data.Articles];
+      if ( action.data.length === 0) {
+        draft.canPubScroll = false;
+      }
+      break;
+    case CAN_SCROLL_BY_PUB_REQUEST:
+      draft.canPubScroll = true;
       break;
     case LOAD_POSTS_BY_PUBLICATION_SCROLL_SUCCESS:
       draft.mainPosts = [...draft.mainPosts, ...action.data.Articles];
       break;
         
+    case CAN_SCROLL_REQUEST:
+      draft.canScroll = true;
+      break;
+
     case LOAD_POSTS_SCROLL_SUCCESS:
       draft.mainPosts = [...draft.mainPosts, ...shuffleArray(action.data)];
+      if ( action.data.length === 0) {
+        draft.canScroll = false;
+      }
       break;
 
     case REMOVE_POSTS_SUCCESS:

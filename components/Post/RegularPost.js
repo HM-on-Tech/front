@@ -60,9 +60,7 @@ export default function RegularPost(props) {
               </Typography>
             </CardContent>
           </div>
-          <Hidden xsDown>
             <CardMedia className={classes.cardMedia} image={post.thumbnail} title={post.imageTitle} />
-          </Hidden>
         </Card>
       </Link>
       </CardActionArea>

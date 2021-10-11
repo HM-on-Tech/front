@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import MyGoogleLogin from './MyGoogleLogin';
 
 function Copyright() {
   return (
@@ -32,14 +31,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Footer(props) {
   const classes = useStyles();
   const { description, title } = props;
-  const { isLoggedIn } = useSelector(state => state.user)
 
-  const googleLoginComponent = () => {
-    if( isLoggedIn ) {
-      return <></>
-    }
-    return <MyGoogleLogin />
-  }
   return (
     <footer className={classes.footer}>
       <Container maxWidth="lg">
@@ -49,7 +41,6 @@ export default function Footer(props) {
         <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
           {description}
         </Typography>
-        {googleLoginComponent()}
         <Copyright />
       </Container>
     </footer>

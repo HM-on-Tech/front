@@ -10,6 +10,7 @@ import { Grid, makeStyles } from '@material-ui/core';
 import Main from './Main';
 import Sidebar from './Sidebar';
 import { 
+  CAN_SCROLL_BY_PUB_REQUEST,
   LOAD_POSTS_BY_PUBLICATION_REQUEST,
   LOAD_POSTS_BY_PUBLICATION_SCROLL_REQUEST,
 } from '../reducers/posts';
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 const PublicationComponent = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { mainPosts } = useSelector(state => state.posts)
+  const { mainPosts, canPubScroll } = useSelector(state => state.posts)
   const router = useRouter()
   const { name } = router.query
   const [volumeIssueList, setVolumeIssueList] = useState([])
@@ -56,7 +57,6 @@ const PublicationComponent = () => {
       }
     })
   }
-
   useEffect( async () => {
     dispatch({
       type: LOAD_POSTS_BY_PUBLICATION_REQUEST,
@@ -64,6 +64,9 @@ const PublicationComponent = () => {
         pubName: name,
         howMany: 5,
       }
+    })
+    dispatch({
+      type:CAN_SCROLL_BY_PUB_REQUEST,
     })
   },[name])
 
@@ -73,10 +76,10 @@ const PublicationComponent = () => {
 }, [name])
 
 
-  useEffect( async () => {
-    async function onScroll() {
+  useEffect(() => {
+    function onScroll() {
       if (window.pageYOffset + document.documentElement.clientHeight > document.documentElement.scrollHeight - 300) {
-        if ( mainPosts.length > 0 ) { // condition
+        if ( canPubScroll ) { // condition
           
           dispatch({
             type: LOAD_POSTS_BY_PUBLICATION_SCROLL_REQUEST,

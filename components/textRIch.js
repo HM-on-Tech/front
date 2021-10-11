@@ -84,7 +84,6 @@ const TextRich = ({postInfo}) => {
       }
     };
   const nullCheck = (value, valueName) => {
-    console.log(value,valueName)
     if (value == null || value.trim() === '') {
       toast.warning(`no ${valueName}`);
       return ;
@@ -183,7 +182,6 @@ const cancelSubmit = (e) => {
           size="medium"
           style={{width:'100%'}}
         />
-        {console.log('publication', publication)}
         <FormControl>
           <InputLabel id="demo-simple-select-label">Pulication</InputLabel>
           <Select
