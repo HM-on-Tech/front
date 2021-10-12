@@ -69,9 +69,6 @@ const useStyles = makeStyles((theme) => ({
           <Grid item xs={1} md={1}></Grid>
           
           <Grid item xs={4} md={1} />
-          <Grid item xs={12} md={6} className={classes.mainGrid}>
-            <Main title="Recently Published" posts={mainPosts.slice(4, mainPosts.length)} />
-          </Grid>
           <Grid item xs={12} md={4} className={classes.sidebarGrid}>
           
             <Sidebar
@@ -80,6 +77,9 @@ const useStyles = makeStyles((theme) => ({
               archives={sidebar.archives}
               social={sidebar.social}
             />
+          </Grid>
+          <Grid item xs={12} md={6} className={classes.mainGrid}>
+            <Main title="Recently Published" posts={mainPosts.slice(4, mainPosts.length)} />
           </Grid>
           <Grid item md={1} />
         </Grid>

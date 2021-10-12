@@ -36,6 +36,12 @@ const useStyles = makeStyles((theme) => ({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
+  },
+  title: {
+    fontSize: '2.0rem',
+    '@media (max-width:600px)': {
+      fontSize: '1.0rem',
+    },
   }
 }));
 
@@ -105,15 +111,7 @@ export default function Header({ sections, title }) {
           noWrap
           className={classes.toolbarTitle}
         >
-          <Hidden mdDown>
-            <Link href="/"><Button style={{fontSize:25}}>{title}</Button></Link>
-          </Hidden>
-          {/* <Hidden only>
-            <Link href="/"><Button style={{fontSize:15}}>{title}</Button></Link>
-          </Hidden> */}
-          <Hidden mdUp>
-            <Link href="/"><Button style={{fontSize:40}}>{title}</Button></Link>
-          </Hidden>
+          <Link href="/"><Button className={classes.title}>{title}</Button></Link>
         </Typography>
         {googleLoginComponent()}
       </Toolbar>
