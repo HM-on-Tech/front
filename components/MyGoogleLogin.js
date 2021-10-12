@@ -28,9 +28,6 @@ const MyGoogleLogin = () => {
 
   return (
     <>
-      {/* {isLoggedIn ?
-      `Hello, ${userName}`
-      : */}
       <GoogleLogin
         clientId="185607410093-fph2nms7s0bacisqfnc784ub3bea85vt.apps.googleusercontent.com"
         buttonText="Login"

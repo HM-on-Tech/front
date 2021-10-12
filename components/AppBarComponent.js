@@ -14,17 +14,10 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-// import Paper from '@material-ui/core/Paper';
-// import Grid from '@material-ui/core/Grid';
 
-import Link from 'next/link';
-import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import GoogleLogin from 'react-google-login'
 import { LOG_IN_USER_SUCCESS } from '../reducers/user';
 import { LOG_IN_USER_FAILURE } from '../reducers/user';
-import AdminCrudArticle from './AdminCrudArticle';
-import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     grow: {

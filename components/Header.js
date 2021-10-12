@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import PropTypes from 'prop-types';
+import { Box, Button, Divider, Drawer, Grid, List, ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
@@ -16,6 +17,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {LOG_OUT_REQUEST } from '../reducers/user';
 import { LOAD_PUBLICATION_REQUEST } from '../reducers/publication';
 import MyGoogleLogin from './MyGoogleLogin';
+import { useRouter } from 'next/router';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -66,10 +69,23 @@ const responsive = {
 
 
 export default function Header({ sections, title }) {
+  const [volumeIssueList, setVolumeIssueList] = useState([])
+  const archivespreprocess = (data) => {
+    if (name == null) return []
+    return data.map( (d) => {
+      return {
+        title: `${d.volume} volume - ${d.issue} issue`,
+        url: `/publication/${name}/${d.volume}/${d.issue}`
+      }
+    })
+  }
   const classes = useStyles();
   const dispatch = useDispatch();
   const { role, isLoggedIn, userName } = useSelector(state => state.user)
-  
+  const router  = useRouter();
+  const { pathname } = router;
+  const { name } = router.query
+
   const logout = () => {
     dispatch({
       type: LOG_OUT_REQUEST,
@@ -88,12 +104,75 @@ export default function Header({ sections, title }) {
     }
     return <MyGoogleLogin />
   }
+
+
+  useEffect( async () => {
+    if (name) {
+      const result = await axios.post(`http://localhost:3065/api/publication/volumeIssueComb`,{pubName: name});
+      setVolumeIssueList(result.data);
+    }
+  }, [name])
+
+
+
+
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+
+  const list = (anchor) => (
+    <Box
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List>
+        {archivespreprocess(volumeIssueList).map((element, index) => (
+          <ListItem button key={element['title']}>
+            <Link href={`${element['url']}`}>
+              <ListItemText primary={element['title']} />
+            </Link>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
+
+  const archivesButtonRendering = () => {
+    if (pathname?.startsWith('/publication')) {
+      return (
+        <>
+          <React.Fragment key={'left'}>
+            <Button onClick={toggleDrawer('left', true)} style={{fontSize:10}}>{'Archives'}</Button>
+            <Drawer
+              anchor={'left'}
+              open={state['left']}
+              onClose={toggleDrawer('left', false)}
+            >
+              {list('left')}
+            </Drawer>
+          </React.Fragment>
+        </>
+      )
+    }
+    return null;
+  }
   return (
     <>
       <Toolbar className={classes.toolbar}>
-        <Link href="/">
-          <Button>Home</Button>
-        </Link>
+        {archivesButtonRendering()}
         {
           (role == 'admin' || role == 'editor') && isLoggedIn &&
           <>

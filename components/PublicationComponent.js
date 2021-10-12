@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
 
 import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import { Grid, makeStyles } from '@material-ui/core';
 import Main from './Main';
 import Sidebar from './Sidebar';
 import { 
@@ -14,6 +14,7 @@ import {
   LOAD_POSTS_BY_PUBLICATION_REQUEST,
   LOAD_POSTS_BY_PUBLICATION_SCROLL_REQUEST,
 } from '../reducers/posts';
+import { Grid } from '@material-ui/core';
 
 const sidebar = {
   title: 'About',
