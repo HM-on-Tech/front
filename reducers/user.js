@@ -1,6 +1,5 @@
 
 import { toast } from 'react-toastify';
-import { authenticate } from '../helper/auth';
 import produce from '../util/produce';
 import { removeLocalStorage } from '../helper/auth'
 // =============================================================

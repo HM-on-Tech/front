@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
 import { Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-import AdminAccess from "../../helper/adminAccess"
+import AdminAccess from "../../helper/AdminAccess"
 
 const useStyles = makeStyles((theme) => ({
   root: {
