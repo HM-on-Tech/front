@@ -1,25 +1,57 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import AppLayout from '../components/Layout/AppLayout';
+import LandingPage from '../components/LandingPage'
+import { LOAD_PUBLICATION_REQUEST } from '../reducers/publication';
+import { CAN_SCROLL_REQUEST, LOAD_POSTS_REQUEST, LOAD_POSTS_SCROLL_REQUEST } from '../reducers/posts';
+import { useDispatch, useSelector } from 'react-redux';
 
-import AppLayout from '../components/AppLayout';
+
 const Home = () => {
+  const dispatch = useDispatch();
+  const { mainPosts, canScroll } = useSelector(state => state.posts)
+  useEffect( async () => {
+    dispatch({
+      type: LOAD_POSTS_REQUEST,
+      data: {
+        howMany: 5,
+      }
+    })
+    dispatch({
+      type: CAN_SCROLL_REQUEST,
+    })
+  },[])
+  useEffect( () => {
+    function onScroll() {
+      if (window.pageYOffset + document.documentElement.clientHeight > document.documentElement.scrollHeight - 100) {
+        if ( canScroll ) { // condition
+          
+          dispatch({
+            type: LOAD_POSTS_SCROLL_REQUEST,
+            data: {
+              howMany: 5,
+              length: mainPosts.length,
+            }
+          })
+        }
+      }
+    }
+    window.addEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, [mainPosts, mainPosts.length, canScroll]);
 
-  const dispatch = useDispatch()
-  const { mainPosts } = useSelector(state => state.post)
+
   useEffect(() => {
-    console.log(mainPosts)
-    console.log(123)
-    console.log('login added')
-    console.log('awefwefkg')
-    console.log('feature/a') 
-  }, [mainPosts])
-
+    dispatch({
+      type: LOAD_PUBLICATION_REQUEST,
+    })
+  }, [])
   return (
     <AppLayout>
-    { 
-      mainPosts?.map( (post)=> <div>{post.title}</div> )
-    }
+      <LandingPage/>
     </AppLayout>
+
   );
 };
 

@@ -1,32 +1,53 @@
 import axios from 'axios';
 import { all, call, delay, fork, put, takeLatest, throttle } from 'redux-saga/effects';
+import { LOAD_POST_REQUEST, LOAD_POST_SUCCESS, EDIT_POST_FAILURE } from '../reducers/post';
 
 import {
-  LOAD_POSTS_FAILURE,
-  LOAD_POSTS_REQUEST,
-  LOAD_POSTS_SUCCESS,
   ADD_POST_FAILURE,
   ADD_POST_REQUEST,
   ADD_POST_SUCCESS,
+  EDIT_POST_REQUEST,
+  EDIT_POST_SUCCESS,
 } from '../reducers/post';
+import { LOAD_POSTS_FAILURE, LOAD_POSTS_REQUEST, LOAD_POSTS_SUCCESS } from '../reducers/posts';
 
-function loadPostsAPI(data) {
-  return axios.get('http://localhost:3065/api/post/list', data);
+function loadPostAPI(blogId) {
+  return axios.post('http://localhost:3065/api/post/',{blogId:blogId});
 }
 
-function* loadPosts(action) {
+function* loadPost(action) {
   try {
-    const result = yield call(loadPostsAPI, action.data);
+    const result = yield call(loadPostAPI, action.data);
     yield put({
-      type: LOAD_POSTS_SUCCESS,
+      type: LOAD_POST_SUCCESS,
       data: result.data
     });
   } catch (err) {
     console.error(err);
+    // yield put({
+    //   type: LOAD_POSTS_FAILURE,
+    //   data: err.response.data,
+    // });
+  }
+}
+
+function editPostAPI(data) {
+  return axios.post(`http://localhost:3065/api/post/edit/${data.id}`, data)
+}
+
+function* editPost(action) {
+  try {
+    const result = yield call(editPostAPI, action.data)
     yield put({
-      type: LOAD_POSTS_FAILURE,
+      type: EDIT_POST_SUCCESS,
+      data: result.data
+    })
+  }
+  catch (err) {
+    yield put({
+      type: EDIT_POST_FAILURE,
       data: err.response.data,
-    });
+    })
   }
 }
 
@@ -50,16 +71,23 @@ function* addPost(action) {
   }
 }
 
-function* watchLoadPosts() {
-  yield throttle(5000, LOAD_POSTS_REQUEST, loadPosts);
+function* watchLoadPost() {
+  yield throttle(5000, LOAD_POST_REQUEST, loadPost);
 }
+
 function* watchAddPost() {
-  yield throttle(5000, ADD_POST_REQUEST, addPost);
+  yield takeLatest(ADD_POST_REQUEST, addPost);
+}
+
+function* watchEditPost() {
+  yield throttle(5000, EDIT_POST_REQUEST, editPost);
 }
 
 export default function* postSaga() {
   yield all([
-    fork(watchLoadPosts),
+    fork(watchLoadPost),
     fork(watchAddPost),
+    fork(watchEditPost),
+
   ]);
 }
