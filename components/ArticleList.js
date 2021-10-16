@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Box, Button, Grid } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 import { useSelector, useDispatch } from 'react-redux';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import { LOAD_AUTHOR_POSTS_REQUEST, LOAD_POSTS_REQUEST, REMOVE_POSTS_REQUEST } from '../reducers/posts';
 import Router from 'next/router';
 import { toast } from 'react-toastify';
@@ -15,7 +17,7 @@ const ArticleList = () => {
   const dispatch = useDispatch();
 
   const { userId } = useSelector(state => state.user)
-  const { mainPosts } = useSelector(state => state.posts)
+  const { mainPosts, loadPostsDone } = useSelector(state => state.posts)
   const { publicationList } = useSelector(state => state.publication)
   const [selectionModel, setSelectionModel] = useState([]);
 
@@ -26,6 +28,7 @@ const ArticleList = () => {
     })
     setRow(mainPosts);
   },[])
+
 
   useEffect(() => {
     setRow(mainPosts);
@@ -87,12 +90,10 @@ const ArticleList = () => {
       publication: publicationList.find((ele) => ele.id == row.PublicationId).name,
     }
   });
-  return (
-    <>
-      <Button onClick={() => router.push('/admin/new')}> New </Button>
-      <Button onClick={() => editArticle(selectionModel.length)}> Edit </Button>
-      <Button onClick={deleteArticle}> Delete </Button>
-      <Box
+  const renderPosts = () => {
+    return (
+      <>
+        <Box
         component={Grid}
         item
         xs={12}
@@ -126,6 +127,28 @@ const ArticleList = () => {
           />
         </div>
       </Box>
+      </>
+    )
+  }
+  return (
+    <>
+      <Button onClick={() => router.push('/admin/new')}> New </Button>
+      <Button onClick={() => editArticle(selectionModel.length)}> Edit </Button>
+      <Button onClick={deleteArticle}> Delete </Button>
+      {loadPostsDone 
+      ? renderPosts()
+      : (
+        <Grid container alignItems="center"
+        style={{ minHeight: "50vh" }}
+
+        justify="center">
+          <CircularProgress />
+        </Grid>
+        // <Box sx={{ display: 'flex' }}>
+        //   <CircularProgress />
+        // </Box>
+      )}
+      
     </>
   )
 }

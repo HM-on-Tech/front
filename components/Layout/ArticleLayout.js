@@ -21,12 +21,12 @@ export default function ArticleLayout({children}) {
   return (
     <div className={classes.root}>
       <Grid container>
-        <Grid item xs={2}>
+        <Grid item xs={1} md={2}>
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={10} md={8}>
           {children}
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={1} md={2}>
         </Grid>
       </Grid>
     </div>

@@ -4,20 +4,26 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles  } from '@material-ui/core'
 
-const useStyles = makeStyles({
-  title: {
-    fontWeight: 600,
-    marginTop: 40, 
-  },
+const useStyles = makeStyles((theme) => ({
   author: {
     marginBottom: 10,
   },
   img: {
     width: '100%',
     height: '100%',
-  }
+  },
+  title: {
+    fontSize: 30,
+    fontWeight: 600,
+    marginTop: 40, 
+    [theme.breakpoints.up('md')]: {
+      fontSize: 50,
+      fontWeight: 600,
+      marginTop: 40, 
+    },
+  },
 
-})
+}))
 
 
 const Article = ({post}) => {

@@ -271,7 +271,9 @@ const cancelSubmit = (e) => {
         <Editor
          apiKey={process.env.TINY_API_KEY} // referencing a .env var?
          onInit={(evt, editor) => editorRef.current = editor}
+         
          init={{
+           content_style: `img {width: 100%}`,
            height: 500,
            menubar: false,
            plugins: [
@@ -286,8 +288,12 @@ const cancelSubmit = (e) => {
            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
           }}
           onEditorChange={(newValue, editor) => {
-            setValue(newValue);
+            const changedValue = newValue.replace(/(width=")\d+("\W+height=")\d+/, '$1100%$2100%');
+
+            setValue(changedValue);
+            console.log(changedValue);
           }}
+
         value={value || ''}
          
       />
