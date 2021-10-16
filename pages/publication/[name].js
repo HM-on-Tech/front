@@ -1,8 +1,8 @@
 import React from 'react'
 import AppLayout from '../../components/Layout/AppLayout'
-import PublicationComponent from '../../components/publicationComponent';
+import PublicationComponent from '../../components/PublicationComponent';
 
-const PublicaitonPage = () => {
+const PublicationPage = () => {
 
 
     return(
@@ -14,4 +14,4 @@ const PublicaitonPage = () => {
     )
 }
 
-export default PublicaitonPage;
+export default PublicationPage;
