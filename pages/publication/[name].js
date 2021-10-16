@@ -3,7 +3,7 @@ import AppLayout from '../../components/Layout/AppLayout'
 import PublicationComponent from '../../components/PublicationComponent';
 
 const PublicationPage = () => {
-
+ 
 
     return(
     <>
