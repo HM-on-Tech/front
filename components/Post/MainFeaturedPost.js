@@ -10,6 +10,7 @@ import Link from '@material-ui/core/Link';
 const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
     position: 'relative',
+    width: '100%',
     backgroundColor: theme.palette.grey[800],
     color: theme.palette.common.white,
     marginBottom: theme.spacing(4),
