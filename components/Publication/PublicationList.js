@@ -4,7 +4,6 @@ import { DataGrid } from '@material-ui/data-grid';
 import { useSelector, useDispatch } from 'react-redux';
 import { REMOVE_PUBLICATION_REQUEST, ADD_PUBLICATION_REQUEST, LOAD_PUBLICATION_REQUEST } from '../../reducers/publication';
 import { toast } from 'react-toastify';
-import router from 'next/router';
 
 const PublicationList = () => {
   const [row, setRow] = useState([]);
@@ -26,7 +25,7 @@ const PublicationList = () => {
 
   const deletePublication = () => {
     if (selectionModel.length === 0){
-      toast.warning('please select publication to remove')
+      toast.warning('Please select a publication')
       return;
     }
     dispatch({

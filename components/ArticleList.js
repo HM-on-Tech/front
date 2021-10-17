@@ -35,7 +35,7 @@ const ArticleList = () => {
   }, [mainPosts])
   const deleteArticle = () => {
     if (selectionModel.length === 0){
-      toast.warning('please select article to delete')
+      toast.warning('Please select an article to delete')
       return;
     }
     dispatch({
@@ -46,10 +46,10 @@ const ArticleList = () => {
   
   const editArticle = (length) => {
     if (length === 0){
-      toast.warning('please select article to edit')
+      toast.warning('Please select an article to edit')
     }
     if (length > 1){
-      toast.warning('please select one article at a time')
+      toast.warning('Please select one article at a time')
     }
     if (length === 1){
       Router.push(`/admin/edit/${selectionModel[0]}`)

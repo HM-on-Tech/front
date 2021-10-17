@@ -30,7 +30,7 @@ const UserList = ({
 
   const deleteUser = async () => {
     if (selectedElement.length === 0){
-      toast.warning('please select user to remove')
+      toast.warning('Please select a user')
       return;
     }
     const result = await axios.post(`/user/remove`,selectedElement)
@@ -42,7 +42,7 @@ const UserList = ({
     setEmail('');
     setName('');
     setRole(1);
-    toast.success('user deleted');
+    toast.success('User removed');
   }
   
   const columns = [

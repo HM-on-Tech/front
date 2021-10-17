@@ -3,13 +3,10 @@ import { Button, TextField} from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { ADD_PUBLICATION_REQUEST, EDIT_PUBLICATION_REQUEST, EDIT_PUBLICATION_FAILURE } from '../../reducers/publication'
 import { useRouter } from 'next/router' 
-import { Editor } from '@tinymce/tinymce-react'
-import { toast } from "react-toastify";
 
 
 
 const PublicationTextField = ({publicationInfo}) => {
-  const toastId = React.useRef(null);
   const router = useRouter()
 
   // const [value, setValue] = useState('');

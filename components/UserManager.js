@@ -40,11 +40,11 @@ const UserManager = ({
     // Edit only
     if (mode === 'Edit') {
       if (selectedElement.length !== 1) {
-        toast.warning(`please select one to edit`);
+        toast.warning(`Please select an article`);
         return
       }
       if ( email.trim() === '' || name.trim() === '') {
-        toast.warning(`please fill in blank `);
+        toast.warning(`Please fill in blank`);
         return 
       }
       const result = await axios.post(`/user/edit`,
@@ -59,7 +59,7 @@ const UserManager = ({
           }
         });
       })
-      toast.success('Edit success');
+      toast.success('Successfully edited');
       setEmail('');
       setName('');
       setRole(1);

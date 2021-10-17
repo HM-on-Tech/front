@@ -47,10 +47,10 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       break;
     case ADD_POST_SUCCESS:
       Router.push('/admin/list')
-      toast.success('Post Added')
+      toast.success('Post added successfully')
       break;
     case ADD_POST_FAILURE:
-      toast.error('add Post failed')
+      toast.error('Failed to add post')
       break;
     case REMOVE_POST_SUCCESS:
       draft.removePostDone = true;
@@ -58,11 +58,11 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       draft.mainPosts = draft.mainPosts.filter( (v) => !filterCandidate?.includes(v.id))
       break;
     case EDIT_POST_FAILURE:
-      toast.error('failed to edit post')
+      toast.error('Failed to edit post')
       break;
     case EDIT_POST_SUCCESS:
       Router.push('/admin/list')
-      toast.success('edit success')
+      toast.success('Successfully edited')
       break;
     default:
       break;

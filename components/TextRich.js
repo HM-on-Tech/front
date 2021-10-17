@@ -85,13 +85,13 @@ const TextRich = ({postInfo}) => {
     };
   const nullCheck = (value, valueName) => {
     if (value == null || value.trim() === '') {
-      toast.warning(`no ${valueName}`);
+      toast.warning(`No ${valueName}`);
       return ;
     }
   }
   const zeroCheck = (value, valueName) => {
     if (value == null || value === 0) {
-      toast.warning(`no ${valueName}`);
+      toast.warning(`No ${valueName}`);
       return ;
     }
   }
@@ -106,7 +106,7 @@ const TextRich = ({postInfo}) => {
       zeroCheck(issue,'issue' );
       
       if (!validImage) {
-        toast.warning(`image is not valid`);
+        toast.warning(`Invalid image`);
         return ;
       }
       if (thumbnail.startsWith('http')){
@@ -262,9 +262,9 @@ const cancelSubmit = (e) => {
           onLoad={() => {
             if (thumbnail.startsWith('http')){
             setValidImage(true);
-              toast.success('Thumbnail Successfully Loaded')
+              toast.success('Thumbnail is successfully loaded')
             } else {
-              toast.error('Not a Valid Image. Must start with "https://"')
+              toast.error('Invalid image. Must start with "https://"')
             }
           }}
         />
