@@ -14,6 +14,7 @@ import Sidebar from './Sidebar';
 import Footer from './Footer';
 import FeaturedPostCarousel from './FeaturedPostCarousel'
 import { LOAD_POSTS_REQUEST } from '../reducers/posts';
+import { Hidden } from '@material-ui/core';
 
 
 
@@ -69,17 +70,19 @@ const useStyles = makeStyles((theme) => ({
           <Grid item xs={1} md={1}></Grid>
           
           <Grid item xs={4} md={1} />
-          <Grid item xs={12} md={4} className={classes.sidebarGrid}>
-          
-            <Sidebar
-              title={sidebar.title}
-              description={sidebar.description}
-              archives={sidebar.archives}
-              social={sidebar.social}
-            />
-          </Grid>
           <Grid item xs={12} md={6} className={classes.mainGrid}>
+          
             <Main title="Recently Published" posts={mainPosts.slice(4, mainPosts.length)} />
+          </Grid>
+          <Grid item xs={12} md={4} className={classes.sidebarGrid}>
+            <Hidden xsDown>
+              <Sidebar
+                title={sidebar.title}
+                description={sidebar.description}
+                archives={sidebar.archives}
+                social={sidebar.social}
+              />
+            </Hidden>
           </Grid>
           <Grid item md={1} />
         </Grid>

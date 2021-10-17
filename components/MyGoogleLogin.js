@@ -7,7 +7,7 @@ const MyGoogleLogin = () => {
   const dispatch = useDispatch()
 
   const responseGoogle = (response) => {
-    console.log(reponse?.errors)
+    console.log(response?.errors)
     if (response?.error) {
       dispatch({
         type: LOG_IN_USER_FAILURE,
