@@ -62,6 +62,7 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
             draft.email = null;
             draft.role = null;
             draft.isLoggedIn = false;
+            draft.accessToken = '';
             removeLocalStorage('HM_ON_TECH_ACCESS_TOKEN')
             break;
         default:
