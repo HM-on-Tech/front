@@ -14,7 +14,7 @@ import {
 
 
 function loadPublicationAPI(dta) {
-  return axios.post('http://localhost:3065/api/publication/list');
+  return axios.post('/publication/list');
 }
 
 function* loadPublication(action) {
@@ -34,7 +34,7 @@ function* loadPublication(action) {
 }
 
 function addPublicationAPI(data) {
-  return axios.post('http://localhost:3065/api/publication/add', data);
+  return axios.post('/publication/add', data);
 }
 
 function* addPublication(action) {
@@ -54,7 +54,7 @@ function* addPublication(action) {
 }
 
 function removePublicationAPI(data) {
-  return axios.post('http://localhost:3065/api/publication/remove', data);
+  return axios.post('/publication/remove', data);
 }
 
 function* removePublication(action) {

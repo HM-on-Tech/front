@@ -22,7 +22,7 @@ import {
 } from '../reducers/posts';
 
 function loadPubScrollPostsAPI(data) {
-  return axios.post(`http://localhost:3065/api/posts/publication/scroll`, data);
+  return axios.post(`/posts/publication/scroll`, data);
 }
 
 function* loadPubScrollPosts(action) {
@@ -42,7 +42,7 @@ function* loadPubScrollPosts(action) {
 }
 
 function loadPubPostsAPI(data) {
-  return axios.post(`http://localhost:3065/api/posts/publication`, data);
+  return axios.post(`/posts/publication`, data);
 }
 
 function* loadPubPosts(action) {
@@ -62,7 +62,7 @@ function* loadPubPosts(action) {
 }
 
 function loadAuthorPostsAPI(data) {
-  return axios.post(`http://localhost:3065/api/posts/list/${data}`,{
+  return axios.post(`/posts/list/${data}`,{
     withCredentials: true,
   });
 }
@@ -83,7 +83,7 @@ function* loadAuthorPosts(action) {
   }
 }
 function loadPostsScrollAPI(data) {
-  return axios.post('http://localhost:3065/api/posts/scroll',data ,{
+  return axios.post('/posts/scroll',data ,{
     withCredentials: true,
   });
 }
@@ -106,7 +106,7 @@ function* loadScrollPosts(action) {
 }
 
 function loadPostsAPI(data) {
-  return axios.post('http://localhost:3065/api/posts/list',data ,{
+  return axios.post('/posts/list',data ,{
     withCredentials: true,
   });
 }
@@ -127,7 +127,7 @@ function* loadPosts(action) {
   }
 }
 function removePostsAPI(data) {
-  return axios.post('http://localhost:3065/api/posts/remove',data );
+  return axios.post('/posts/remove',data );
 }
 
 function* removePosts(action) {

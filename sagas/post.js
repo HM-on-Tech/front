@@ -12,7 +12,7 @@ import {
 import { LOAD_POSTS_FAILURE, LOAD_POSTS_REQUEST, LOAD_POSTS_SUCCESS } from '../reducers/posts';
 
 function loadPostAPI(blogId) {
-  return axios.post('http://localhost:3065/api/post/',{blogId:blogId});
+  return axios.post('/post/',{blogId:blogId});
 }
 
 function* loadPost(action) {
@@ -32,7 +32,7 @@ function* loadPost(action) {
 }
 
 function editPostAPI(data) {
-  return axios.post(`http://localhost:3065/api/post/edit/${data.id}`, data)
+  return axios.post(`/post/edit/${data.id}`, data)
 }
 
 function* editPost(action) {
@@ -52,7 +52,7 @@ function* editPost(action) {
 }
 
 function addPostAPI(data) {
-  return axios.post('http://localhost:3065/api/post/add', data);
+  return axios.post('/post/add', data);
 }
 
 function* addPost(action) {

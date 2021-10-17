@@ -4,7 +4,7 @@ import { LOAD_ME_REQUEST, LOAD_ME_SUCCESS, LOG_IN_USER_REQUEST, LOG_IN_USER_SUCC
 import { toast } from 'react-toastify';
 
 function loadMeAPI() {
-  return axios.post('http://localhost:3065/api/auth/me');
+  return axios.post('/auth/me');
 }
 function* loadMe() {
   try {
@@ -19,7 +19,7 @@ function* loadMe() {
 }
 
 function loadLoginAPI(data) {
-  return axios.post('http://localhost:3065/api/auth',data);
+  return axios.post('/auth',data);
 }
 
 function* loadLogin(action) {

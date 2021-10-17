@@ -14,7 +14,7 @@ const ArticleComponent = () => {
   const { article } = router.query
 
   useEffect( async () => {
-    const post = await axios.get(`http://localhost:3065/api/post/get/${article}`);
+    const post = await axios.get(`/post/get/${article}`);
     
     setData(post.data)
   }, [])

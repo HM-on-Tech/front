@@ -12,7 +12,7 @@ const EditPageComponent = () => {
   const { edit } = router.query
 
   useEffect( async () => {
-    const post = await axios.get(`http://localhost:3065/api/post/get/${edit}`);
+    const post = await axios.get(`/post/get/${edit}`);
     setData(post.data)
   }, [])
 

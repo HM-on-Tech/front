@@ -20,7 +20,7 @@ const UserList = ({
   const dispatch = useDispatch();
 
   useEffect( async () => {
-    const users  = await axios.post('http://localhost:3065/api/user/list');
+    const users  = await axios.post('/user/list');
     setUserList(users.data)
   }, [])
 
@@ -33,7 +33,7 @@ const UserList = ({
       toast.warning('please select user to remove')
       return;
     }
-    const result = await axios.post(`http://localhost:3065/api/user/remove`,selectedElement)
+    const result = await axios.post(`/user/remove`,selectedElement)
     setUserList( (prev) => {
       let filterIDs = result.data?.map( (x)=> parseInt(x) )
       const values = prev.filter( (v) => !filterIDs.includes(v.id));

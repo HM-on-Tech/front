@@ -72,7 +72,7 @@ const PublicationComponent = () => {
   },[name])
 
   useEffect( async () => {
-    const result = await axios.post(`http://localhost:3065/api/publication/volumeIssueComb`,{pubName: name});
+    const result = await axios.post(`/publication/volumeIssueComb`,{pubName: name});
     setVolumeIssueList(result.data);
 }, [name])
 

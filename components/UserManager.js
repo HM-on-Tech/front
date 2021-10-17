@@ -47,7 +47,7 @@ const UserManager = ({
         toast.warning(`please fill in blank `);
         return 
       }
-      const result = await axios.post(`http://localhost:3065/api/user/edit`,
+      const result = await axios.post(`/user/edit`,
       { email, name, role, targetUserId: selectedElement[0] })
 
       setUserList( (prev) => {
@@ -67,7 +67,7 @@ const UserManager = ({
     }
 
     // New only
-    const result = await axios.post('http://localhost:3065/api/user/add',
+    const result = await axios.post('/user/add',
     { email, name, role })
 
     if( result.data?.status === 1) {
