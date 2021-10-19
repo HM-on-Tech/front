@@ -105,7 +105,7 @@ const PublicationComponent = () => {
           <Grid item xs={false} md={1} />
           <Grid item xs={12} md={6}>
             <Main 
-              title="Recently Published"
+              title=" Recently Published"
               posts={mainPosts}
             />
           </Grid>

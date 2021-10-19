@@ -25,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
   },
   sidebarGrid:{
     padding: 20,
+  },
+  recentlyPublished:{
+    marginLeft: 10,
   }}
   ));
   
@@ -32,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     title: "Horace Mann's Publications and Magazines",
     description:
     "All in one place.",
-    image: 'https://source.unsplash.com/random',
+    image: '../static/marroon.png',
     // imgText: 'main image description',
     // linkText: 'Continue reading…',
   };
@@ -45,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     title: 'About',
     description:
     'Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.',
-    archives: [],
+    // archives: [],
     social: [
       { name: 'GitHub', icon: GitHubIcon },
       { name: 'Twitter', icon: TwitterIcon },
@@ -72,14 +75,14 @@ const useStyles = makeStyles((theme) => ({
           <Grid item xs={4} md={1} />
           <Grid item xs={12} md={6} className={classes.mainGrid}>
           
-            <Main title="Recently Published" posts={mainPosts.slice(4, mainPosts.length)} />
+            <Main title="           Recently Published" posts={mainPosts.slice(4, mainPosts.length)} className={classes.recentlyPublished} />
           </Grid>
           <Grid item xs={12} md={4} className={classes.sidebarGrid}>
             <Hidden xsDown>
               <Sidebar
                 title={sidebar.title}
                 description={sidebar.description}
-                archives={sidebar.archives}
+                archives={null}
                 social={sidebar.social}
               />
             </Hidden>
