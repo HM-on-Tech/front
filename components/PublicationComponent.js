@@ -19,7 +19,7 @@ import { Grid } from '@material-ui/core';
 const sidebar = {
   title: 'About',
   description:
-  'Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.',
+  'HM on Tech was created by a dedicated group of four seniors and two juniors on a mission to make an impact on the HM community through our passion for computer science. This app is an accessible portal to all HM student publications, regardless of size, and allows users to sort by specific publications or by recently published issues.',
   archives: [],
   social: [
     { name: 'GitHub', icon: GitHubIcon },

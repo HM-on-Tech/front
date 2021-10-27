@@ -206,7 +206,7 @@ export default function Header({ sections, title }) {
           // autoPlay={this.props.deviceType !== "mobile" ? true : false}
           keyBoardControl={true}
           containerClass="carousel-container"
-          removeArrowOnDeviceType={["tablet", "mobile"]}
+          removeArrowOnDeviceType={["tablet", "mobile", 'desktop']}
           // deviceType={this.props.deviceType}
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-40-px"

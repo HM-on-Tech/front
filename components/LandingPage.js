@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   const sidebar = {
     title: 'About',
     description:
-    'Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.',
+    'HM on Tech was created by a dedicated group of four seniors and two juniors on a mission to make an impact on the HM community through our passion for computer science. This app is an accessible portal to all HM student publications, regardless of size, and allows users to sort by specific publications or by recently published issues.',
     // archives: [],
     social: [
       { name: 'GitHub', icon: GitHubIcon },
@@ -73,11 +73,11 @@ const useStyles = makeStyles((theme) => ({
           <Grid item xs={1} md={1}></Grid>
           
           <Grid item xs={4} md={1} />
-          <Grid item xs={12} md={6} className={classes.mainGrid}>
+          <Grid item xs={12} md={7} className={classes.mainGrid}>
           
             <Main title="           Recently Published" posts={mainPosts.slice(4, mainPosts.length)} className={classes.recentlyPublished} />
           </Grid>
-          <Grid item xs={12} md={4} className={classes.sidebarGrid}>
+          <Grid item xs={12} md={3} className={classes.sidebarGrid}>
             <Hidden xsDown>
               <Sidebar
                 title={sidebar.title}
