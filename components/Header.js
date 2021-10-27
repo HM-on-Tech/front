@@ -214,17 +214,17 @@ export default function Header({ sections, title }) {
         >
           {sections?.map((section) => ( 
             <Button key={`header-button-${section.name}`}>
-              <Link href={`/publication/${section.name}`}>
-                <MUILink 
+              {/* <Link href={`/publication/${section.name}`}> */}
+                {/* <MUILink 
                   color="inherit"
                   noWrap
                   key={section.name}
                   variant="body2"
                   className={classes.toolbarLink}
-                >
+                > */}
                   {section.name}
-                </MUILink>
-              </Link>   
+                {/* </MUILink> */}
+              {/* </Link>    */}
             </Button>
           ))} 
         </Carousel>
