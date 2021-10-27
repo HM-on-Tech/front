@@ -1,6 +1,5 @@
 
 import { toast } from 'react-toastify';
-import { authenticate } from '../helper/auth';
 import produce from '../util/produce';
 import { removeLocalStorage } from '../helper/auth'
 // =============================================================
@@ -37,14 +36,14 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
             draft.isLoggedIn = true;
             localStorage.setItem('HM_ON_TECH_ACCESS_TOKEN', action.data.requestToken);
 
-            toast.success("You are Logged In");
+            toast.success("Logged in successfully");
             // authenticate(action.data);
             // requestToken
             draft.isLoggedIn = true
             break;
         case LOG_IN_USER_FAILURE:
             draft.isLoggedIn = false
-            toast.error("로그인 실패!!!!");
+            toast.error("Failed to log in");
             break;
         case LOAD_ME_REQUEST:
             break;
@@ -63,6 +62,7 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
             draft.email = null;
             draft.role = null;
             draft.isLoggedIn = false;
+            draft.accessToken = '';
             removeLocalStorage('HM_ON_TECH_ACCESS_TOKEN')
             break;
         default:

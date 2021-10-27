@@ -39,3 +39,6 @@ jspm_packages
 
 # dotenv file
 .env.local
+
+HM_ON_TECH.pem
+.env.local

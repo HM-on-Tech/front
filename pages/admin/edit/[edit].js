@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import AppLayout from '../../../components/Layout/AppLayout'
-import TextRichWithNoSSR from "../../../components/textRichWithNoSSR"
+import TextRichWithNoSSR from "../../../components/TextRichWithNoSSR"
 import AdminLayout from '../../../components/Layout/AdminLayout'
 
 const EditPageComponent = () => {
@@ -12,7 +12,7 @@ const EditPageComponent = () => {
   const { edit } = router.query
 
   useEffect( async () => {
-    const post = await axios.get(`http://localhost:3065/api/post/get/${edit}`);
+    const post = await axios.get(`/post/get/${edit}`);
     setData(post.data)
   }, [])
 

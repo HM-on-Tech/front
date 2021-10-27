@@ -1,12 +1,13 @@
 import { GoogleLogin } from 'react-google-login';
-import { useSelector, useDispatch } from 'react-redux';
-import { LOG_IN_USER_FAILURE, LOG_IN_USER_REQUEST, LOG_IN_USER_SUCCESS } from '../reducers/user';
+import { useDispatch } from 'react-redux';
+import { LOG_IN_USER_FAILURE, LOG_IN_USER_REQUEST } from '../reducers/user';
 
 
 const MyGoogleLogin = () => {
   const dispatch = useDispatch()
 
   const responseGoogle = (response) => {
+    console.log(response?.errors)
     if (response?.error) {
       dispatch({
         type: LOG_IN_USER_FAILURE,

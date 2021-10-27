@@ -14,6 +14,7 @@ import Sidebar from './Sidebar';
 import Footer from './Footer';
 import FeaturedPostCarousel from './FeaturedPostCarousel'
 import { LOAD_POSTS_REQUEST } from '../reducers/posts';
+import { Hidden } from '@material-ui/core';
 
 
 
@@ -24,16 +25,19 @@ const useStyles = makeStyles((theme) => ({
   },
   sidebarGrid:{
     padding: 20,
+  },
+  recentlyPublished:{
+    marginLeft: 10,
   }}
   ));
   
   const mainFeaturedPost = {
-    title: 'Title of a longer featured blog post',
+    title: "Horace Mann's Publications and Magazines",
     description:
-    "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-    image: 'https://source.unsplash.com/random',
-    imgText: 'main image description',
-    linkText: 'Continue reading…',
+    "All in one place.",
+    image: '../static/marroon.png',
+    // imgText: 'main image description',
+    // linkText: 'Continue reading…',
   };
   
   const featuredPosts = [
@@ -43,8 +47,8 @@ const useStyles = makeStyles((theme) => ({
   const sidebar = {
     title: 'About',
     description:
-    'Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.',
-    archives: [],
+    'HM on Tech was created by a dedicated group of four seniors and two juniors on a mission to make an impact on the HM community through our passion for computer science. This app is an accessible portal to all HM student publications, regardless of size, and allows users to sort by specific publications or by recently published issues.',
+    // archives: [],
     social: [
       { name: 'GitHub', icon: GitHubIcon },
       { name: 'Twitter', icon: TwitterIcon },
@@ -69,21 +73,23 @@ const useStyles = makeStyles((theme) => ({
           <Grid item xs={1} md={1}></Grid>
           
           <Grid item xs={4} md={1} />
-          <Grid item xs={12} md={4} className={classes.sidebarGrid}>
+          <Grid item xs={12} md={7} className={classes.mainGrid}>
           
-            <Sidebar
-              title={sidebar.title}
-              description={sidebar.description}
-              archives={sidebar.archives}
-              social={sidebar.social}
-            />
+            <Main title="           Recently Published" posts={mainPosts.slice(4, mainPosts.length)} className={classes.recentlyPublished} />
           </Grid>
-          <Grid item xs={12} md={6} className={classes.mainGrid}>
-            <Main title="Recently Published" posts={mainPosts.slice(4, mainPosts.length)} />
+          <Grid item xs={12} md={3} className={classes.sidebarGrid}>
+            <Hidden xsDown>
+              <Sidebar
+                title={sidebar.title}
+                description={sidebar.description}
+                archives={null}
+                social={sidebar.social}
+              />
+            </Hidden>
           </Grid>
           <Grid item md={1} />
         </Grid>
-        <Footer title="Footer" description="Something here to give the footer a purpose!" />
+        {/* <Footer title="Footer" description="Something here to give the footer a purpose!" /> */}
       </>
   );
 }

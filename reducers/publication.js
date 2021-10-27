@@ -36,7 +36,7 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       draft.publicationList = draft.publicationList.filter( (v) => !filterCandidate?.includes(v.id))
       break;
     case REMOVE_PUBLICATION_FAILURE:
-      toast.error('Failed to Delete Publication')
+      toast.error('Failed to delete publication')
       break;
     case ADD_PUBLICATION_REQUEST:
       draft.addPublicationDone = false;
@@ -45,14 +45,14 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
     case ADD_PUBLICATION_SUCCESS:
       Router.push('/admin/publication')
       if ( action.data == null) {
-        toast.warning('Publication already exist')
+        toast.warning('This publication already exists')
       } else {
-        toast.success('Publication Added')
+        toast.success('Publication added successfully')
         draft.publicationList = [action.data, ...draft.publicationList]
       }
       break;
     case ADD_PUBLICATION_FAILURE:
-      toast.error('Failed to Add Publication')
+      toast.error('Failed to add publication')
       draft.addPublicationError = action.error
       break;
     case LOAD_PUBLICATION_REQUEST:

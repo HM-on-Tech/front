@@ -19,7 +19,7 @@ import { Grid } from '@material-ui/core';
 const sidebar = {
   title: 'About',
   description:
-  'Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.',
+  'HM on Tech was created by a dedicated group of four seniors and two juniors on a mission to make an impact on the HM community through our passion for computer science. This app is an accessible portal to all HM student publications, regardless of size, and allows users to sort by specific publications or by recently published issues.',
   archives: [],
   social: [
     { name: 'GitHub', icon: GitHubIcon },
@@ -72,7 +72,7 @@ const PublicationComponent = () => {
   },[name])
 
   useEffect( async () => {
-    const result = await axios.post(`http://localhost:3065/api/publication/volumeIssueComb`,{pubName: name});
+    const result = await axios.post(`/publication/volumeIssueComb`,{pubName: name});
     setVolumeIssueList(result.data);
 }, [name])
 
@@ -105,7 +105,7 @@ const PublicationComponent = () => {
           <Grid item xs={false} md={1} />
           <Grid item xs={12} md={6}>
             <Main 
-              title="Recently Published"
+              title=" Recently Published"
               posts={mainPosts}
             />
           </Grid>

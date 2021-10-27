@@ -106,7 +106,7 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
         }
         return true
       })
-      toast.success("REMOVE_POSTS_SUCCESS");
+      toast.success("Post successfully removed");
       break;
    
     default:

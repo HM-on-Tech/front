@@ -15,10 +15,6 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { LOG_IN_USER_SUCCESS } from '../reducers/user';
-import { LOG_IN_USER_FAILURE } from '../reducers/user';
-
 const useStyles = makeStyles((theme) => ({
     grow: {
       flexGrow: 1,
@@ -112,24 +108,6 @@ const AppBarComponent = ({item, index}) => {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-
-
-  const { isLoggedIn, userName } = useSelector(state => state.user)
-
-  const responseGoogle = (response) => {
-    if (response?.error) {
-      dispatch({
-        type: LOG_IN_USER_FAILURE,
-        data: response,
-      })
-    }
-    if (response?.googleId) {
-      dispatch({
-        type: LOG_IN_USER_SUCCESS,
-        data: response
-      })
-    }
-  }
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (

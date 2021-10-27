@@ -108,7 +108,7 @@ export default function Header({ sections, title }) {
 
   useEffect( async () => {
     if (name) {
-      const result = await axios.post(`http://localhost:3065/api/publication/volumeIssueComb`,{pubName: name});
+      const result = await axios.post(`/publication/volumeIssueComb`,{pubName: name});
       setVolumeIssueList(result.data);
     }
   }, [name])
@@ -194,39 +194,41 @@ export default function Header({ sections, title }) {
         </Typography>
         {googleLoginComponent()}
       </Toolbar>
-      
-      <Carousel
-        swipeable={true}
-        draggable={true}
-        showDots={false}
-        responsive={responsive}
-        ssr={true} // means to render carousel on server-side.
-        infinite={true}
-        // autoPlay={this.props.deviceType !== "mobile" ? true : false}
-        keyBoardControl={true}
-        containerClass="carousel-container"
-        removeArrowOnDeviceType={["tablet", "mobile"]}
-        // deviceType={this.props.deviceType}
-        dotListClass="custom-dot-list-style"
-        itemClass="carousel-item-padding-40-px"
-        className={classes.header}
-      >
-        {sections?.map((section) => ( 
-          <Button key={`header-button-${section.name}`}>
-            <Link href={`/publication/${section.name}`}>
-              <MUILink 
-                color="inherit"
-                noWrap
-                key={section.name}
-                variant="body2"
-                className={classes.toolbarLink}
-              >
-                {section.name}
-              </MUILink>
-            </Link>   
-          </Button>
-        ))} 
-      </Carousel>
+      <Hidden xsDown>
+        
+        <Carousel
+          swipeable={true}
+          draggable={true}
+          showDots={false}
+          responsive={responsive}
+          ssr={true} // means to render carousel on server-side.
+          infinite={true}
+          // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+          keyBoardControl={true}
+          containerClass="carousel-container"
+          removeArrowOnDeviceType={["tablet", "mobile", 'desktop']}
+          // deviceType={this.props.deviceType}
+          dotListClass="custom-dot-list-style"
+          itemClass="carousel-item-padding-40-px"
+          className={classes.header}
+        >
+          {sections?.map((section) => ( 
+            <Button key={`header-button-${section.name}`}>
+              <Link href={`/publication/${section.name}`}>
+                <MUILink 
+                  color="inherit"
+                  noWrap
+                  key={section.name}
+                  variant="body2"
+                  className={classes.toolbarLink}
+                >
+                  {section.name}
+                </MUILink>
+              </Link>   
+            </Button>
+          ))} 
+        </Carousel>
+      </Hidden>
     </>
   );
 }

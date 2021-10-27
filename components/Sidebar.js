@@ -20,6 +20,23 @@ const useStyles = makeStyles((theme) => ({
 export default function Sidebar(props) {
   const classes = useStyles();
   const { archives, description, social, title } = props;
+  
+  // const renderArchive = () => {
+  //   if (archives) {
+  //     <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
+  //       Archives
+  //     </Typography>
+  //     archives.map((archive) => (
+  //       <Link 
+  //         href={archive.url}
+  //         key={archive.title}
+  //         style={{ textDecoration: `none`}}
+  //       >
+  //         <Button>{archive.title}</Button>
+  //       </Link>
+  //     ))
+  //   }
+  // }
 
   return (
     <>
@@ -29,18 +46,6 @@ export default function Sidebar(props) {
         </Typography>
         <Typography>{description}</Typography>
       </Paper>
-      <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-        Archives
-      </Typography>
-      {archives.map((archive) => (
-        <Link 
-          href={archive.url}
-          key={archive.title}
-          style={{ textDecoration: `none`}}
-        >
-          <Button>{archive.title}</Button>
-        </Link>
-      ))}
       <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
         Social
       </Typography>

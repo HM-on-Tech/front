@@ -8,8 +8,12 @@ import user from './user';
 import publication from './publication'
 import { isAuth } from '../helper/auth';
 
+if (process.env.NODE_ENV === 'production') {
+  axios.defaults.baseURL = `${process.env.AWS_API_URL}/api`;
+} else {
+  axios.defaults.baseURL = 'http://localhost:3065/api';
+}
 
-// axios.defaults.baseURL = '';
 axios.defaults.withCredentials= true;
 axios.defaults.headers.common['Authorization'] = isAuth();
 
