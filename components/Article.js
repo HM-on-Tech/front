@@ -83,7 +83,7 @@ const Article = ({post}) => {
           className={classes.overline}
           variant='overline'
         >
-          {currentPubName}, {Moment(post?.updatedAt).format('MM-DD-YYYY')}
+          {currentPubName}, {/* {Moment(post?.updatedAt).format('MM-DD-YYYY')} */}
         </Typography>
         <div dangerouslySetInnerHTML={{ __html: post?.content }} />
       </Grid>
