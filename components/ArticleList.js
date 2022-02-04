@@ -21,6 +21,8 @@ const ArticleList = () => {
   const { publicationList } = useSelector(state => state.publication)
   const [selectionModel, setSelectionModel] = useState([]);
 
+  console.log('publicationlist', publicationList)
+
   useEffect( async () => {
     dispatch({
       type: LOAD_AUTHOR_POSTS_REQUEST,
