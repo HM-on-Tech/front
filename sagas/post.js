@@ -9,7 +9,6 @@ import {
   EDIT_POST_REQUEST,
   EDIT_POST_SUCCESS,
 } from '../reducers/post';
-import { LOAD_POSTS_FAILURE, LOAD_POSTS_REQUEST, LOAD_POSTS_SUCCESS } from '../reducers/posts';
 
 function loadPostAPI(blogId) {
   return axios.post('/post/',{blogId:blogId});
@@ -20,7 +19,7 @@ function* loadPost(action) {
     const result = yield call(loadPostAPI, action.data);
     yield put({
       type: LOAD_POST_SUCCESS,
-      data: result.data
+      data: [result.data, ]
     });
   } catch (err) {
     console.error(err);
